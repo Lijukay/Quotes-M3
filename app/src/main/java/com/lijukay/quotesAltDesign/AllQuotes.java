@@ -4,67 +4,61 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+
 import java.util.ArrayList;
 
-
-public class MainActivity extends AppCompatActivity {
-    private ArrayList<EC> ecs;
-    /*private static final String TAG = "MainActivity";*/
+public class AllQuotes extends AppCompatActivity {
+    private ArrayList<AllRV> aqs;
+    /*private static final String TAG = "AllQuotes";*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.tl);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.activity_all_quotes);
+        Toolbar toolbarAQ = findViewById(R.id.tlall);
+        setSupportActionBar(toolbarAQ);
 
-        ECs();
+        AQs();
     }
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+    public boolean onCreateOptionsMenu(Menu menuAQ) {
+        getMenuInflater().inflate(R.menu.menu_aq, menuAQ);
         return true;
     }
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.about){
+    public boolean onOptionsItemSelected(MenuItem itemAQ) {
+        if(itemAQ.getItemId() == R.id.aboutA){
             AboutApp();
             return true;
-        } else if(item.getItemId() == R.id.samsungdesign){
+        } else if(itemAQ.getItemId() == R.id.samsungdesignA){
             SamsungDesign();
             return true;
-        } else if(item.getItemId() == R.id.people){
+        } else if(itemAQ.getItemId() == R.id.PersonsA){
             People();
             return true;
-        } else if(item.getItemId() == R.id.all){
-            All();
+        } else if(itemAQ.getItemId() == R.id.ecA){
+            ECsA();
             return true;
         } else {
-            return super.onOptionsItemSelected(item);
+            return super.onOptionsItemSelected(itemAQ);
         }
     }
 
-    private void All() {
-        Intent intentAM = new Intent(this, AllQuotes.class);
-        startActivity(intentAM);
+    private void ECsA() {
+        Intent intentECsA = new Intent(this, MainActivity.class);
+        startActivity(intentECsA);
     }
 
     private void People() {
-        Intent intentP = new Intent(this, Person.class);
-        startActivity(intentP);
+        Intent intentPA = new Intent(this, Person.class);
+        startActivity(intentPA);
     }
 
     private void SamsungDesign() {
@@ -83,20 +77,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void ECs() {
-        RecyclerView recyclerView = findViewById(R.id.editorsChoiceRV);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        ecs = new ArrayList<>();
-        ECAdapter ecAdapter = new ECAdapter(this, ecs);
-        recyclerView.setAdapter(ecAdapter);
+    private void AQs() {
+        RecyclerView recyclerViewAQ = findViewById(R.id.allQuotesRV);
+        recyclerViewAQ.setLayoutManager(new LinearLayoutManager(this));
+        aqs = new ArrayList<>();
+        AllAdapter allAdapter = new AllAdapter(this, aqs);
+        recyclerViewAQ.setAdapter(allAdapter);
 
-        CreateDataForCards();
+        CreateDataForCardsAQ();
     }
 
-    private void CreateDataForCards() {
-        ecs.add(new EC("Das Leben geht weiter, ob mit dir oder ohne dich. Du siehst, niemand nimmt Rücksicht auf dich, also tu es auch nicht", "Lijukay"));
-        ecs.add(new EC("Es ist sicher nicht einfach, das Leben, wie man es hat, zu leben. Dennoch tun es einige stolz. Ihr Geheimnis?: Sie achten nicht auf die anderen. Das macht sie nicht neidisch", "Lijukay"));
-        
+    private void CreateDataForCardsAQ() {
+        aqs.add(new AllRV("Das Leben geht weiter, ob mit dir oder ohne dich. Du siehst, niemand nimmt Rücksicht auf dich, also tu es auch nicht", "Lijukay"));
+        aqs.add(new AllRV("Es ist sicher nicht einfach, das Leben, wie man es hat, zu leben. Dennoch tun es einige stolz. Ihr Geheimnis?: Sie achten nicht auf die anderen. Das macht sie nicht neidisch", "Lijukay"));
+
         /*try {
             String jsonDataString = readJSONDataFromFile();
             JSONArray jsonArray = new JSONArray(jsonDataString);

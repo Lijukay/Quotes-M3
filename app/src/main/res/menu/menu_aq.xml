@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/aboutA"
+        android:icon="@drawable/ic_about"
+        android:title="About"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/samsungdesignA"
+        android:icon="@drawable/ic_design"
+        android:title="Samsung Design"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/ecA"
+        android:icon="@drawable/ec"
+        android:title="Editor Choice"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/PersonsA"
+        android:icon="@drawable/all"
+        android:title="Personen"
+        app:showAsAction="always"/>
+</menu>

@@ -6,10 +6,20 @@
             android:id="@+id/about"
             android:icon="@drawable/ic_about"
             android:title="About"
-            app:showAsAction="ifRoom"/>
+            app:showAsAction="never"/>
         <item
             android:id="@+id/samsungdesign"
             android:icon="@drawable/ic_design"
             android:title="Samsung Design"
-            app:showAsAction="ifRoom" />
+            app:showAsAction="never" />
+        <item
+            android:id="@+id/people"
+            android:icon="@drawable/people"
+            android:title="Personenliste"
+            app:showAsAction="always"/>
+        <item
+            android:id="@+id/all"
+            android:icon="@drawable/all"
+            android:title="Alle zeigen"
+            app:showAsAction="always"/>
 </menu>

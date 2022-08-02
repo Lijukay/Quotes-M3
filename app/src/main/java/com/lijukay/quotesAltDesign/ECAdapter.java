@@ -61,7 +61,4 @@ public class ECAdapter extends RecyclerView.Adapter<ECAdapter.QuoteHolder> {
             author.setText(ec.getAuthor());
         }
     }
-
-
-
 }

@@ -4,12 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".AllQuotes"
     android:fitsSystemWindows="true"
     style="@style/Theme.Material3.DynamicColors.DayNight">
 
     <com.google.android.material.appbar.AppBarLayout
-        style="@style/Theme.Material3.DynamicColors.DayNight"
         android:theme="@style/Theme.Material3.DynamicColors.DayNight"
         android:layout_width="match_parent"
         android:fitsSystemWindows="true"
@@ -22,14 +21,15 @@
             style="@style/Theme.Material3.DynamicColors.DayNight"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:expandedTitleMarginStart="64dp"
-            app:title="Editors Choice"
-            android:id="@+id/ctl"
+            app:title="Alle Zitate"
+            android:id="@+id/ctlall"
             app:titleCollapseMode="scale"
+
             android:fitsSystemWindows="true">
 
             <androidx.appcompat.widget.Toolbar
                 android:padding="5dp"
-                android:id="@+id/tl"
+                android:id="@+id/tlall"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
@@ -41,9 +41,9 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/editorsChoiceRV"
+        android:id="@+id/allQuotesRV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
