@@ -17,5 +17,27 @@
       "quote": "Mal sehen, ob der Knopf funktioniert",
       "author": "hfhhs"
     }
+  ],
+  "AllQuotes":
+  [
+    {
+      "quoteAll": "NANANA",
+      "authorAll": "llo"
+    }, {
+      "quoteAll": "TEST",
+      "authorAll": "Minnime"
+    }, {
+      "quoteAll": "QuoteAll",
+      "authorAll": "AuthorAll"
+    }, {
+      "quoteAll": "Was du heute kannst besorgen, das verschiebe nicht auf morgen",
+      "authorAll": "Unbekannt"
+    }, {
+      "quoteAll": "Mal sehen, ob der Knopf funktioniert",
+      "authorAll": "hfhhs"
+    }, {
+      "quotaAll": "Ein weiterer, nur zum testen",
+      "authorAll": "Ich"
+    }
   ]
 }
