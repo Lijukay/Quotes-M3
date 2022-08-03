@@ -1,0 +1,47 @@
+In  private void CreateDataForCards() {
+ /*try {
+            String jsonDataString = readJSONDataFromFile();
+            JSONArray jsonArray = new JSONArray(jsonDataString);
+
+            for (int i = 0; i < jsonArray.length(); ++i){
+                JSONObject itemObj = jsonArray.getJSONObject(i);
+                String quote = itemObj.getString("quote");
+                String author = itemObj.getString("author");
+
+                EC ec = new EC(quote, author);
+                ecs.add(ec);
+            }
+
+        }catch (JSONException | IOException e){
+
+            Log.d(TAG, "addItemsFromJSON", e);
+        }*/
+
+
+        Wenn es nicht klappt:
+        ecs.add(new EC("Das Leben geht weiter, ob mit dir oder ohne dich. Du siehst, niemand nimmt Rücksicht auf dich, also tu es auch nicht", "Lijukay"));
+                ecs.add(new EC("Es ist sicher nicht einfach, das Leben, wie man es hat, zu leben. Dennoch tun es einige stolz. Ihr Geheimnis?: Sie achten nicht auf die anderen. Das macht sie nicht neidisch", "Lijukay"));}
+
+Unter  private void CreateDataForCards() {}:
+ /*private String readJSONDataFromFile() throws IOException{
+        InputStream inputStream = null;
+        StringBuilder stringBuilder = new StringBuilder();
+
+        try {
+            String jsonString = null;
+            inputStream = getResources().openRawResource(R.raw.editorschoice);
+
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
+            while ((jsonString = bufferedReader.readLine()) != null){
+                stringBuilder.append(jsonString);
+            }
+        } finally {
+
+            if(inputStream != null){
+                inputStream.close();
+            }
+
+        }
+
+        return new String(stringBuilder);
+    }*/

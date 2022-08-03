@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.lijukay.quotesAltDesign">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".AppName"
         android:allowBackup="true"

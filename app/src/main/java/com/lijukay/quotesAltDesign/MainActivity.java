@@ -17,6 +17,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.ArrayList;
 
 
@@ -90,51 +91,12 @@ public class MainActivity extends AppCompatActivity {
         ECAdapter ecAdapter = new ECAdapter(this, ecs);
         recyclerView.setAdapter(ecAdapter);
 
-        CreateDataForCards();
+        InputECs();
     }
 
-    private void CreateDataForCards() {
-        ecs.add(new EC("Das Leben geht weiter, ob mit dir oder ohne dich. Du siehst, niemand nimmt Rücksicht auf dich, also tu es auch nicht", "Lijukay"));
-        ecs.add(new EC("Es ist sicher nicht einfach, das Leben, wie man es hat, zu leben. Dennoch tun es einige stolz. Ihr Geheimnis?: Sie achten nicht auf die anderen. Das macht sie nicht neidisch", "Lijukay"));
-        
-        /*try {
-            String jsonDataString = readJSONDataFromFile();
-            JSONArray jsonArray = new JSONArray(jsonDataString);
+    private void InputECs() {
 
-            for (int i = 0; i < jsonArray.length(); ++i){
-                JSONObject itemObj = jsonArray.getJSONObject(i);
-                String quote = itemObj.getString("quote");
-                String author = itemObj.getString("author");
-
-                EC ec = new EC(quote, author);
-                ecs.add(ec);
-            }
-
-        }catch (JSONException | IOException e){
-
-            Log.d(TAG, "addItemsFromJSON", e);
-        }*/
     }
-    /*private String readJSONDataFromFile() throws IOException{
-        InputStream inputStream = null;
-        StringBuilder stringBuilder = new StringBuilder();
 
-        try {
-            String jsonString = null;
-            inputStream = getResources().openRawResource(R.raw.editorschoice);
 
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
-            while ((jsonString = bufferedReader.readLine()) != null){
-                stringBuilder.append(jsonString);
-            }
-        } finally {
-
-            if(inputStream != null){
-                inputStream.close();
-            }
-
-        }
-
-        return new String(stringBuilder);
-    }*/
 }
