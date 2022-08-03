@@ -1,0 +1,102 @@
+[
+    {
+        "merged": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-merged_res-25:\\drawable_quotation_mark.xml.flat",
+        "source": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-main-27:\\drawable\\quotation_mark.xml"
+    },
+    {
+        "merged": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-merged_res-25:\\menu_menu_p.xml.flat",
+        "source": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-main-27:\\menu\\menu_p.xml"
+    },
+    {
+        "merged": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-merged_res-25:\\drawable_people.xml.flat",
+        "source": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-main-27:\\drawable\\people.xml"
+    },
+    {
+        "merged": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-merged_res-25:\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-main-27:\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-merged_res-25:\\drawable_ic_design.xml.flat",
+        "source": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-main-27:\\drawable\\ic_design.xml"
+    },
+    {
+        "merged": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-merged_res-25:\\raw_editorschoice.json.flat",
+        "source": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-main-27:\\raw\\editorschoice.json"
+    },
+    {
+        "merged": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-merged_res-25:\\menu_menu_aq.xml.flat",
+        "source": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-main-27:\\menu\\menu_aq.xml"
+    },
+    {
+        "merged": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-merged_res-25:\\layout_editor_choice.xml.flat",
+        "source": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-main-27:\\layout\\editor_choice.xml"
+    },
+    {
+        "merged": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-merged_res-25:\\layout_activity_all_quotes.xml.flat",
+        "source": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-main-27:\\layout\\activity_all_quotes.xml"
+    },
+    {
+        "merged": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-merged_res-25:\\layout_activity_about.xml.flat",
+        "source": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-main-27:\\layout\\activity_about.xml"
+    },
+    {
+        "merged": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-merged_res-25:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-main-27:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-merged_res-25:\\layout_allquotes.xml.flat",
+        "source": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-main-27:\\layout\\allquotes.xml"
+    },
+    {
+        "merged": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-merged_res-25:\\mipmap-xxhdpi_ic_launcher.xml.flat",
+        "source": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-main-27:\\mipmap-xxhdpi\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-merged_res-25:\\drawable_ic_about.xml.flat",
+        "source": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-main-27:\\drawable\\ic_about.xml"
+    },
+    {
+        "merged": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-merged_res-25:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-main-27:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-merged_res-25:\\menu_menu_main.xml.flat",
+        "source": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-main-27:\\menu\\menu_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-merged_res-25:\\xml_data_extraction_rules.xml.flat",
+        "source": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-main-27:\\xml\\data_extraction_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-merged_res-25:\\layout_activity_person.xml.flat",
+        "source": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-main-27:\\layout\\activity_person.xml"
+    },
+    {
+        "merged": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-merged_res-25:\\drawable_icon_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-main-27:\\drawable\\icon_launcher_foreground.xml"
+    },
+    {
+        "merged": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-merged_res-25:\\drawable_ec.xml.flat",
+        "source": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-main-27:\\drawable\\ec.xml"
+    },
+    {
+        "merged": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-merged_res-25:\\layout_persons_item.xml.flat",
+        "source": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-main-27:\\layout\\persons_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-merged_res-25:\\drawable_all.xml.flat",
+        "source": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-main-27:\\drawable\\all.xml"
+    },
+    {
+        "merged": "com.lijukay.quotesAltDesign.app-merged_res-25:/layout_activity_about.xml.flat",
+        "source": "com.lijukay.quotesAltDesign.app-main-27:/layout/activity_about.xml"
+    },
+    {
+        "merged": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-merged_res-25:\\xml_backup_rules.xml.flat",
+        "source": "C:\\Users\\Nutzer\\.gradle\\daemon\\7.3.3\\com.lijukay.quotesAltDesign.app-main-27:\\xml\\backup_rules.xml"
+    },
+    {
+        "merged": "com.lijukay.quotesAltDesign.app-merged_res-25:/layout_activity_main.xml.flat",
+        "source": "com.lijukay.quotesAltDesign.app-main-27:/layout/activity_main.xml"
+    }
+]
