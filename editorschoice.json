@@ -1,11 +1,10 @@
 {
-  "EditorsChoice":[
-        {
-          "quote": "NANANA",
-          "author": "llo"
-        },
-    {
-      "quote": "TEST",
-      "author": "Minnime"
-    }]
+  "EditorsChoice":[{
+    "quote": "NANANA",
+    "author": "llo"
+  }, {
+    "quote": "TEST",
+    "author": "Minnime"
+  }
+                  ]
 }
