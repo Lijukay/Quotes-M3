@@ -39,5 +39,11 @@
       "quoteAll": "Ein weiterer, nur zum testen",
       "authorAll": "Ich"
     }
+  ],
+  "Persons":
+  [
+    {
+      "authorP": "Unbekannt"
+    }
   ]
 }
