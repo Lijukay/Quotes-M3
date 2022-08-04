@@ -6,22 +6,22 @@
         <item
             android:id="@+id/refresh"
             android:icon="@drawable/refresh"
-            android:title="Aktualisieren"
+            android:title="Refresh"
             app:showAsAction="ifRoom"/>
         <item
             android:id="@+id/all"
             android:icon="@drawable/all"
-            android:title="Alle zeigen"
+            android:title="All quotes"
             app:showAsAction="ifRoom"/>
         <item
             android:id="@+id/people"
             android:icon="@drawable/people"
-            android:title="Personenliste"
+            android:title="Persons"
             app:showAsAction="ifRoom"/>
         <item
             android:id="@+id/samsungdesign"
             android:icon="@drawable/ic_design"
-            android:title="Samsung Design"
+            android:title="Samsung-design"
             app:showAsAction="ifRoom" />
         <item
             android:id="@+id/about"

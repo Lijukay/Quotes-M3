@@ -5,12 +5,12 @@
     <item
         android:id="@+id/refreshA"
         android:icon="@drawable/refresh"
-        android:title="Aktualisieren"
+        android:title="Refresh"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/personsA"
         android:icon="@drawable/people"
-        android:title="Personen"
+        android:title="Persons"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/ecA"
@@ -21,7 +21,7 @@
     <item
         android:id="@+id/samsungdesignA"
         android:icon="@drawable/ic_design"
-        android:title="Samsung Design"
+        android:title="Samsung-design"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/aboutA"

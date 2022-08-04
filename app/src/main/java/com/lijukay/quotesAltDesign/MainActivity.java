@@ -148,19 +148,15 @@ public class MainActivity extends AppCompatActivity {
         Intent intentAM = new Intent(this, AllActivity.class);
         startActivity(intentAM);
     }
-
     private void People() {
         Intent intentP = new Intent(this, PersonsActivity.class);
         startActivity(intentP);
     }
-
     private void SamsungDesign() {
         Uri uriS = Uri.parse("https://github.com/Lijukay/Quotes");
         Intent intentS = new Intent(Intent.ACTION_VIEW, uriS);
         startActivity(intentS);
     }
-
-
     private void AboutApp() {
         Intent intentA = new Intent(this, About.class);
         startActivity(intentA);

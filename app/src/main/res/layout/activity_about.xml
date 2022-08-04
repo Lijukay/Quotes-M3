@@ -12,8 +12,7 @@
         android:theme="@style/Theme.Material3.DynamicColors.DayNight"
         android:layout_width="match_parent"
         android:fitsSystemWindows="true"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
@@ -21,7 +20,7 @@
             style="@style/Theme.Material3.DynamicColors.DayNight"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:expandedTitleMarginStart="64dp"
-            app:title="Über diese App"
+            app:title="About this app"
             android:id="@+id/ctlabout"
             app:titleCollapseMode="scale"
             android:fitsSystemWindows="true">
@@ -33,7 +32,7 @@
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
                 app:logo="@mipmap/ic_launcher"
-                app:titleMarginStart="10dp"/>
+                app:titleMarginStart="10dp" />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -48,7 +47,6 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="?android:itemBackground"
             android:elevation="5dp"
             app:cardCornerRadius="26dp"
             app:cardUseCompatPadding="true">
@@ -57,11 +55,45 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="Diese App ist ein alternatives Design zur Quotes-App und benutzt nicht die OneUI-Bibliothek von Yanndroid. Diese App benutzt das Material Theme von Google, welches die Farben dynamisch, je nach Systemfarbe (unter Android 12 meistens blau) ändert."
+                android:text="This app is an alternative design for the quotes apps. Both, this app and the quotes app, will have the same quotes, persons, etc. but they look completely differnt.\nAgain I thank Yanndroid for helping me, creating this app as well."
                 android:textColor="?android:textColorPrimary"
                 android:textSize="20sp"
                 android:textStyle="normal" />
         </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contact me, if you found bugs, mistranslations or if you have a feature suggestion"
+            android:layout_gravity="center"
+            android:padding="14dp"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="18sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/telegram"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingStart="0dp"
+                android:paddingEnd="30dp"
+                android:src="@drawable/ic_logo"/>
+            <ImageView
+                android:id="@+id/GitHub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingStart="30dp"
+                android:paddingEnd="0dp"
+                android:src="@drawable/ic_iconmonstr_github_1"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -6,13 +6,12 @@
     app:cardCornerRadius="26dp"
     app:cardUseCompatPadding="true"
     app:cardPreventCornerOverlap="true"
-    app:cardBackgroundColor="?android:itemBackground"
-    android:stateListAnimator="@null"
-    style="@style/Widget.Material3.CardView.Elevated">
+    android:stateListAnimator="@null">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/quote_background_ec">
 
         <ImageView
             android:id="@+id/quotationMark"
