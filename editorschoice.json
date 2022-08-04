@@ -43,7 +43,8 @@
   "Persons":
   [
     {
-      "authorP": "Unbekannt"
+      "authorP": "Unbekannt";
+      "authorP": "Lijukay"
     }
   ],
   "Unbekannt":
@@ -51,6 +52,13 @@
     {
       "quotePQ": "nddhh",
       "authorPQ": "hdhfh"
+    }
+  ],
+  "Lijukay":
+  [
+    {
+      "quotePQ": "hsfsh",
+      "authorPQ": "jhfha"
     }
   ]
 }
