@@ -3,23 +3,29 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/aboutA"
-        android:icon="@drawable/ic_about"
-        android:title="About"
-        app:showAsAction="never"/>
+        android:id="@+id/refreshA"
+        android:icon="@drawable/refresh"
+        android:title="Aktualisieren"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/personsA"
+        android:icon="@drawable/people"
+        android:title="Personen"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/ecA"
+        android:icon="@drawable/ec"
+        android:title="Editors Choice"
+        app:showAsAction="ifRoom"/>
+
     <item
         android:id="@+id/samsungdesignA"
         android:icon="@drawable/ic_design"
         android:title="Samsung Design"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/ecA"
-        android:icon="@drawable/ec"
-        android:title="Editor Choice"
-        app:showAsAction="always"/>
-    <item
-        android:id="@+id/PersonsA"
-        android:icon="@drawable/all"
-        android:title="Personen"
-        app:showAsAction="always"/>
+        android:id="@+id/aboutA"
+        android:icon="@drawable/ic_about"
+        android:title="About"
+        app:showAsAction="ifRoom"/>
 </menu>

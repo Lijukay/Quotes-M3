@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.lijukay.quotesAltDesign">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".AppName"
@@ -17,10 +17,13 @@
         android:theme="@style/Theme.Quotes"
         tools:targetApi="31">
         <activity
-            android:name=".Person"
+            android:name=".PersonsQuote"
             android:exported="false" />
         <activity
-            android:name=".AllQuotes"
+            android:name=".PersonsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AllActivity"
             android:exported="false" />
         <activity
             android:name=".About"

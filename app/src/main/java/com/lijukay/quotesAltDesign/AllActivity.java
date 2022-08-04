@@ -51,102 +51,104 @@ import java.util.concurrent.Executors;
 import javax.net.ssl.HttpsURLConnection;
 
 
-public class MainActivity extends AppCompatActivity {
-    private RecyclerView mRecyclerView;
-    private ECAdapter mECAdapter;
-    private ArrayList<ECItem> mECItem;
-    private RequestQueue mRequestQueue;
+public class AllActivity extends AppCompatActivity {
+    private RecyclerView mRecyclerViewAll;
+    private AllAdapter mAllAdapter;
+    private ArrayList<AllItem> mAllItem;
+    private RequestQueue mRequestQueueAll;
+    private String allquotes = "AllQuotes";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.tl);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.activity_all_quotes);
+        Toolbar toolbarAll = findViewById(R.id.tlall);
+        setSupportActionBar(toolbarAll);
 
 
-        mRecyclerView = findViewById(R.id.editorsChoiceRV);
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerViewAll = findViewById(R.id.allQuotesRV);
+        mRecyclerViewAll.setHasFixedSize(true);
+        mRecyclerViewAll.setLayoutManager(new LinearLayoutManager(this));
 
-        mECItem = new ArrayList<>();
+        mAllItem = new ArrayList<>();
 
-        mRequestQueue = Volley.newRequestQueue(this);
-        parseJSON();
+        mRequestQueueAll = Volley.newRequestQueue(this);
+        parseJSONAll();
+
 
 
     }
 
-    private void parseJSON() {
-        String url = "https://lijukay.github.io/quotesaltdesign/editorschoice.json";
+    private void parseJSONAll() {
+        String urlAll = "https://lijukay.github.io/quotesaltdesign/editorschoice.json";
 
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+        JsonObjectRequest requestAll = new JsonObjectRequest(Request.Method.GET, urlAll, null,
                 new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(JSONObject response) {
+                    public void onResponse(JSONObject responseAll) {
                         try {
-                            JSONArray jsonArray = response.getJSONArray("EditorsChoice");
+                            JSONArray jsonArrayAll = responseAll.getJSONArray(allquotes);
 
-                            for(int i = 0; i < jsonArray.length(); i++){
-                                JSONObject ec = jsonArray.getJSONObject(i);
+                            for(int a = 0; a < jsonArrayAll.length(); a++){
+                                JSONObject ec = jsonArrayAll.getJSONObject(a);
 
-                                String quoteEC = ec.getString("quote");
-                                String authorEC = ec.getString("author");
+                                String quoteAll = ec.getString("quoteAll");
+                                String authorAll = ec.getString("authorAll");
 
-                                mECItem.add(new ECItem(authorEC, quoteEC));
+                                mAllItem.add(new AllItem(authorAll, quoteAll));
                             }
 
-                            mECAdapter = new ECAdapter(MainActivity.this, mECItem);
-                            mRecyclerView.setAdapter(mECAdapter);
-                            Log.e("intent", "Hat geklappt...");
+                            mAllAdapter = new AllAdapter(AllActivity.this, mAllItem);
+                            mRecyclerViewAll.setAdapter(mAllAdapter);
+                            Log.e("intent", "Hat geklapptAll...");
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Log.e("error", "hat nicht geklappt...");
+                            Log.e("error", "hat nicht geklapptall...");
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-                Log.e("error", "Hat nicht geklappt 2");
+            public void onErrorResponse(VolleyError errorAll) {
+                errorAll.printStackTrace();
+                Log.e("error", "Hat nicht geklappt 2all");
             }
         });
-        mRequestQueue.add(request);
+        mRequestQueueAll.add(requestAll);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_aq, menu);
         return true;
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.about){
+        if(item.getItemId() == R.id.aboutA){
             AboutApp();
             return true;
-        } else if(item.getItemId() == R.id.samsungdesign){
+        } else if(item.getItemId() == R.id.samsungdesignA){
             SamsungDesign();
             return true;
-        } else if(item.getItemId() == R.id.people){
+        } else if(item.getItemId() == R.id.personsA){
             People();
             return true;
-        } else if(item.getItemId() == R.id.all){
-            All();
+        } else if(item.getItemId() == R.id.ecA){
+            ECA();
             return true;
-        }  else if(item.getItemId() == R.id.refresh){
-            mECItem.clear();
-            parseJSON();
+        }  else if(item.getItemId() == R.id.refreshA){
+            mAllItem.clear();
+            parseJSONAll();
             return true;
         } else {
             return super.onOptionsItemSelected(item);
         }
     }
 
-    private void All() {
-        Intent intentAM = new Intent(this, AllActivity.class);
-        startActivity(intentAM);
+    private void ECA() {
+        Intent intentEM = new Intent(this, MainActivity.class);
+        startActivity(intentEM);
     }
 
     private void People() {
@@ -165,8 +167,4 @@ public class MainActivity extends AppCompatActivity {
         Intent intentA = new Intent(this, About.class);
         startActivity(intentA);
     }
-
-
-
-
 }

@@ -8,56 +8,51 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.ArrayList;
 
-public class AllAdapter extends RecyclerView.Adapter<AllAdapter.QuoteAllHolder> {
+public class AllAdapter extends RecyclerView.Adapter<AllAdapter.AllViewHolder> {
+    private final Context mContextAll;
+    private final ArrayList<AllItem> mAllItem;
 
+    public AllAdapter (Context contextAll, ArrayList<AllItem> allList){
+        mContextAll = contextAll;
+        mAllItem = allList;
 
-    private final Context contextAQ;
-    private final ArrayList<AllRV> aqs;
-
-    //Constructor
-
-    public AllAdapter(Context contextAQ, ArrayList<AllRV> aq) {
-        this.contextAQ = contextAQ;
-        this.aqs = aq;
     }
 
     @NonNull
     @Override
-    public QuoteAllHolder onCreateViewHolder(@NonNull ViewGroup parentAQ, int viewTypeAQ) {
-        View viewAQ = LayoutInflater.from(contextAQ).inflate(R.layout.allquotes,parentAQ,false);
-        return new QuoteAllHolder(viewAQ);
+    public AllViewHolder onCreateViewHolder(@NonNull ViewGroup parentAll, int viewTypeAll) {
+        View vA = LayoutInflater.from(mContextAll).inflate(R.layout.allquotes, parentAll, false);
+        return new AllViewHolder(vA);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull QuoteAllHolder holderAQ, int positionAQ) {
+    public void onBindViewHolder(@NonNull AllViewHolder holderAll, int positionAll) {
+        AllItem currentItemAll = mAllItem.get(positionAll);
 
-        AllRV aq = aqs.get(positionAQ);
-        holderAQ.setDetails(aq);
+        String allQuote = currentItemAll.getQuoteAll();
+        String allAuthor = currentItemAll.getAuthorAll();
+
+        holderAll.mQuoteAll.setText(allQuote);
+        holderAll.mAuthorAll.setText(allAuthor);
     }
 
     @Override
     public int getItemCount() {
-        return aqs.size();
+        return mAllItem.size();
     }
 
-    static class QuoteAllHolder extends RecyclerView.ViewHolder{
-        private final TextView quoteAQ;
-        private final TextView authorAQ;
+    public class AllViewHolder extends RecyclerView.ViewHolder{
+        public TextView mQuoteAll;
+        public TextView mAuthorAll;
 
 
-        QuoteAllHolder(View itemViewAQ){
-            super(itemViewAQ);
-            quoteAQ = itemViewAQ.findViewById(R.id.quoteAQ);
-            authorAQ = itemViewAQ.findViewById(R.id.authorAQ);
-        }
+        public AllViewHolder(@NonNull View itemViewAll) {
+            super(itemViewAll);
+            mQuoteAll = itemViewAll.findViewById(R.id.quoteAQ);
+            mAuthorAll = itemViewAll.findViewById(R.id.authorAQ);
 
-        void setDetails(AllRV aq){
-            //Set texts
-            quoteAQ.setText(aq.getQuoteAll());
-            authorAQ.setText(aq.getAuthorAll());
         }
     }
 }

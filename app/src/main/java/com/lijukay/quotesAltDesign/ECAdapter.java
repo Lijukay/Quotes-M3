@@ -4,61 +4,59 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.apache.http.conn.ConnectTimeoutException;
+
 import java.util.ArrayList;
 
-public class ECAdapter extends RecyclerView.Adapter<ECAdapter.QuoteHolder> {
+public class ECAdapter extends RecyclerView.Adapter<ECAdapter.ECViewHolder> {
+    private Context mContext;
+    private ArrayList<ECItem> mECItem;
 
-    //ECAdapter Class
+    public ECAdapter (Context context, ArrayList<ECItem> ecList){
+        mContext = context;
+        mECItem = ecList;
 
-    private final Context context;
-    private final ArrayList<EC> ecs;
-
-    //Constructor
-
-    public ECAdapter(Context context, ArrayList<EC> ec) {
-        this.context = context;
-        this.ecs = ec;
     }
 
     @NonNull
     @Override
-    public QuoteHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.editor_choice,parent,false);
-        return new QuoteHolder(view);
+    public ECViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(mContext).inflate(R.layout.editor_choice, parent, false);
+        return new ECViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull QuoteHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ECViewHolder holder, int position) {
+        ECItem currentItem = mECItem.get(position);
 
-        EC ec = ecs.get(position);
-        holder.setDetails(ec);
+        String ecQuote = currentItem.getQuote();
+        String ecAuthor = currentItem.getAuthor();
+
+        holder.mQuote.setText(ecQuote);
+        holder.mAuthor.setText(ecAuthor);
     }
 
     @Override
     public int getItemCount() {
-        return ecs.size();
+        return mECItem.size();
     }
 
-    static class QuoteHolder extends RecyclerView.ViewHolder{
-        private final TextView quote;
-        private final TextView author;
+    public class ECViewHolder extends RecyclerView.ViewHolder{
+        public TextView mQuote;
+        public TextView mAuthor;
 
 
-        QuoteHolder(View itemView){
+        public ECViewHolder(@NonNull View itemView) {
             super(itemView);
-            quote = itemView.findViewById(R.id.quote);
-            author = itemView.findViewById(R.id.author);
-        }
+            mQuote = itemView.findViewById(R.id.quote);
+            mAuthor = itemView.findViewById(R.id.author);
 
-        void setDetails(EC ec){
-            //Set texts
-            quote.setText(ec.getQuote());
-            author.setText(ec.getAuthor());
         }
     }
 }

@@ -2,24 +2,30 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+
         <item
-            android:id="@+id/about"
-            android:icon="@drawable/ic_about"
-            android:title="About"
-            app:showAsAction="never"/>
-        <item
-            android:id="@+id/samsungdesign"
-            android:icon="@drawable/ic_design"
-            android:title="Samsung Design"
-            app:showAsAction="never" />
-        <item
-            android:id="@+id/people"
-            android:icon="@drawable/people"
-            android:title="Personenliste"
-            app:showAsAction="always"/>
+            android:id="@+id/refresh"
+            android:icon="@drawable/refresh"
+            android:title="Aktualisieren"
+            app:showAsAction="ifRoom"/>
         <item
             android:id="@+id/all"
             android:icon="@drawable/all"
             android:title="Alle zeigen"
-            app:showAsAction="always"/>
+            app:showAsAction="ifRoom"/>
+        <item
+            android:id="@+id/people"
+            android:icon="@drawable/people"
+            android:title="Personenliste"
+            app:showAsAction="ifRoom"/>
+        <item
+            android:id="@+id/samsungdesign"
+            android:icon="@drawable/ic_design"
+            android:title="Samsung Design"
+            app:showAsAction="ifRoom" />
+        <item
+            android:id="@+id/about"
+            android:icon="@drawable/ic_about"
+            android:title="About"
+            app:showAsAction="ifRoom"/>
 </menu>

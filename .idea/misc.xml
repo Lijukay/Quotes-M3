@@ -11,14 +11,17 @@
         <entry key="..\:/Users/Nutzer/AndroidStudioProjects/QuotesAltDesign/app/src/main/res/drawable/icon_launcher_foreground.xml" value="0.139" />
         <entry key="..\:/Users/Nutzer/AndroidStudioProjects/QuotesAltDesign/app/src/main/res/drawable/people.xml" value="0.17" />
         <entry key="..\:/Users/Nutzer/AndroidStudioProjects/QuotesAltDesign/app/src/main/res/drawable/quotation_mark.xml" value="0.1" />
+        <entry key="..\:/Users/Nutzer/AndroidStudioProjects/QuotesAltDesign/app/src/main/res/drawable/refresh.xml" value="0.1525" />
         <entry key="..\:/Users/Nutzer/AndroidStudioProjects/QuotesAltDesign/app/src/main/res/layout-v28/editor_choice.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/Nutzer/AndroidStudioProjects/QuotesAltDesign/app/src/main/res/layout/activity_about.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Nutzer/AndroidStudioProjects/QuotesAltDesign/app/src/main/res/layout/activity_about.xml" value="0.22" />
         <entry key="..\:/Users/Nutzer/AndroidStudioProjects/QuotesAltDesign/app/src/main/res/layout/activity_all_quotes.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Nutzer/AndroidStudioProjects/QuotesAltDesign/app/src/main/res/layout/activity_main.xml" value="0.15" />
-        <entry key="..\:/Users/Nutzer/AndroidStudioProjects/QuotesAltDesign/app/src/main/res/layout/activity_person.xml" value="0.19010416666666666" />
+        <entry key="..\:/Users/Nutzer/AndroidStudioProjects/QuotesAltDesign/app/src/main/res/layout/activity_person.xml" value="0.16585365853658537" />
+        <entry key="..\:/Users/Nutzer/AndroidStudioProjects/QuotesAltDesign/app/src/main/res/layout/activity_persons_quote.xml" value="0.15454545454545454" />
         <entry key="..\:/Users/Nutzer/AndroidStudioProjects/QuotesAltDesign/app/src/main/res/layout/allquotes.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Nutzer/AndroidStudioProjects/QuotesAltDesign/app/src/main/res/layout/editor_choice.xml" value="0.13398058252427184" />
         <entry key="..\:/Users/Nutzer/AndroidStudioProjects/QuotesAltDesign/app/src/main/res/layout/persons_item.xml" value="0.33" />
+        <entry key="..\:/Users/Nutzer/AndroidStudioProjects/QuotesAltDesign/app/src/main/res/layout/pquotes_item.xml" value="0.1619047619047619" />
         <entry key="..\:/Users/Nutzer/AndroidStudioProjects/QuotesAltDesign/app/src/main/res/menu/menu_aq.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Nutzer/AndroidStudioProjects/QuotesAltDesign/app/src/main/res/menu/menu_main.xml" value="0.18" />
         <entry key="..\:/Users/Nutzer/AndroidStudioProjects/QuotesAltDesign/app/src/main/res/menu/menu_p.xml" value="0.153125" />
