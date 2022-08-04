@@ -43,32 +43,71 @@
   "Persons":
   [
     {
-      "authorP": "Unbekannt"
+      "authorP": "Astrid Alauda"
     }, {
-      "authorP": "Lijukay"
+      "authorP": "Blaise Pascal"
     }, {
-      "authorP": "Skrupel"
+      "authorP": "Benjamin Franklin"
+    },  {
+      "authorP": "Bob Marley"
+    }, {
+      "authorP": "Charles Bukowski"
+    }, {
+      "authorP": "Coco Chanel"
     }
   ],
-  "Unbekannt":
+  "Astrid Alauda":
   [
     {
-      "quotePQ": "nddhh",
-      "authorPQ": "hdhfh"
+      "quotePQ": "The wounds you are not seeing, are the most difficult to heal.",
+      "authorPQ": "Astrid Alauda"
     }
   ],
-  "Lijukay":
+  "Blaise Pascal":
   [
     {
-      "quotePQ": "hsfsh",
-      "authorPQ": "jhfha"
+      "quotePQ": "A drop of love is more than an ocean of mind",
+      "authorPQ": "Blaise Pascal"
     }
   ],
-  "Skrupel":
+  "Benjamin Franklin":
   [
     {
-      "quotePQ": "hfdhh",
-      "authorPQ": "HDFH"
+      "quotePQ": "Most People die at 25 and aren't buried until they are 75.",
+      "authorPQ": "Benjamin Franklin"
+    }
+  ],
+  "Bob Marley":
+  [
+    {
+      "quotePQ": "The good times of today, are the sad thoughts of tomorrow.",
+      "authorPQ": "Bob Marley"
+    }, {
+      "quotePQ": "Open your eyes, and look within. Are you satisfied with the life you're living?",
+      "authorPQ": "Bob Marley"
+    }, {
+      "quotePQ": "The day you stop racing, is the day you win the race.",
+      "authorPQ": "Bob Marley"
+    }, {
+      "quotePQ": "Love the life you live. Live the life you love.",
+      "authorPQ": "Bob Marley"
+    }
+  ],
+  "Charles Bukowski":
+  [
+    {
+      "quotePQ": "Do you remember who you were before the world told you, who you have to be?",
+      "authorPQ": "Charles Bukowski"
+    }
+  ],
+  "Coco Chanel":
+  [
+    {
+      "quotePQ": "I regret nothing in my life except for the things i didn't do.",
+      "authorPQ": "Coco Chanel"
+    }  {
+      "quotePQ": "If you were born without wings, do nothing to prevent them from growing.",
+      "authorPQ": "Coco Chanel"
     }
   ]
 }
