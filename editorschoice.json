@@ -44,7 +44,10 @@
   [
     {
       "authorP": "Unbekannt";
+    }, {
       "authorP": "Lijukay"
+    }, {
+      "authorP": "Skrupel"
     }
   ],
   "Unbekannt":
@@ -59,6 +62,13 @@
     {
       "quotePQ": "hsfsh",
       "authorPQ": "jhfha"
+    }
+  ],
+  "Skrupel":
+  [
+    {
+      "quotePQ": "hfdhh",
+      "authorPQ": "HDFH"
     }
   ]
 }
