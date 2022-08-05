@@ -181,5 +181,85 @@
       "quotePQ": "The cage you dare not enter holds the treasure you seek",
       "authorPQ": "Joseph Camphell"
     }
+  ],
+  "John Wooden":
+  [
+    {
+      "quotePQ": "Don't give up on your dreams or your dreams will give you up",
+      "authorPQ": "John Wooden"
+    }
+  ],
+  "Jackson Brown":
+  [
+    {
+      "quotePQ": "Sometimes the heart sees things that are invisible to the eye",
+      "authorPQ": "Jackson Brown"
+    }
+  ],
+  "Konfuzius":
+  [
+    {
+      "quotePQ": "It does not matter how slowly you go as long as you do not stop",
+      "authorPQ": "Konfuzius"
+    }
+  ],
+  "Lew Tolstoi":
+  [
+    {
+      "quotePQ": "Everyone thinks of changing the world, but no one thinks of changing himself",
+      "authorPQ": "Lew Tolstoi"
+    }
+  ],
+  "Lilian Dickson":
+  [
+    {
+      "quotePQ": "Life is like a coin, you can buy anything with it, but only once",
+      "authorPQ": "Lilian Dickson"
+    }
+  ],
+  "Lucius Seneca":
+  [
+    {
+      "quotePQ": "Character can be seen in even the smallest actions",
+      "authorPQ": "Lucius Seneca"
+    }
+  ],
+  "Laotse":
+  [
+    {
+      "quotePQ": "Even a journey of a thousand miles begins with a single step",
+      "authorPQ": "Laotse"
+    }
+  ],
+  "Mark Aurel":
+  [
+    {
+      "quotePQ": "You should not fear the death but to never live at all",
+      "authorPQ": "Mark Aurel"
+    }
+  ],
+  "Pablo Picasso":
+  [
+    {
+      "quotePQ": "Everything you can imagine is real",
+      "authorPQ": "Pablo Picasso"
+    }
+  ],
+  "Robert Schuller":
+  [
+    {
+      "quotePQ": "What would you do if you knew you couldn't fail?",
+      "authorPQ": "Robert Schuller"
+    }
+  ],
+  "Unknown":
+  [
+    {
+      "quotePQ": "Do it or don't do it, you'll regret both.",
+      "authorPQ": "Unknown"
+    }, {
+      "quotePQ": "Broken people have the prettiest smiles because they know what happiness means",
+      "authorPQ": "Unknown"
+    }
   ]
 }
