@@ -1,71 +1,9 @@
 {
   "EditorsChoice":
   [
-    {
-      "quote": "The wounds you are not seeing, are the most difficult to heal",
-      "author": "Astrid Alauda"
-    }, {
-      "quote": "Most people die at 25 and aren’t buried until they’re 75.",
-      "author": "Benjamin Franklin"
-    }, {
-      "quote": "The day you stop racing, is the day you win the race.",
-      "author": "Bob Marley"
-    }, {
-      "quote": "I regret nothing in my life except for the things i didn't do",
-      "author": "Coco Chanel"
-    }, {
-      "quote": "Can you remember who you were before the world told you who you have to be?",
-      "author": "Charles Bukowski"
-    }
   ],
   "AllQuotes":
   [
-    {
-      "quoteAll": "The wounds you are not seeing, are the most difficult to heal.",
-      "authorAll": "Astrid Alauda"
-    }, {
-      "quoteAll": "A drop of love is more than an ocean of mind",
-      "authorAll": "Blaise Pascal"
-    }, {
-      "quoteAll": "Most People die at 25 and aren't buried until they are 75.",
-      "authorAll": "Benjamin Franklin"
-    }, {
-      "quoteAll": "The good times of today, are the sad thoughts of tomorrow.",
-      "authorAll": "Bob Marley"
-    }, {
-      "quoteAll": "Open your eyes, and look within. Are you satisfied with the life you're living?",
-      "authorAll": "Bob Marley"
-    }, {
-      "quoteAll": "The day you stop racing, is the day you win the race.",
-      "authorAll": "Bob Marley"
-    }, {
-      "quoteAll": "Love the life you live. Live the life you love.",
-      "authorAll": "Bob Marley"
-    }, {
-      "quoteAll": "Do you remember who you were before the world told you, who you have to be?",
-      "authorAll": "Charles Bukowski"
-    }, {
-      "quoteAll": "I regret nothing in my life except for the things i didn't do.",
-      "authorAll": "Coco Chanel"
-    }, {
-      "quoteAll": "If you were born without wings, do nothing to prevent them from growing.",
-      "authorAll": "Coco Chanel"
-    }, {
-      "quoteAll": "If you don't like the path you're walking, make a new one.",
-      "authorAll": "Dolly Parton"
-    }, {
-      "quoteAll": "When someone shows you their true colors, trust them",
-      "authorAll": "Dolly Parton"
-    }, {
-      "quoteAll": "You are so brave and quiet I forget you are suffering",
-      "authorAll": "Ernest Hemingway"
-    }, {
-      "quoteAll": "Paths are made by walking them",
-      "authorAll": "Franz Kafka"
-    }, {
-      "quoteAll": "All you ever wanted is on the other side of fear",
-      "authorAll": "Franz Kafka"
-    }
   ],
   "Persons":
   [
@@ -87,6 +25,42 @@
       "authorP": "Ernest Hemingway"
     }, {
       "authorP": "Franz Kafka"
+    }, {
+      "authorP": "George Addair"
+    }, {
+      "authorP": "Johann Wolfgang Geothe"
+    }, {
+      "authorP": "Jean Paul"
+    }, {
+      "authorP": "Joker"
+    }, {
+      "authorP": "Joseph Camphell"
+    }, {
+      "authorP": "John Wooden"
+    }, {
+      "authorP": "Jackson Brown"
+    }, {
+      "authorP": "Konfuzius"
+    }, {
+      "authorP": "Lew Tolstoi"
+    }, {
+      "authorP": "Lilian Dickson"
+    }, {
+      "authorP": "Lucius Seneca"
+    }, {
+      "authorP": "Laotse"
+    }, {
+      "authorP": "Mark Aurel"
+    }, {
+      "authorP": "Pablo Picasso"
+    }, {
+      "authorP": "Robert Schuller"
+    }, {
+      "authorP": "Unknown"
+    }, {
+      "authorP": "William Shakespeare"
+    }, {
+      "authorP": "Winnie Pooh"
     }
   ],
   "Astrid Alauda":
@@ -165,9 +139,47 @@
     {
       "quotePQ": "Paths are made by walking them",
       "authorPQ": "Franz Kafka"
-    }, {
+    }
+  ],
+  "George Addair":
+  [
+    {
       "quotePQ": "All you ever wanted is on the other side of fear",
-      "authorPQ": "Franz Kafka"
+      "authorPQ": "George Addair"
+    }
+  ],
+  "Johann Wolfgang Goethe":
+  [
+    {
+      "quotePQ": "It must come from heart, what should touch the heart",
+      "authorPQ": "Johann Wolfgang Goethe"
+    }, {
+      "quotePQ": "Who never started, will never finish",
+      "authorPQ": "Johann Wolfgang Goethe"
+    }
+  ],
+  "Jean Paul":
+  [
+    {
+      "quotePQ": "Maybe there are better times, but this is our time",
+      "authorPQ": "Jean Paul"
+    }
+  ],
+  "Joker":
+  [
+    {
+      "quotePQ": "Pain is not only seen in tears, sometimes it is hidden behind a smile",
+      "authorPQ": "Joker"
+    }, {
+      "quotePQ": "Many can make you laugh but just a few can make you happy",
+      "authorPQ": "Joker"
+    }
+  ],
+  "Joseph Camphell":
+  [
+    {
+      "quotePQ": "The cage you dare not enter holds the treasure you seek",
+      "authorPQ": "Joseph Camphell"
     }
   ]
 }
