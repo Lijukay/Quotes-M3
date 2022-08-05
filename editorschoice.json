@@ -1,6 +1,34 @@
 {
   "EditorsChoice":
   [
+    {
+      "quote": "You deserve the love you are trying to give to others all the time.",
+      "author": "Unknown"
+    }, {
+      "quote": "The wounds you are not seeing, are the most difficult to heal",
+      "author": "Astrid Alauda"
+    }, {
+      "quote": "Do you remember who you were, before the world told you, who you have to be?",
+      "author": "Charles Bukowski"
+    }, {
+      "quote": "I regret nothing in my life except for the things i didn't do",
+      "author": "Coco Chanel"
+    }, {
+      "quote": "You are so brave and quiet I forget you are suffering",
+      "author": "Ernetst Hemingway"
+    }, {
+      "quote": "Everyone thinks of changing the world but no one thinks of changing himself",
+      "author": "Lew Tolstoi"
+    }, {
+      "quote": "You deserve the love you are trying to give to others all the time",
+      "author": "Unknown"
+    }, {
+      "quote": "When I think of you I smile, but my heart hurts like hell",
+      "author": "Unknown"
+    }, {
+      "quote": "I will never apologize for my heart that breaks so easily but loves so strong",
+      "author": "Unknown"
+    }
   ],
   "AllQuotes":
   [
@@ -148,7 +176,7 @@
       "authorPQ": "George Addair"
     }
   ],
-  "Johann Wolfgang Goethe":
+  "Johann Wolfgang Geothe":
   [
     {
       "quotePQ": "It must come from heart, what should touch the heart",
