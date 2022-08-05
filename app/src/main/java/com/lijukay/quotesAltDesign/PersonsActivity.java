@@ -4,52 +4,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
-import android.app.LauncherActivity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Adapter;
-import android.widget.ArrayAdapter;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.lijukay.quotesAltDesign.databinding.ActivityMainBinding;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.StringReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
-import java.util.Locale;
-import java.util.concurrent.Executors;
-
-import javax.net.ssl.HttpsURLConnection;
-
 
 public class PersonsActivity extends AppCompatActivity {
     private RecyclerView mRecyclerViewP;
@@ -57,7 +25,6 @@ public class PersonsActivity extends AppCompatActivity {
     private ArrayList<PersonsItem> mPItem;
     private RequestQueue mRequestQueueP;
     private PersonsAdapter.RecyclerViewClickListener listener;
-    private JSONObject jsonObject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,36 +52,30 @@ public class PersonsActivity extends AppCompatActivity {
 
 
         JsonObjectRequest requestP = new JsonObjectRequest(Request.Method.GET, urlP, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject responseP) {
-                        try {
-                            JSONArray jsonArrayP = responseP.getJSONArray("Persons");
+                responseP -> {
+                    try {
+                        JSONArray jsonArrayP = responseP.getJSONArray("Persons");
 
-                            for(int a = 0; a < jsonArrayP.length(); a++){
-                                JSONObject ec = jsonArrayP.getJSONObject(a);
+                        for(int a = 0; a < jsonArrayP.length(); a++){
+                            JSONObject ec = jsonArrayP.getJSONObject(a);
 
-                                String authorP = ec.getString("authorP");
+                            String authorP = ec.getString("authorP");
 
-                                mPItem.add(new PersonsItem(authorP));
-                            }
-
-                            setOnClickListener();
-                            mPAdapter = new PersonsAdapter(PersonsActivity.this, mPItem, listener);
-                            mRecyclerViewP.setAdapter(mPAdapter);
-                            Log.e("intent", "Hat geklapptAll...");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Log.e("error", "hat nicht geklapptall...");
+                            mPItem.add(new PersonsItem(authorP));
                         }
+
+                        setOnClickListener();
+                        mPAdapter = new PersonsAdapter(PersonsActivity.this, mPItem, listener);
+                        mRecyclerViewP.setAdapter(mPAdapter);
+                        Log.e("intent", "Hat geklapptAll...");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Log.e("error", "hat nicht geklapptall...");
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError errorAll) {
-                errorAll.printStackTrace();
-                Log.e("error", "Hat nicht geklappt 2all");
-            }
-        });
+                }, errorAll -> {
+                    errorAll.printStackTrace();
+                    Log.e("error", "Hat nicht geklappt 2all");
+                });
         mRequestQueueP.add(requestP);
     }
 
@@ -124,33 +85,27 @@ public class PersonsActivity extends AppCompatActivity {
 
 
             JsonObjectRequest requestP = new JsonObjectRequest(Request.Method.GET, urlP, null,
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject responseP) {
-                            try {
-                                JSONArray jsonArrayP = responseP.getJSONArray("Persons");
+                    responseP -> {
+                        try {
+                            JSONArray jsonArrayP = responseP.getJSONArray("Persons");
 
-                                    JSONObject ec = jsonArrayP.getJSONObject(position);
+                                JSONObject ec = jsonArrayP.getJSONObject(position);
 
-                                    String authorP = ec.getString("authorP");
+                                String authorP = ec.getString("authorP");
 
-                                    mPItem.add(new PersonsItem(authorP));
+                                mPItem.add(new PersonsItem(authorP));
 
-                                    Intent intent = new Intent(PersonsActivity.this, PersonsQuote.class);
-                                    intent.putExtra("authorP", authorP);
-                                    startActivity(intent);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                                Log.e("error", "hat nicht geklapptall...");
-                            }
+                                Intent intent = new Intent(PersonsActivity.this, PersonsQuote.class);
+                                intent.putExtra("authorP", authorP);
+                                startActivity(intent);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Log.e("error", "hat nicht geklapptall...");
                         }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError errorAll) {
-                    errorAll.printStackTrace();
-                    Log.e("error", "Hat nicht geklappt 2all");
-                }
-            });
+                    }, errorAll -> {
+                        errorAll.printStackTrace();
+                        Log.e("error", "Hat nicht geklappt 2all");
+                    });
             mRequestQueueP.add(requestP);
 
         };
@@ -177,6 +132,7 @@ public class PersonsActivity extends AppCompatActivity {
             return true;
         }  else if(item.getItemId() == R.id.refreshP){
             mPItem.clear();
+            mPAdapter.notifyDataSetChanged();
             parseJSONP();
             return true;
         } else {

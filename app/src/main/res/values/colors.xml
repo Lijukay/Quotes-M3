@@ -3,11 +3,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="material_dynamic_lStart">@color/material_dynamic_primary70</color>
-    <color name="material_dynamic_lEnd">@color/material_dynamic_primary90</color>
-    <color name="material_dynamic_lCenter">@color/material_dynamic_primary80</color>
-    <color name="material_dynamic_dStart">@color/material_dynamic_primary10</color>
-    <color name="material_dynamic_dCenter">@color/material_dynamic_primary20</color>
-    <color name="material_dynamic_dEnd">@color/material_dynamic_primary30</color>
+    <color name="material_dynamic_Start">#4BB6E8</color>
+    <color name="material_dynamic_End">#C1E8FF</color>
+    <color name="material_dynamic_Center">#76D1FF</color>
+
 
 </resources>

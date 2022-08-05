@@ -43,7 +43,7 @@ public class PQAdapter extends RecyclerView.Adapter<PQAdapter.PQViewHolder> {
         return mPQItem.size();
     }
 
-    public class PQViewHolder extends RecyclerView.ViewHolder{
+    public static class PQViewHolder extends RecyclerView.ViewHolder{
         public TextView mQuotePQ;
         public TextView mAuthorPQ;
 

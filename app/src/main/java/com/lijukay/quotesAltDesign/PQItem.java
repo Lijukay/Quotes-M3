@@ -1,8 +1,8 @@
 package com.lijukay.quotesAltDesign;
 
 public class PQItem {
-    private String authorPQ;
-    private String quotePQ;
+    private final String authorPQ;
+    private final String quotePQ;
 
     public PQItem(String authorPQ, String quotePQ) {
         this.authorPQ = authorPQ;

@@ -43,7 +43,7 @@ public class AllAdapter extends RecyclerView.Adapter<AllAdapter.AllViewHolder> {
         return mAllItem.size();
     }
 
-    public class AllViewHolder extends RecyclerView.ViewHolder{
+    public static class AllViewHolder extends RecyclerView.ViewHolder{
         public TextView mQuoteAll;
         public TextView mAuthorAll;
 

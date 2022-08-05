@@ -9,6 +9,7 @@
     android:stateListAnimator="@null">
 
     <RelativeLayout
+        android:id="@+id/RL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/quote_background_ec">
@@ -21,7 +22,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
-            android:src="@drawable/quotation_mark" />
+            android:src="@drawable/quotation_mark"
+            android:contentDescription="Quotation Mark" />
 
         <TextView
             android:id="@+id/quote"
@@ -48,7 +50,7 @@
             android:layout_marginEnd="45dp"
             android:paddingBottom="10dp"
             android:text=""
-            android:textColor="?android:textColorPrimary"/>
+            android:textColor="?android:textColorPrimary" />
 
 
     </RelativeLayout>

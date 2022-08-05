@@ -1,8 +1,8 @@
 package com.lijukay.quotesAltDesign;
 
 public class ECItem {
-    private String author;
-    private String quote;
+    private final String author;
+    private final String quote;
 
     public ECItem(String author, String quote) {
         this.author = author;

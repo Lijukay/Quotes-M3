@@ -5,26 +5,26 @@
     <item
         android:id="@+id/refreshP"
         android:icon="@drawable/refresh"
-        android:title="Refresh"
+        android:title="@string/refresh"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/allP"
         android:icon="@drawable/all"
-        android:title="All quotes"
+        android:title="@string/all_quotes"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/ecP"
         android:icon="@drawable/ec"
-        android:title="Editors Choice"
+        android:title="@string/editors_choice"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/samsungdesignP"
         android:icon="@drawable/ic_design"
-        android:title="Samsung-design"
+        android:title="@string/samsung_design"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/aboutP"
         android:icon="@drawable/ic_about"
-        android:title="About"
+        android:title="@string/about"
         app:showAsAction="ifRoom"/>
 </menu>

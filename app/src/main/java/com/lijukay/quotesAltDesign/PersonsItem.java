@@ -1,7 +1,7 @@
 package com.lijukay.quotesAltDesign;
 
 public class PersonsItem {
-    private String authorP;
+    private final String authorP;
 
     public PersonsItem(String authorP) {
         this.authorP = authorP;

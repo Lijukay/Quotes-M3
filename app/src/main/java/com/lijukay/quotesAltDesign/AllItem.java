@@ -1,8 +1,8 @@
 package com.lijukay.quotesAltDesign;
 
 public class AllItem {
-    private String authorAll;
-    private String quoteAll;
+    private final String authorAll;
+    private final String quoteAll;
 
     public AllItem(String authorAll, String quoteAll) {
         this.authorAll = authorAll;

@@ -4,53 +4,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
-import android.app.LauncherActivity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Adapter;
-import android.widget.ArrayAdapter;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.lijukay.quotesAltDesign.databinding.ActivityMainBinding;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.StringReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
-import java.util.Locale;
-import java.util.concurrent.Executors;
-
-import javax.net.ssl.HttpsURLConnection;
-
 
 public class PersonsQuote extends AppCompatActivity {
     private RecyclerView mRecyclerViewPQ;
@@ -92,37 +60,31 @@ public class PersonsQuote extends AppCompatActivity {
 
 
         JsonObjectRequest requestPQ = new JsonObjectRequest(Request.Method.GET, urlPQ, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject responsePQ) {
-                        try {
-                            pQuotes = authorP;
-                            JSONArray jsonArrayPQ = responsePQ.getJSONArray(pQuotes);
+                responsePQ -> {
+                    try {
+                        pQuotes = authorP;
+                        JSONArray jsonArrayPQ = responsePQ.getJSONArray(pQuotes);
 
-                            for(int a = 0; a < jsonArrayPQ.length(); a++){
-                                JSONObject pq = jsonArrayPQ.getJSONObject(a);
+                        for(int a = 0; a < jsonArrayPQ.length(); a++){
+                            JSONObject pq = jsonArrayPQ.getJSONObject(a);
 
-                                String quotePQ = pq.getString("quotePQ");
-                                String authorPQ = pq.getString("authorPQ");
+                            String quotePQ = pq.getString("quotePQ");
+                            String authorPQ = pq.getString("authorPQ");
 
-                                mPQItem.add(new PQItem(authorPQ, quotePQ));
-                            }
-
-                            mPQAdapter = new PQAdapter(PersonsQuote.this, mPQItem);
-                            mRecyclerViewPQ.setAdapter(mPQAdapter);
-                            Log.e("intent", "Hat geklapptAll...");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Log.e("error", "hat nicht geklapptall...");
+                            mPQItem.add(new PQItem(authorPQ, quotePQ));
                         }
+
+                        mPQAdapter = new PQAdapter(PersonsQuote.this, mPQItem);
+                        mRecyclerViewPQ.setAdapter(mPQAdapter);
+                        Log.e("intent", "Hat geklapptAll...");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Log.e("error", "hat nicht geklapptall...");
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError errorPQ) {
-                errorPQ.printStackTrace();
-                Log.e("error", "Hat nicht geklappt 2all");
-            }
-        });
+                }, errorPQ -> {
+                    errorPQ.printStackTrace();
+                    Log.e("error", "Hat nicht geklappt 2all");
+                });
         mRequestQueuePQ.add(requestPQ);
     }
 

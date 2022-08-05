@@ -4,10 +4,6 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">true</item>
 
-        <item name="android:startColor">@color/material_dynamic_lStart</item>
-        <item name="android:centerColor">@color/material_dynamic_lCenter</item>
-        <item name="android:endColor">@color/material_dynamic_lEnd</item>
-
 
 
     </style>

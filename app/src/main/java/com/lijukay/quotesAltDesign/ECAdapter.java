@@ -4,19 +4,14 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import org.apache.http.conn.ConnectTimeoutException;
-
 import java.util.ArrayList;
 
 public class ECAdapter extends RecyclerView.Adapter<ECAdapter.ECViewHolder> {
-    private Context mContext;
-    private ArrayList<ECItem> mECItem;
+    private final Context mContext;
+    private final ArrayList<ECItem> mECItem;
 
     public ECAdapter (Context context, ArrayList<ECItem> ecList){
         mContext = context;
@@ -47,7 +42,7 @@ public class ECAdapter extends RecyclerView.Adapter<ECAdapter.ECViewHolder> {
         return mECItem.size();
     }
 
-    public class ECViewHolder extends RecyclerView.ViewHolder{
+    public static class ECViewHolder extends RecyclerView.ViewHolder{
         public TextView mQuote;
         public TextView mAuthor;
 
