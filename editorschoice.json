@@ -50,6 +50,21 @@
     }, {
       "quoteAll": "If you were born without wings, do nothing to prevent them from growing.",
       "authorAll": "Coco Chanel"
+    }, {
+      "quoteAll": "If you don't like the path you're walking, make a new one.",
+      "authorAll": "Dolly Parton"
+    }, {
+      "quoteAll": "When someone shows you their true colors, trust them",
+      "authorAll": "Dolly Parton"
+    }, {
+      "quoteAll": "You are so brave and quiet I forget you are suffering",
+      "authorAll": "Ernest Hemingway"
+    }, {
+      "quoteAll": "Paths are made by walking them",
+      "authorAll": "Franz Kafka"
+    }, {
+      "quoteAll": "All you ever wanted is on the other side of fear",
+      "authorAll": "Franz Kafka"
     }
   ],
   "Persons":
@@ -66,7 +81,13 @@
       "authorP": "Charles Bukowski"
     }, {
       "authorP": "Coco Chanel"
-    }
+    }, {
+      "authorP": "Dolly Parton"
+    }, {
+      "authorP": "Ernest Hemingway"
+    }, {
+      "authorP": "Franz Kafka"
+    }, 
   ],
   "Astrid Alauda":
   [
@@ -120,6 +141,33 @@
     }, {
       "quotePQ": "If you were born without wings, do nothing to prevent them from growing.",
       "authorPQ": "Coco Chanel"
+    }
+  ],
+  "Dolly Parton":
+  [
+    {
+      "quotePQ": "If you don't like the path you're walking, make a new one.",
+      "authorPQ": "Dolly Parton"
+    }, {
+      "quotePQ": "When someone shows you their true colors, trust them",
+      "authorPQ": "Dolly Parton"
+    }
+  ],
+  "Ernest Hemingway":
+  [
+    {
+      "quotePQ": "You are so brave and quiet I forget you are suffering",
+      "authorPQ": "Ernest Hemingway"
+    }
+  ],
+  "Franz Kafka":
+  [
+    {
+      "quotePQ": "Paths are made by walking them",
+      "authorPQ": "Franz Kafka"
+    }, {
+      "quotePQ": "All you ever wanted is on the other side of fear",
+      "authorPQ": "Franz Kafka"
     }
   ]
 }
