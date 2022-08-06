@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="?collapsingToolbarLayoutLargeSize"
             style="@style/Theme.Material3.DynamicColors.DayNight"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:layout_scrollFlags="exitUntilCollapsed|scroll"
             app:expandedTitleMarginStart="64dp"
             app:title="Editors Choice"
             android:id="@+id/ctl"

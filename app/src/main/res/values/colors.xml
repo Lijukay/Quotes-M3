@@ -7,5 +7,7 @@
     <color name="material_dynamic_End">#C1E8FF</color>
     <color name="material_dynamic_Center">#76D1FF</color>
 
+    <color name="material_navBar">#E0F3FF</color>
+
 
 </resources>
