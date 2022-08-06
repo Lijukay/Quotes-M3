@@ -5,6 +5,12 @@
       "quote": "You deserve the love you are trying to give to others all the time.",
       "author": "Unknown"
     }, {
+      "quote": "Every time you report a bug to the developer, you'll fix it yourself",
+      "author": "John (TenSeventy7)"
+    }, {
+      "quote": "Being a dick doesn't make yours any bigger.",
+      "author": "Yvonne Ho-Sebastian, Linus Tech Tips"
+    }, {
       "quote": "The wounds you are not seeing, are the most difficult to heal",
       "author": "Astrid Alauda"
     }, {
@@ -33,6 +39,12 @@
   "AllQuotes":
   [
     {
+      "quoteAll": "Every time you report a bug to the developer, you'll fix it yourself",
+      "authorAll": "John (TenSeventy7)"
+    }, {
+      "quoteAll": "Being a dick doesn't make yours any bigger.",
+      "authorAll": "Yvonne Ho-Sebastian, Linus Tech Tips"
+    }, {
       "quoteAll": "The wounds you are not seeing, are the most difficult to heal.",
       "authorAll": "Astrid Alauda"
     }, {
@@ -228,6 +240,8 @@
     }, {
       "authorP": "George Addair"
     }, {
+      "authorP": "John (TenSeventy7)"
+    }, {
       "authorP": "Johann Wolfgang Geothe"
     }, {
       "authorP": "Jean Paul"
@@ -261,6 +275,8 @@
       "authorP": "William Shakespeare"
     }, {
       "authorP": "Winnie Pooh"
+    }, {
+      "authorP" "Yvonne Ho-Sebastian, Linus Tech Tips"
     }
   ],
   "Astrid Alauda":
@@ -346,6 +362,13 @@
     {
       "quotePQ": "All you ever wanted is on the other side of fear",
       "authorPQ": "George Addair"
+    }
+  ],
+  "John (TenSeventy7)":
+  [
+    {
+      "quotePQ": "Every time you report a bug to the developer, you'll fix it yourself",
+      "authorPQ": "John (TenSeventy7)"
     }
   ],
   "Johann Wolfgang Geothe":
@@ -540,6 +563,13 @@
     }, {
       "quotePQ": "The grief that does not speak whispers the o'er-fraught heart, and bids it break.",
       "authorPQ": "William Shakespeare"
+    }
+  ],
+  "Yvonne Ho-Sebastian, Linus Tech Tips":
+  [
+    {
+      "quotePQ": "Being a dick doesn't make yours any bigger.",
+      "authorPQ": "Yvonne Ho-Sebastian, Linus Tech Tips"
     }
   ],
   "Version":
