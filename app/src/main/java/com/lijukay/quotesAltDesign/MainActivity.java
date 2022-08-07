@@ -4,12 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -24,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private ECAdapter mECAdapter;
     private ArrayList<ECItem> mECItem;
     private RequestQueue mRequestQueue;
+    private SwipeRefreshLayout swipeRefreshLayoutEC;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +41,23 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.editorsChoiceRV);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         mECItem = new ArrayList<>();
-
+        swipeRefreshLayoutEC = findViewById(R.id.swipeEC);
+        swipeRefreshLayoutEC.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Toast.makeText(MainActivity.this, "Refreshing... please wait", Toast.LENGTH_SHORT).show();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipeRefreshLayoutEC.setRefreshing(false);
+                        mECItem.clear();
+                        mECAdapter.notifyDataSetChanged();
+                        parseJSON();
+                    }
+                }, 2000);
+            }
+        });
         mRequestQueue = Volley.newRequestQueue(this);
         parseJSON();
     }
@@ -92,11 +112,6 @@ public class MainActivity extends AppCompatActivity {
             return true;
         } else if(item.getItemId() == R.id.all){
             All();
-            return true;
-        }  else if(item.getItemId() == R.id.refresh){
-            mECItem.clear();
-            mECAdapter.notifyDataSetChanged();
-            parseJSON();
             return true;
         } else {
             return super.onOptionsItemSelected(item);

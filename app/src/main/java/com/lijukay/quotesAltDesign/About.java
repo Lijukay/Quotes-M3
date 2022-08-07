@@ -2,16 +2,19 @@ package com.lijukay.quotesAltDesign;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -27,6 +30,7 @@ public class About extends AppCompatActivity {
     int versionC;
     int versionA;
     private RequestQueue mRequestQueueU;
+    private SwipeRefreshLayout swipeRefreshLayoutAb;
 
 
     @Override
@@ -53,9 +57,25 @@ public class About extends AppCompatActivity {
             startActivity(intentG);
 
         });
+        swipeRefreshLayoutAb = findViewById(R.id.swipeAbout);
+        swipeRefreshLayoutAb.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Toast.makeText(About.this, "Refreshing... please wait", Toast.LENGTH_SHORT).show();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipeRefreshLayoutAb.setRefreshing(false);
+                        parseJSONVersion();
+                    }
+                }, 2000);
+            }
+        });
         mRequestQueueU = Volley.newRequestQueue(this);
         parseJSONVersion();
     }
+
+
 
     private void parseJSONVersion() {
         String urlU = "https://lijukay.github.io/quotesaltdesign/editorschoice.json";
@@ -72,7 +92,6 @@ public class About extends AppCompatActivity {
                             versionA = v.getInt("VersionA");
 
                         }
-
                         if (versionA > versionC){
                             Button update = findViewById(R.id.updateB);
                             TextView updateA = findViewById(R.id.updateT);
@@ -87,14 +106,15 @@ public class About extends AppCompatActivity {
                             });
                         }
 
-                        Log.e("intent", "Hat geklapptAll...");
+                        Log.e("intent", "Refreshing completed...");
+                        Toast.makeText(this, "Completed", Toast.LENGTH_SHORT).show();
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Log.e("error", "hat nicht geklapptall...");
+                        Log.e("error", "JSON Exeption. Write me to tell me about that...");
                     }
                 }, errorAll -> {
             errorAll.printStackTrace();
-            Log.e("error", "Hat nicht geklappt 2all");
+            Log.e("error", "Something went wrong... Contact me");
         });
         mRequestQueueU.add(requestU);
     }

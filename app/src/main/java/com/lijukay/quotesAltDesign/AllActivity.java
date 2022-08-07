@@ -4,12 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -24,6 +29,7 @@ public class AllActivity extends AppCompatActivity {
     private AllAdapter mAllAdapter;
     private ArrayList<AllItem> mAllItem;
     private RequestQueue mRequestQueueAll;
+    private SwipeRefreshLayout swipeRefreshLayoutAll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +43,22 @@ public class AllActivity extends AppCompatActivity {
         mRecyclerViewAll.setLayoutManager(new LinearLayoutManager(this));
 
         mAllItem = new ArrayList<>();
-
+        swipeRefreshLayoutAll = findViewById(R.id.swipeAll);
+        swipeRefreshLayoutAll.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Toast.makeText(AllActivity.this, "Refreshing... please wait", Toast.LENGTH_SHORT).show();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipeRefreshLayoutAll.setRefreshing(false);
+                        mAllItem.clear();
+                        mAllAdapter.notifyDataSetChanged();
+                        parseJSONAll();
+                    }
+                }, 2000);
+            }
+        });
         mRequestQueueAll = Volley.newRequestQueue(this);
         parseJSONAll();
     }
@@ -92,11 +113,6 @@ public class AllActivity extends AppCompatActivity {
             return true;
         } else if(item.getItemId() == R.id.ecA){
             ECA();
-            return true;
-        }  else if(item.getItemId() == R.id.refreshA){
-            mAllItem.clear();
-            mAllAdapter.notifyDataSetChanged();
-            parseJSONAll();
             return true;
         } else {
             return super.onOptionsItemSelected(item);

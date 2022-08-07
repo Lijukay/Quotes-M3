@@ -21,6 +21,9 @@
             android:layout_height="?collapsingToolbarLayoutLargeSize"
             style="@style/Theme.Material3.DynamicColors.DayNight"
             app:layout_scrollFlags="exitUntilCollapsed|scroll"
+            app:maxLines="2"
+            app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Title"
+            app:collapsedTitleTextAppearance="@style/TextAppearance.AppCompat.Title"
             app:expandedTitleMarginStart="64dp"
             app:title="Editors Choice"
             android:id="@+id/ctl"
@@ -39,12 +42,21 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeEC"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-   <androidx.recyclerview.widget.RecyclerView
+
+
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/editorsChoiceRV"
         android:layout_width="match_parent"
        tools:listitem="@layout/editor_choice"
         android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

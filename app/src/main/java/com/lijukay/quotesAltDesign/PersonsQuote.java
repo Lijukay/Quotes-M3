@@ -4,12 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -27,6 +32,7 @@ public class PersonsQuote extends AppCompatActivity {
     private RequestQueue mRequestQueuePQ;
     private String pQuotes;
     private String authorP;
+    private SwipeRefreshLayout swipeRefreshLayoutPQ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +56,23 @@ public class PersonsQuote extends AppCompatActivity {
         mRecyclerViewPQ.setLayoutManager(new LinearLayoutManager(this));
 
         mPQItem = new ArrayList<>();
+
+        swipeRefreshLayoutPQ = findViewById(R.id.swipePQ);
+        swipeRefreshLayoutPQ.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Toast.makeText(PersonsQuote.this, "Refreshing... please wait", Toast.LENGTH_SHORT).show();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipeRefreshLayoutPQ.setRefreshing(false);
+                        mPQItem.clear();
+                        mPQAdapter.notifyDataSetChanged();
+                        parseJSONPQ();
+                    }
+                }, 2000);
+            }
+        });
 
         mRequestQueuePQ = Volley.newRequestQueue(this);
         parseJSONPQ();
@@ -107,10 +130,6 @@ public class PersonsQuote extends AppCompatActivity {
             return true;
         } else if(item.getItemId() == R.id.ecA){
             ECA();
-            return true;
-        }  else if(item.getItemId() == R.id.refreshA){
-            mPQItem.clear();
-            parseJSONPQ();
             return true;
         } else {
             return super.onOptionsItemSelected(item);
