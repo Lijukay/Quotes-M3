@@ -577,5 +577,11 @@
     {
       "VersionA": 6
     }
+  ],
+  "VersionS":
+  [
+    {
+      "VersionAS": 2
+    }
   ]
 }
