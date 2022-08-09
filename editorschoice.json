@@ -39,6 +39,12 @@
   "AllQuotes":
   [
     {
+      "quoteAll": "Life is like riding a bicycle. Too keep you balance, you must going on",
+      "authorAll": "Albert Einstein"
+    }, {
+      "quoteAll": "Everything has beauty but not everyone sees it",
+      "authorAll": "Confucius"
+    }, {
       "quoteAll": "Every time you report a bug to the developer, you'll fix it yourself",
       "authorAll": "John (TenSeventy7)"
     }, {
@@ -222,6 +228,8 @@
     {
       "authorP": "Astrid Alauda"
     }, {
+      "authorP": "Albert Einstein"
+    },{
       "authorP": "Blaise Pascal"
     }, {
       "authorP": "Benjamin Franklin"
@@ -231,6 +239,8 @@
       "authorP": "Charles Bukowski"
     }, {
       "authorP": "Coco Chanel"
+    }, {
+      "authorP": "Confucius"
     }, {
       "authorP": "Dolly Parton"
     }, {
@@ -254,8 +264,6 @@
     }, {
       "authorP": "Jackson Brown"
     }, {
-      "authorP": "Konfuzius"
-    }, {
       "authorP": "Lew Tolstoi"
     }, {
       "authorP": "Lilian Dickson"
@@ -277,6 +285,13 @@
       "authorP": "Winnie Pooh"
     }, {
       "authorP": "Yvonne Ho-Sebastian, Linus Tech Tips"
+    }
+  ],
+  "Albert Einstein":
+  [
+    {
+      "quotePQ": "Life is like riding a bicycle. To keep balance, you must keep moving",
+      "authorPQ": "Albert Einstein"
     }
   ],
   "Astrid Alauda":
@@ -331,6 +346,16 @@
     }, {
       "quotePQ": "If you were born without wings, do nothing to prevent them from growing.",
       "authorPQ": "Coco Chanel"
+    }
+  ],
+  "Confucius":
+  [
+    {
+      "quotePQ": "It does not matter how slowly you go as long as you do not stop",
+      "authorPQ": "Confucius"
+    }, {
+      "quotePQ": "Everything has beauty but not everyone sees it",
+      "authorPQ": "Confucius"
     }
   ],
   "Dolly Parton":
@@ -417,13 +442,6 @@
     {
       "quotePQ": "Sometimes the heart sees things that are invisible to the eye",
       "authorPQ": "Jackson Brown"
-    }
-  ],
-  "Konfuzius":
-  [
-    {
-      "quotePQ": "It does not matter how slowly you go as long as you do not stop",
-      "authorPQ": "Konfuzius"
     }
   ],
   "Lew Tolstoi":
