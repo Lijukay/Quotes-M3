@@ -2,9 +2,9 @@
   "EditorsChoice":
   [
     {
-"quote": "Feelings are worth feeling, even if they hurt",
-"author": "Eclipsa"
-}, {
+      "quote": "Feelings are worth feeling, even if they hurt",
+      "author": "Eclipsa"
+    }, {
       "quote": "You deserve the love you are trying to give to others all the time.",
       "author": "Unknown"
     }, {
@@ -42,6 +42,24 @@
   "AllQuotes":
   [
     {
+      "quoteAll": "The only way forward is back.",
+      "authorAll": "Agatha"
+    }, {
+      "quoteAll": "Today, we will lie to you, and yet you will believe our little deceptions, because human beings are easily fooled due to their limited understanding of the inner workings of the universe.",
+      "authorAll": "Vision"
+    }, {
+      "quoteAll": "You are my sadness and my hope. But mostly, you're my love.",
+      "authorAll": "Wanda Maximoff"
+    }, {
+      "quoteAll": "There are rules in life. We can’t rush aging just because it’s convenient. And we can’t reverse death",
+      "authorAll": "Wanda Maximoff"
+    }, {
+      "quoteAll": "But what is grief, if not love persevering?",
+      "authorAll": "Vision"
+    }, {
+      "quoteAll": "Feelings are worth feeling, even if they hurt",
+      "authorAll": "Eclipsa"
+    }, {
       "quoteAll": "Life is like riding a bicycle. Too keep you balance, you must going on",
       "authorAll": "Albert Einstein"
     }, {
@@ -229,6 +247,8 @@
   "Persons":
   [
     {
+      "authorP": "Agatha"
+    }, {
       "authorP": "Astrid Alauda"
     }, {
       "authorP": "Albert Einstein"
@@ -248,6 +268,8 @@
       "authorP": "Dolly Parton"
     }, {
       "authorP": "Ernest Hemingway"
+    }, {
+      "authorP": "Eclipsa"
     }, {
       "authorP": "Franz Kafka"
     }, {
@@ -283,11 +305,22 @@
     }, {
       "authorP": "Unknown"
     }, {
+      "authorP": "Vision"
+    }, {
+      "authorP": "Wanda Maximoff"
+    }, {
       "authorP": "William Shakespeare"
     }, {
       "authorP": "Winnie Pooh"
     }, {
       "authorP": "Yvonne Ho-Sebastian, Linus Tech Tips"
+    }
+  ],
+  "Agatha":
+  [
+    {
+      "quotePQ": "The only way forward is back.",
+      "authorPQ": "Agatha"
     }
   ],
   "Albert Einstein":
@@ -376,6 +409,13 @@
     {
       "quotePQ": "You are so brave and quiet I forget you are suffering",
       "authorPQ": "Ernest Hemingway"
+    }
+  ],
+  "Eclipsa":
+  [
+    {
+      "quotePQ": "Feelings are worth feeling, even if they hurt",
+      "authorPQ": "Eclipsa"
     }
   ],
   "Franz Kafka":
@@ -586,11 +626,31 @@
       "authorPQ": "William Shakespeare"
     }
   ],
+  "Wanda Maximoff":
+  [
+    {
+      "quotePQ": "You are my sadness and my hope. But mostly, you're my love.",
+      "authorPQ": "Wanda Maximoff"
+    }, {
+      "quotePQ": "There are rules in life. We can’t rush aging just because it’s convenient. And we can’t reverse death",
+      "authorPQ": "Wanda Maximoff"
+    }
+  ],
   "Yvonne Ho-Sebastian, Linus Tech Tips":
   [
     {
       "quotePQ": "Being a dick doesn't make yours any bigger.",
       "authorPQ": "Yvonne Ho-Sebastian, Linus Tech Tips"
+    }
+  ],
+  "Vision":
+  [
+    {
+      "quotePQ": "Today, we will lie to you, and yet you will believe our little deceptions, because human beings are easily fooled due to their limited understanding of the inner workings of the universe.",
+      "authorPQ": "Vision"
+    }, {
+      "quotePQ": "But what is grief, if not love persevering?",
+      "authorPQ": "Vision"
     }
   ],
   "Version":
