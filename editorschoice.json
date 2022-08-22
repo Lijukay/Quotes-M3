@@ -2,6 +2,9 @@
   "EditorsChoice":
   [
     {
+      "quote": "You see, humans are a unique type of pest multiplying and poisoning our world all while enforcing a structure of their own. A deeply, unnatural structure. Where others saw order, I saw a straitjacket, a cruel, oppressive world dictated by made-up rules. Seconds, minutes, hours, days, weeks, months, years, decades. Each life a faded, lesser copy of the one before. Wake up, eat, work, sleep, reproduce and die. Everyone is just waiting. Waiting for it all to be over. All while performing in a silly, terrible play, day after days. I could not do that. I could not close off my mind and join in the madness. I could not pretend. And I realized I didn't have to.",
+      "author": "Vecna"
+    }, {
       "quote": "Feelings are worth feeling, even if they hurt",
       "author": "Eclipsa"
     }, {
@@ -42,6 +45,9 @@
   "AllQuotes":
   [
     {
+      "quoteAll": "You see, humans are a unique type of pest multiplying and poisoning our world all while enforcing a structure of their own. A deeply, unnatural structure. Where others saw order, I saw a straitjacket, a cruel, oppressive world dictated by made-up rules. Seconds, minutes, hours, days, weeks, months, years, decades. Each life a faded, lesser copy of the one before. Wake up, eat, work, sleep, reproduce and die. Everyone is just waiting. Waiting for it all to be over. All while performing in a silly, terrible play, day after days. I could not do that. I could not close off my mind and join in the madness. I could not pretend. And I realized I didn't have to.",
+      "authorAll": "Vecna"
+    }, {
       "quoteAll": "The only way forward is back.",
       "authorAll": "Agatha"
     }, {
@@ -304,6 +310,8 @@
       "authorP": "Robert Schuller"
     }, {
       "authorP": "Unknown"
+    }, {
+      "authorP": "Vecna"
     }, {
       "authorP": "Vision"
     }, {
@@ -642,6 +650,13 @@
       "quotePQ": "Being a dick doesn't make yours any bigger.",
       "authorPQ": "Yvonne Ho-Sebastian, Linus Tech Tips"
     }
+  ],
+  "Vecna":
+  [
+    {
+      "quotePQ": "You see, humans are a unique type of pest multiplying and poisoning our world all while enforcing a structure of their own. A deeply, unnatural structure. Where others saw order, I saw a straitjacket, a cruel, oppressive world dictated by made-up rules. Seconds, minutes, hours, days, weeks, months, years, decades. Each life a faded, lesser copy of the one before. Wake up, eat, work, sleep, reproduce and die. Everyone is just waiting. Waiting for it all to be over. All while performing in a silly, terrible play, day after days. I could not do that. I could not close off my mind and join in the madness. I could not pretend. And I realized I didn't have to.",
+      "authorPQ": "Vecna"
+    }, 
   ],
   "Vision":
   [
