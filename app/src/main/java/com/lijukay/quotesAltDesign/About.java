@@ -58,18 +58,12 @@ public class About extends AppCompatActivity {
 
         });
         swipeRefreshLayoutAb = findViewById(R.id.swipeAbout);
-        swipeRefreshLayoutAb.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                Toast.makeText(About.this, "Refreshing... please wait", Toast.LENGTH_SHORT).show();
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        swipeRefreshLayoutAb.setRefreshing(false);
-                        parseJSONVersion();
-                    }
-                }, 2000);
-            }
+        swipeRefreshLayoutAb.setOnRefreshListener(() -> {
+            Toast.makeText(About.this, "Refreshing... please wait", Toast.LENGTH_SHORT).show();
+            new Handler().postDelayed(() -> {
+                swipeRefreshLayoutAb.setRefreshing(false);
+                parseJSONVersion();
+            }, 2000);
         });
         mRequestQueueU = Volley.newRequestQueue(this);
         parseJSONVersion();
@@ -78,7 +72,7 @@ public class About extends AppCompatActivity {
 
 
     private void parseJSONVersion() {
-        String urlU = "https://lijukay.github.io/quotesaltdesign/editorschoice.json";
+        String urlU = "https://lijukay.github.io/Quotes-M3/quotesEN.json";
 
         JsonObjectRequest requestU = new JsonObjectRequest(Request.Method.GET, urlU, null,
                 responseU -> {
@@ -100,14 +94,13 @@ public class About extends AppCompatActivity {
                             updateA.setVisibility(View.VISIBLE);
 
                             update.setOnClickListener(view -> {
-                                Uri uriU = Uri.parse("https://github.com/Lijukay/quotesaltdesign/releases");
+                                Uri uriU = Uri.parse("https://github.com/Lijukay/Quotes-M3/releases/latest");
                                 Intent intentU = new Intent(Intent.ACTION_VIEW, uriU);
                                 startActivity(intentU);
                             });
                         }
 
                         Log.e("intent", "Refreshing completed...");
-                        Toast.makeText(this, "Completed", Toast.LENGTH_SHORT).show();
                     } catch (JSONException e) {
                         e.printStackTrace();
                         Log.e("error", "JSON Exeption. Write me to tell me about that...");
@@ -152,7 +145,7 @@ public class About extends AppCompatActivity {
         startActivity(intentP);
     }
     private void SamsungDesign() {
-        Uri uriS = Uri.parse("https://github.com/Lijukay/Quotes");
+        Uri uriS = Uri.parse("https://github.com/Lijukay/Quotes-OneUI");
         Intent intentS = new Intent(Intent.ACTION_VIEW, uriS);
         startActivity(intentS);
     }

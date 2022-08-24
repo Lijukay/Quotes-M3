@@ -24,7 +24,7 @@
             style="@style/Theme.Material3.DynamicColors.DayNight"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:expandedTitleMarginStart="64dp"
-            app:title="All quotes"
+            app:title="@string/all_quotes"
             android:id="@+id/ctlall"
             app:titleCollapseMode="scale"
 

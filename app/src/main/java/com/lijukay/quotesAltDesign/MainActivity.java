@@ -19,10 +19,12 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
@@ -38,32 +40,70 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.tl);
         setSupportActionBar(toolbar);
 
+        //RecyclerView "setup"
         mRecyclerView = findViewById(R.id.editorsChoiceRV);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        //Creating new ArrayList for mECItem
         mECItem = new ArrayList<>();
+
+        //SwipeRefreshLayout "setup"
         swipeRefreshLayoutEC = findViewById(R.id.swipeEC);
-        swipeRefreshLayoutEC.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                Toast.makeText(MainActivity.this, "Refreshing... please wait", Toast.LENGTH_SHORT).show();
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        swipeRefreshLayoutEC.setRefreshing(false);
-                        mECItem.clear();
-                        mECAdapter.notifyDataSetChanged();
-                        parseJSON();
-                    }
-                }, 2000);
-            }
+        swipeRefreshLayoutEC.setOnRefreshListener(() -> {
+            Toast.makeText(MainActivity.this, "Refreshing... please wait", Toast.LENGTH_SHORT).show();
+            new Handler().postDelayed(() -> {
+                swipeRefreshLayoutEC.setRefreshing(false);
+                mECItem.clear();
+                mECAdapter.notifyDataSetChanged();
+                getLanguageEC();
+            }, 2000);
         });
         mRequestQueue = Volley.newRequestQueue(this);
-        parseJSON();
+        getLanguageEC();
     }
+    private void getLanguageEC() {
+        String lang = Locale.getDefault().getLanguage();
+        if(lang.equals("en")){
+            parseJSON();
+        }else if(lang.equals("de")){
+            parseJSONGER();
+        }else{
+            parseJSON();
+        }
+    }
+    private void parseJSONGER() {
+            String urlGER = "https://lijukay.github.io/Quotes-M3/quotesGER.json";
 
-    private void parseJSON() {
-        String url = "https://lijukay.github.io/quotesaltdesign/editorschoice.json";
+            JsonObjectRequest requestGER = new JsonObjectRequest(Request.Method.GET, urlGER, null,
+                    responseGER -> {
+                        try {
+                            JSONArray jsonArrayGER = responseGER.getJSONArray("EditorsChoice");
+
+                            for(int g = 0; g < jsonArrayGER.length(); g++){
+                                JSONObject ecGER = jsonArrayGER.getJSONObject(g);
+
+                                String quoteECGER = ecGER.getString("quote");
+                                String authorECGER = ecGER.getString("author");
+
+                                mECItem.add(new ECItem(authorECGER, quoteECGER));
+                            }
+
+                            mECAdapter = new ECAdapter(MainActivity.this, mECItem);
+                            mRecyclerView.setAdapter(mECAdapter);
+                            Log.e("intent", "Hat geklappt...");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Log.e("error", "hat nicht geklappt...");
+                        }
+                    }, error -> {
+                error.printStackTrace();
+                Log.e("error", "Hat nicht geklappt 2");
+            });
+            mRequestQueue.add(requestGER);
+        }
+        private void parseJSON() {
+        String url = "https://lijukay.github.io/Quotes-M3/quotesEN.json";
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 response -> {
@@ -94,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    //Menu setup
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -118,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //Menu Intents(?)
     private void All() {
         Intent intentAM = new Intent(this, AllActivity.class);
         startActivity(intentAM);
@@ -135,8 +177,4 @@ public class MainActivity extends AppCompatActivity {
         Intent intentA = new Intent(this, About.class);
         startActivity(intentA);
     }
-
-
-
-
 }

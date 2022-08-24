@@ -1,9 +1,13 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Quotes</string>
-    <string name="refresh">Refresh</string>
+    <string name="refresh" translatable="false">Refresh</string>
     <string name="persons">Persons</string>
-    <string name="editors_choice">Editors Choice</string>
-    <string name="samsung_design">Samsung-design</string>
+    <string name="editors_choice" translatable="false">Editors Choice</string>
+    <string name="samsung_design" translatable="false">Samsung-design</string>
     <string name="about">About</string>
     <string name="all_quotes">All quotes</string>
+    <string name="info_text">This app uses Googles Material 3 Design and is compatible with Googles Dynamic-Colour Design. For that you need Android 12 or higher.\n\nThank you Yanndroid and John for helping me, creating this app and the translation.</string>
+    <string name="contact">Contact me, if you found bugs, mistranslations or if you have a feature suggestion</string>
+    <string name="update_text">An update of this app is available</string>
+    <string name="update">Update</string>
 </resources>

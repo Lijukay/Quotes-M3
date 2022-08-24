@@ -24,7 +24,7 @@
             style="@style/Theme.Material3.DynamicColors.DayNight"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:expandedTitleMarginStart="64dp"
-            app:title="Persons"
+            app:title="@string/persons"
             android:id="@+id/ctlPersons"
             app:titleCollapseMode="scale"
 

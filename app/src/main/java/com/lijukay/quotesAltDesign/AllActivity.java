@@ -19,10 +19,12 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class AllActivity extends AppCompatActivity {
     private RecyclerView mRecyclerViewAll;
@@ -44,27 +46,63 @@ public class AllActivity extends AppCompatActivity {
 
         mAllItem = new ArrayList<>();
         swipeRefreshLayoutAll = findViewById(R.id.swipeAll);
-        swipeRefreshLayoutAll.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                Toast.makeText(AllActivity.this, "Refreshing... please wait", Toast.LENGTH_SHORT).show();
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        swipeRefreshLayoutAll.setRefreshing(false);
-                        mAllItem.clear();
-                        mAllAdapter.notifyDataSetChanged();
-                        parseJSONAll();
-                    }
-                }, 2000);
-            }
+        swipeRefreshLayoutAll.setOnRefreshListener(() -> {
+            Toast.makeText(AllActivity.this, "Refreshing... please wait", Toast.LENGTH_SHORT).show();
+            new Handler().postDelayed(() -> {
+                swipeRefreshLayoutAll.setRefreshing(false);
+                mAllItem.clear();
+                mAllAdapter.notifyDataSetChanged();
+                getLanguageAll();
+            }, 2000);
         });
         mRequestQueueAll = Volley.newRequestQueue(this);
-        parseJSONAll();
+        getLanguageAll();
+    }
+
+    private void getLanguageAll() {
+        String langAll = Locale.getDefault().getLanguage();
+        if(langAll.equals("en")){
+            parseJSONAll();
+        }else if(langAll.equals("de")){
+            parseJSONGERAll();
+        }else{
+            parseJSONAll();
+        }
+    }
+
+    private void parseJSONGERAll() {
+        String urlGERAll = "https://lijukay.github.io/Quotes-M3/quotesGER.json";
+
+        JsonObjectRequest requestAllGER = new JsonObjectRequest(Request.Method.GET, urlGERAll, null,
+                responseAllGER -> {
+                    try {
+                        JSONArray jsonArrayAll = responseAllGER.getJSONArray("AllQuotes");
+
+                        for(int ga = 0; ga < jsonArrayAll.length(); ga++){
+                            JSONObject agq = jsonArrayAll.getJSONObject(ga);
+
+                            String quoteAllGER = agq.getString("quoteAll");
+                            String authorAllGER = agq.getString("authorAll");
+
+                            mAllItem.add(new AllItem(authorAllGER, quoteAllGER));
+                        }
+
+                        mAllAdapter = new AllAdapter(AllActivity.this, mAllItem);
+                        mRecyclerViewAll.setAdapter(mAllAdapter);
+                        Log.e("intent", "Hat geklapptAll...");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Log.e("error", "hat nicht geklapptall...");
+                    }
+                }, errorAll -> {
+            errorAll.printStackTrace();
+            Log.e("error", "Hat nicht geklappt all");
+        });
+        mRequestQueueAll.add(requestAllGER);
     }
 
     private void parseJSONAll() {
-        String urlAll = "https://lijukay.github.io/quotesaltdesign/editorschoice.json";
+        String urlAll = "https://lijukay.github.io/Quotes-M3/quotesEN.json";
 
         JsonObjectRequest requestAll = new JsonObjectRequest(Request.Method.GET, urlAll, null,
                 responseAll -> {
@@ -123,19 +161,15 @@ public class AllActivity extends AppCompatActivity {
         Intent intentEM = new Intent(this, MainActivity.class);
         startActivity(intentEM);
     }
-
     private void People() {
         Intent intentP = new Intent(this, PersonsActivity.class);
         startActivity(intentP);
     }
-
     private void SamsungDesign() {
         Uri uriS = Uri.parse("https://github.com/Lijukay/Quotes");
         Intent intentS = new Intent(Intent.ACTION_VIEW, uriS);
         startActivity(intentS);
     }
-
-
     private void AboutApp() {
         Intent intentA = new Intent(this, About.class);
         startActivity(intentA);

@@ -19,6 +19,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,31 +47,25 @@ public class PersonsActivity extends AppCompatActivity {
 
         mPItem = new ArrayList<>();
         swipeRefreshLayoutP = findViewById(R.id.swipePersons);
-        swipeRefreshLayoutP.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                Toast.makeText(PersonsActivity.this, "Refreshing... please wait", Toast.LENGTH_SHORT).show();
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        swipeRefreshLayoutP.setRefreshing(false);
-                        mPItem.clear();
-                        mPAdapter.notifyDataSetChanged();
-                        parseJSONP();
-                    }
-                }, 2000);
-            }
+        swipeRefreshLayoutP.setOnRefreshListener(() -> {
+            Toast.makeText(PersonsActivity.this, "Refreshing... please wait", Toast.LENGTH_SHORT).show();
+            new Handler().postDelayed(() -> {
+                swipeRefreshLayoutP.setRefreshing(false);
+                mPItem.clear();
+                mPAdapter.notifyDataSetChanged();
+                parseJSONP();
+            }, 2000);
         });
 
         mRequestQueueP = Volley.newRequestQueue(this);
         parseJSONP();
 
 
-
     }
 
+
     private void parseJSONP() {
-        String urlP = "https://lijukay.github.io/quotesaltdesign/editorschoice.json";
+        String urlP = "https://lijukay.github.io/Quotes-M3/quotesEN.json";
 
 
         JsonObjectRequest requestP = new JsonObjectRequest(Request.Method.GET, urlP, null,
@@ -89,21 +84,21 @@ public class PersonsActivity extends AppCompatActivity {
                         setOnClickListener();
                         mPAdapter = new PersonsAdapter(PersonsActivity.this, mPItem, listener);
                         mRecyclerViewP.setAdapter(mPAdapter);
-                        Log.e("intent", "Hat geklapptAll...");
+                        Log.e("intent", "Everything is working fine right now :)");
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Log.e("error", "hat nicht geklapptall...");
+                        Log.e("error", "Something is not right with the file. Reach the developer!");
                     }
                 }, errorAll -> {
                     errorAll.printStackTrace();
-                    Log.e("error", "Hat nicht geklappt 2all");
+                    Log.e("error", "The file is not reachable! Check your internet connection. If you are connected to the internet, contact the developer!");
                 });
         mRequestQueueP.add(requestP);
     }
 
     private void setOnClickListener() {
         listener = (v, position) -> {
-            String urlP = "https://lijukay.github.io/quotesaltdesign/editorschoice.json";
+            String urlP = "https://lijukay.github.io/Quotes-M3/quotesEN.json";
 
 
             JsonObjectRequest requestP = new JsonObjectRequest(Request.Method.GET, urlP, null,
@@ -122,11 +117,11 @@ public class PersonsActivity extends AppCompatActivity {
                                 startActivity(intent);
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Log.e("error", "hat nicht geklapptall...");
+                            Log.e("error", "Something is not right with the file! Contact the developer!");
                         }
                     }, errorAll -> {
                         errorAll.printStackTrace();
-                        Log.e("error", "Hat nicht geklappt 2all");
+                        Log.e("error", "File is not reachable, check your Internet connection. If you are connected to the internet, contact the developer!");
                     });
             mRequestQueueP.add(requestP);
 
