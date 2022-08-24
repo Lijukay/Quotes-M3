@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Zitate</string>
+    <string name="persons">Personen</string>
+    <string name="about">Über</string>
+    <string name="all_quotes">Alle Zitate</string>
+    <string name="info_text">Diese App benutzt Google Material 3 Design und ist kompatibel mit Googles Dynamic-Colour Design. Dafür benötigt ihr Android 12 oder höher.\n\nDanke, Yanndroid und John für die Hilfe beim erstellen dieser App und der Übersetzung.</string>
+    <string name="update">Aktualisieren</string>
+    <string name="update_text">Ein Update dieser App ist verfügbar</string>
+    <string name="contact">Kontaktier mich, wenn du Bugs oder Fehlübersetzungen gefunden hast oder einen Vorschlag für Features hast.</string>
+</resources>
