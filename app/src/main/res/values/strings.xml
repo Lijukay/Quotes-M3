@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name">Quotes</string>
+    <string name="app_name" translatable="false">Quotes</string>
     <string name="refresh" translatable="false">Refresh</string>
     <string name="persons">Persons</string>
     <string name="editors_choice" translatable="false">Editors Choice</string>
@@ -10,4 +10,8 @@
     <string name="contact">Contact me, if you found bugs, mistranslations or if you have a feature suggestion</string>
     <string name="update_text">An update of this app is available</string>
     <string name="update">Update</string>
+    <string name="copy_quote">Copy Quote</string>
+    <string name="share_quote">Share Quote</string>
+    <string name="options">Options</string>
+    <string name="changelog">Changelog</string>
 </resources>

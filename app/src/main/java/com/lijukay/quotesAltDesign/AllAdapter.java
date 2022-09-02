@@ -14,10 +14,12 @@ import java.util.ArrayList;
 public class AllAdapter extends RecyclerView.Adapter<AllAdapter.AllViewHolder> {
     private final Context mContextAll;
     private final ArrayList<AllItem> mAllItem;
+    private final RecyclerViewInterface recyclerViewInterface;
 
-    public AllAdapter (Context contextAll, ArrayList<AllItem> allList){
+    public AllAdapter (Context contextAll, ArrayList<AllItem> allList, RecyclerViewInterface recyclerViewInterface){
         mContextAll = contextAll;
         mAllItem = allList;
+        this.recyclerViewInterface = recyclerViewInterface;
 
     }
 
@@ -25,7 +27,7 @@ public class AllAdapter extends RecyclerView.Adapter<AllAdapter.AllViewHolder> {
     @Override
     public AllViewHolder onCreateViewHolder(@NonNull ViewGroup parentAll, int viewTypeAll) {
         View vA = LayoutInflater.from(mContextAll).inflate(R.layout.allquotes, parentAll, false);
-        return new AllViewHolder(vA);
+        return new AllViewHolder(vA, recyclerViewInterface);
     }
 
     @Override
@@ -49,10 +51,20 @@ public class AllAdapter extends RecyclerView.Adapter<AllAdapter.AllViewHolder> {
         public TextView mAuthorAll;
 
 
-        public AllViewHolder(@NonNull View itemViewAll) {
+        public AllViewHolder(@NonNull View itemViewAll, RecyclerViewInterface recyclerViewInterface) {
             super(itemViewAll);
             mQuoteAll = itemViewAll.findViewById(R.id.quoteAQ);
             mAuthorAll = itemViewAll.findViewById(R.id.authorAQ);
+
+            itemViewAll.setOnClickListener(view -> {
+                if (recyclerViewInterface != null){
+                    int position = getAdapterPosition();
+
+                    if(position != RecyclerView.NO_POSITION){
+                        recyclerViewInterface.onItemClick(position);
+                    }
+                }
+            });
 
         }
     }

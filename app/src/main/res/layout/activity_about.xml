@@ -95,7 +95,8 @@
                     android:paddingTop="10dp"
                     android:paddingStart="0dp"
                     android:paddingEnd="30dp"
-                    android:src="@drawable/ic_logo"/>
+                    android:src="@drawable/ic_logo"
+                    tools:ignore="ContentDescription" />
                 <ImageView
                     android:id="@+id/GitHub"
                     android:layout_width="wrap_content"
@@ -103,7 +104,8 @@
                     android:paddingTop="10dp"
                     android:paddingStart="30dp"
                     android:paddingEnd="0dp"
-                    android:src="@drawable/ic_iconmonstr_github_1"/>
+                    android:src="@drawable/ic_iconmonstr_github_1"
+                    tools:ignore="ContentDescription" />
 
             </LinearLayout>
 
@@ -126,6 +128,15 @@
                 android:textColor="?android:textColorPrimary"
                 android:id="@+id/updateB"
                 android:visibility="gone"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/material_dynamic_Start"
+                android:layout_gravity="center"
+                android:text="@string/changelog"
+                android:textColor="?android:textColorPrimary"
+                android:id="@+id/changelog"/>
 
         </LinearLayout>
 

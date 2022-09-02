@@ -14,18 +14,19 @@ import java.util.ArrayList;
 public class PQAdapter extends RecyclerView.Adapter<PQAdapter.PQViewHolder> {
     private final Context mContextPQ;
     private final ArrayList<PQItem> mPQItem;
+    private final RecyclerViewInterface recyclerViewInterface;
 
-    public PQAdapter (Context contextPQ, ArrayList<PQItem> pQList){
+    public PQAdapter (Context contextPQ, ArrayList<PQItem> pQList, RecyclerViewInterface recyclerViewInterface){
         mContextPQ = contextPQ;
         mPQItem = pQList;
-
+        this.recyclerViewInterface = recyclerViewInterface;
     }
 
     @NonNull
     @Override
     public PQViewHolder onCreateViewHolder(@NonNull ViewGroup parentPQ, int viewTypePQ) {
         View vPQ = LayoutInflater.from(mContextPQ).inflate(R.layout.pquotes_item, parentPQ, false);
-        return new PQViewHolder(vPQ);
+        return new PQViewHolder(vPQ, recyclerViewInterface);
     }
 
     @Override
@@ -49,10 +50,20 @@ public class PQAdapter extends RecyclerView.Adapter<PQAdapter.PQViewHolder> {
         public TextView mAuthorPQ;
 
 
-        public PQViewHolder(@NonNull View itemViewPQ) {
+        public PQViewHolder(@NonNull View itemViewPQ, RecyclerViewInterface recyclerViewInterface) {
             super(itemViewPQ);
             mQuotePQ = itemViewPQ.findViewById(R.id.quoteP);
             mAuthorPQ = itemViewPQ.findViewById(R.id.authorP);
+
+            itemViewPQ.setOnClickListener(view -> {
+                if (recyclerViewInterface != null){
+                    int position = getAdapterPosition();
+
+                    if(position != RecyclerView.NO_POSITION){
+                        recyclerViewInterface.onItemClick(position);
+                    }
+                }
+            });
 
         }
     }

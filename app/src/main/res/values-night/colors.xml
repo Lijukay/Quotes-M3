@@ -9,4 +9,6 @@
     <color name="material_dynamic_End">#004C69</color>
 
     <color name="material_navBar">#20333D</color>
+    
+    <color name="dialog">@color/black</color>
 </resources>

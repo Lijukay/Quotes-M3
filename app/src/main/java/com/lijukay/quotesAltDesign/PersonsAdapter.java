@@ -14,12 +14,12 @@ import java.util.ArrayList;
 public class PersonsAdapter extends RecyclerView.Adapter<PersonsAdapter.PViewHolder> {
     private final Context mContextP;
     private final ArrayList<PersonsItem> mPItem;
-    public RecyclerViewClickListener listener2;
+    private RecyclerViewClickListener listener;
 
     public PersonsAdapter (Context contextP, ArrayList<PersonsItem> PList, RecyclerViewClickListener listener){
         mContextP = contextP;
         mPItem = PList;
-        listener2 = listener;
+        this.listener = listener;
 
     }
 
@@ -58,7 +58,7 @@ public class PersonsAdapter extends RecyclerView.Adapter<PersonsAdapter.PViewHol
         }
         @Override
         public void onClick(View viewP) {
-            listener2.onClick(viewP, getAdapterPosition());
+            listener.onClick(viewP, getAdapterPosition());
         }
     }
 }
