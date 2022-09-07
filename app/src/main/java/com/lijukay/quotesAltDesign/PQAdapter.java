@@ -46,8 +46,8 @@ public class PQAdapter extends RecyclerView.Adapter<PQAdapter.PQViewHolder> {
     }
 
     public static class PQViewHolder extends RecyclerView.ViewHolder{
-        public TextView mQuotePQ;
-        public TextView mAuthorPQ;
+        public final TextView mQuotePQ;
+        public final TextView mAuthorPQ;
 
 
         public PQViewHolder(@NonNull View itemViewPQ, RecyclerViewInterface recyclerViewInterface) {

@@ -1,17 +1,44 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name" translatable="false">Quotes</string>
-    <string name="refresh" translatable="false">Refresh</string>
     <string name="persons">Persons</string>
     <string name="editors_choice" translatable="false">Editors Choice</string>
     <string name="samsung_design" translatable="false">Samsung-design</string>
     <string name="about">About</string>
     <string name="all_quotes">All quotes</string>
-    <string name="info_text">This app uses Googles Material 3 Design and is compatible with Googles Dynamic-Colour Design. For that you need Android 12 or higher.\n\nThank you Yanndroid and John for helping me, creating this app and the translation.</string>
-    <string name="contact">Contact me, if you found bugs, mistranslations or if you have a feature suggestion</string>
-    <string name="update_text">An update of this app is available</string>
     <string name="update">Update</string>
     <string name="copy_quote">Copy Quote</string>
     <string name="share_quote">Share Quote</string>
     <string name="options">Options</string>
     <string name="changelog">Changelog</string>
+    <string name="a_new_update_is_available">A new update is available!</string>
+    <string name="pp">Quotes is a free Android application provided by Luca. Quotes does not collect any of your data and it never will. Every interaction with me is free to choose. I offer the possibility to send EMails to suggest features, give feedback and report bugs. As soon as the conversation between me and the user is ended, the feature is implemented (or not) or the bug has been fixed (or can\'t be fixed), I will delete the contact information (Email-Address) and the conversation for security and for privacy reasons.\n\n\nI may change my Privacy Policy from time to time. Every change is effective immediately. An information to the change of this Privacy Policy will be added to the changelog.\n\n\nEffective September 3, 2022</string>
+    <string name="info" translatable="false">Info</string>
+    <string name="Thanks">I want to say thank you to especially two developers, who are teaching me their knowledge over and over. The two developers were still (and are) helping me even though my knowledge was at around 0% and I never did or even still do understand things.\nSo very great thank you, Yanndroid and TenSeventy7!</string>
+    <string name="permissions">This app is using some permissions. This site will explain you, why my app needs specific permissions.\n\nRead and write Storage:\nThe Quotes App needs to write and read storage to download the updates to your phone and to get the file out of the dir to install the update. No other data is written in you storage or read from your storage.\n\nFull Internet access:\nThe Quotes App uses Internet (WiFi, mobile Data, other ways to connect to the internet) to parse the quotes (which are saved in the internet). No data will be collected by me with the interaction to the internet.\n\nInstall unknown packages:\nThis simply exists to download the update</string>
+    <string name="notes_of_thanks">Notes of thanks</string>
+    <string name="report_bugs">Report bugs</string>
+    <string name="share">Share</string>
+    <string name="feedback" translatable="false">Feedback</string>
+    <string name="request_feature">Request feature</string>
+    <string name="updater" translatable="false">Updater</string>
+    <string name="legal_and_privacy">Legal and privacy</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="app_permissions">App permissions</string>
+    <string name="status" translatable="false">Status</string>
+    <string name="refreshing">Refreshing… please wait</string>
+    <string name="bugSubject">I found a bug</string>
+    <string name="bugMessage">This is what I was doing when it happened:\nThis is the bug:</string>
+    <string name="feedbackSubject">This is my feedback:</string>
+    <string name="feedbackMessage">Hello Luca, I wanted to tell you my opinion about this app:</string>
+    <string name="suggestionSubject">I have a feature suggestion</string>
+    <string name="suggestionMessage">Hello Luca,\nI thought about following feature:\nHave a great day :3</string>
+    <string name="noUpdate">No update available</string>
+    <string name="permissionRequired">Permission required</string>
+    <string name="permissionGoTo">Go to "Permissions" and set "Files and Media" to allow.</string>
+    <string name="updateDownload">Update is downloading</string>
+    <string name="statusPositive">Everything is working as planned. You can use the app without any troubles. If you still have troubles: Contact the developer</string>
+    <string name="statusNegative1">We currently have troubles reading parts of the file. That may affect the whole app. Contact the developer.</string>
+    <string name="statusNegative2">We are sorry but we can\'t reach the file.\nThat can have multiple triggers:\n-The link is temporary not available. -The link is not up-to-date.\nYou have no internet connection.\n\nIf you are connected to the internet, contact the developer.</string>
+    <string name="grantPermission">This App needs the permission to read and write in you internal storage to download and install the update. If you have doubts because of privacy, read "App permissions".</string>
+    <string name="copiedMessage">The quotes has been copied to your clipboard.</string>
 </resources>

@@ -116,6 +116,24 @@
 
     </com.google.android.material.card.MaterialCardView>
 
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="26dp"
+        android:id="@+id/makePic"
+        app:cardUseCompatPadding="true"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:text="Bild speichern" />
+
+    </com.google.android.material.card.MaterialCardView>
+
 
 
 </LinearLayout>

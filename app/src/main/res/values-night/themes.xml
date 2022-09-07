@@ -7,7 +7,9 @@
 
         <item name="android:navigationBarColor">@color/material_navBar</item>
         <item name="android:windowLightNavigationBar">false</item>
+    </style>
 
-
+    <style name="aboutcard">
+        <item name="cardBackgroundColor">@color/black</item>
     </style>
 </resources>

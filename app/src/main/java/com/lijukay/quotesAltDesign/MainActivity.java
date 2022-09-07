@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
-import androidx.core.app.ShareCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -23,7 +22,6 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.TextView;
@@ -37,10 +35,11 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity implements RecyclerViewInterface{
+public class MainActivity extends AppCompatActivity implements RecyclerViewInterface {
     private RecyclerView mRecyclerView;
     private ECAdapter mECAdapter;
     private ArrayList<ECItem> mECItem;
@@ -55,9 +54,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         Toolbar toolbar = findViewById(R.id.tl);
         setSupportActionBar(toolbar);
 
-        //ask for permissions
-
-
         //RecyclerView "setup"
         mRecyclerView = findViewById(R.id.editorsChoiceRV);
         mRecyclerView.setHasFixedSize(true);
@@ -69,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         //SwipeRefreshLayout "setup"
         swipeRefreshLayoutEC = findViewById(R.id.swipeEC);
         swipeRefreshLayoutEC.setOnRefreshListener(() -> {
-            Toast.makeText(MainActivity.this, "Refreshing... please wait", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, getString(R.string.refreshing), Toast.LENGTH_SHORT).show();
             new Handler().postDelayed(() -> {
                 swipeRefreshLayoutEC.setRefreshing(false);
                 mECItem.clear();
@@ -80,47 +76,50 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         mRequestQueue = Volley.newRequestQueue(this);
         getLanguageEC();
     }
+
     private void getLanguageEC() {
         String lang = Locale.getDefault().getLanguage();
-        if(lang.equals("en")){
+        if (lang.equals("en")) {
             parseJSON();
-        }else if(lang.equals("de")){
+        } else if (lang.equals("de")) {
             parseJSONGER();
-        }else{
+        } else {
             parseJSON();
         }
     }
+
     private void parseJSONGER() {
-            String urlGER = "https://lijukay.github.io/Quotes-M3/quotesGER.json";
+        String urlGER = "https://lijukay.github.io/Quotes-M3/quotesGER.json";
 
-            JsonObjectRequest requestGER = new JsonObjectRequest(Request.Method.GET, urlGER, null,
-                    responseGER -> {
-                        try {
-                            JSONArray jsonArrayGER = responseGER.getJSONArray("EditorsChoice");
+        JsonObjectRequest requestGER = new JsonObjectRequest(Request.Method.GET, urlGER, null,
+                responseGER -> {
+                    try {
+                        JSONArray jsonArrayGER = responseGER.getJSONArray("EditorsChoice");
 
-                            for(int g = 0; g < jsonArrayGER.length(); g++){
-                                JSONObject ecGER = jsonArrayGER.getJSONObject(g);
+                        for (int g = 0; g < jsonArrayGER.length(); g++) {
+                            JSONObject ecGER = jsonArrayGER.getJSONObject(g);
 
-                                String quoteECGER = ecGER.getString("quote");
-                                String authorECGER = ecGER.getString("author");
+                            String quoteECGER = ecGER.getString("quote");
+                            String authorECGER = ecGER.getString("author");
 
-                                mECItem.add(new ECItem(authorECGER, quoteECGER));
-                            }
-
-                            mECAdapter = new ECAdapter(MainActivity.this, mECItem, this);
-                            mRecyclerView.setAdapter(mECAdapter);
-                            Log.e("intent", "Hat geklappt...");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Log.e("error", "hat nicht geklappt...");
+                            mECItem.add(new ECItem(authorECGER, quoteECGER));
                         }
-                    }, error -> {
-                error.printStackTrace();
-                Log.e("error", "Hat nicht geklappt 2");
-            });
-            mRequestQueue.add(requestGER);
-        }
-        private void parseJSON() {
+
+                        mECAdapter = new ECAdapter(MainActivity.this, mECItem, this);
+                        mRecyclerView.setAdapter(mECAdapter);
+                        Log.e("intent", "Hat geklappt...");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Log.e("error", "hat nicht geklappt...");
+                    }
+                }, error -> {
+            error.printStackTrace();
+            Log.e("error", "Hat nicht geklappt 2");
+        });
+        mRequestQueue.add(requestGER);
+    }
+
+    private void parseJSON() {
         String url = "https://lijukay.github.io/Quotes-M3/quotesEN.json";
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -128,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
                     try {
                         JSONArray jsonArray = response.getJSONArray("EditorsChoice");
 
-                        for(int i = 0; i < jsonArray.length(); i++){
+                        for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject ec = jsonArray.getJSONObject(i);
 
                             String quoteEC = ec.getString("quote");
@@ -145,9 +144,9 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
                         Log.e("error", "hat nicht geklappt...");
                     }
                 }, error -> {
-                    error.printStackTrace();
-                    Log.e("error", "Hat nicht geklappt 2");
-                });
+            error.printStackTrace();
+            Log.e("error", "Hat nicht geklappt 2");
+        });
         mRequestQueue.add(request);
     }
 
@@ -158,18 +157,19 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.about){
+        if (item.getItemId() == R.id.about) {
             AboutApp();
             return true;
-        } else if(item.getItemId() == R.id.samsungdesign){
+        } else if (item.getItemId() == R.id.samsungdesign) {
             SamsungDesign();
             return true;
-        } else if(item.getItemId() == R.id.people){
+        } else if (item.getItemId() == R.id.people) {
             People();
             return true;
-        } else if(item.getItemId() == R.id.all){
+        } else if (item.getItemId() == R.id.all) {
             All();
             return true;
         } else {
@@ -182,15 +182,18 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         Intent intentAM = new Intent(this, AllActivity.class);
         startActivity(intentAM);
     }
+
     private void People() {
         Intent intentP = new Intent(this, PersonsActivity.class);
         startActivity(intentP);
     }
+
     private void SamsungDesign() {
         Uri uriS = Uri.parse("https://github.com/Lijukay/Quotes");
         Intent intentS = new Intent(Intent.ACTION_VIEW, uriS);
         startActivity(intentS);
     }
+
     private void AboutApp() {
         Intent intentA = new Intent(this, About.class);
         startActivity(intentA);
@@ -200,7 +203,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
     public void onItemClick(int position) {
         String langu = Locale.getDefault().getLanguage();
 
-        if(langu.equals("de")){
+        if (langu.equals("de")) {
             String urlP = "https://lijukay.github.io/Quotes-M3/quotesGER.json";
             JsonObjectRequest requestP = new JsonObjectRequest(Request.Method.GET, urlP, null,
                     responseP -> {
@@ -249,24 +252,21 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
             });
             mRequestQueue.add(requestP);
         }
-        }
-
-
-
+    }
 
 
     private void showDialogs(String author, String quote) {
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
-        dialog.setContentView(R.layout.bottomsheetlayout);
+        dialog.setContentView(R.layout.bottomsheetdialog_quotes);
 
         TextView authorT = dialog.findViewById(R.id.authort);
         authorT.setText(author);
         TextView quoteT = dialog.findViewById(R.id.quotet);
         CardView copy = dialog.findViewById(R.id.copyText);
         CardView share = dialog.findViewById(R.id.shareText);
-        copy.setOnClickListener(view -> copyText(quote+ "\n\n~ " + author));
+        copy.setOnClickListener(view -> copyText(quote + "\n\n~ " + author));
         share.setOnClickListener(view -> {
             Intent shareText = new Intent();
             shareText.setAction(Intent.ACTION_SEND);
@@ -280,8 +280,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         quoteT.setMaxLines(3);
 
 
-
-
         dialog.show();
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -293,5 +291,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
         ClipData clip = ClipData.newPlainText("Quotes", quote);
         clipboard.setPrimaryClip(clip);
+        Toast.makeText(this, getString(R.string.copiedMessage), Toast.LENGTH_SHORT).show();
     }
 }

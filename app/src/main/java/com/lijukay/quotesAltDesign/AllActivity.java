@@ -13,6 +13,7 @@ import android.app.Dialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -22,6 +23,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.TextView;
@@ -35,10 +37,12 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class AllActivity extends AppCompatActivity implements RecyclerViewInterface{
+public class AllActivity extends AppCompatActivity implements RecyclerViewInterface {
     private RecyclerView mRecyclerViewAll;
     private AllAdapter mAllAdapter;
     private ArrayList<AllItem> mAllItem;
@@ -60,7 +64,7 @@ public class AllActivity extends AppCompatActivity implements RecyclerViewInterf
         mAllItem = new ArrayList<>();
         swipeRefreshLayoutAll = findViewById(R.id.swipeAll);
         swipeRefreshLayoutAll.setOnRefreshListener(() -> {
-            Toast.makeText(AllActivity.this, "Refreshing... please wait", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AllActivity.this, getString(R.string.refreshing), Toast.LENGTH_SHORT).show();
             new Handler().postDelayed(() -> {
                 swipeRefreshLayoutAll.setRefreshing(false);
                 mAllItem.clear();
@@ -74,11 +78,11 @@ public class AllActivity extends AppCompatActivity implements RecyclerViewInterf
 
     private void getLanguageAll() {
         String langAll = Locale.getDefault().getLanguage();
-        if(langAll.equals("en")){
+        if (langAll.equals("en")) {
             parseJSONAll();
-        }else if(langAll.equals("de")){
+        } else if (langAll.equals("de")) {
             parseJSONGERAll();
-        }else{
+        } else {
             parseJSONAll();
         }
     }
@@ -91,7 +95,7 @@ public class AllActivity extends AppCompatActivity implements RecyclerViewInterf
                     try {
                         JSONArray jsonArrayAll = responseAllGER.getJSONArray("AllQuotes");
 
-                        for(int ga = 0; ga < jsonArrayAll.length(); ga++){
+                        for (int ga = 0; ga < jsonArrayAll.length(); ga++) {
                             JSONObject agq = jsonArrayAll.getJSONObject(ga);
 
                             String quoteAllGER = agq.getString("quoteAll");
@@ -122,7 +126,7 @@ public class AllActivity extends AppCompatActivity implements RecyclerViewInterf
                     try {
                         JSONArray jsonArrayAll = responseAll.getJSONArray("AllQuotes");
 
-                        for(int a = 0; a < jsonArrayAll.length(); a++){
+                        for (int a = 0; a < jsonArrayAll.length(); a++) {
                             JSONObject ec = jsonArrayAll.getJSONObject(a);
 
                             String quoteAll = ec.getString("quoteAll");
@@ -139,9 +143,9 @@ public class AllActivity extends AppCompatActivity implements RecyclerViewInterf
                         Log.e("error", "hat nicht geklapptall...");
                     }
                 }, errorAll -> {
-                    errorAll.printStackTrace();
-                    Log.e("error", "Hat nicht geklappt 2all");
-                });
+            errorAll.printStackTrace();
+            Log.e("error", "Hat nicht geklappt 2all");
+        });
         mRequestQueueAll.add(requestAll);
     }
 
@@ -151,18 +155,19 @@ public class AllActivity extends AppCompatActivity implements RecyclerViewInterf
         getMenuInflater().inflate(R.menu.menu_aq, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.aboutA){
+        if (item.getItemId() == R.id.aboutA) {
             AboutApp();
             return true;
-        } else if(item.getItemId() == R.id.samsungdesignA){
+        } else if (item.getItemId() == R.id.samsungdesignA) {
             SamsungDesign();
             return true;
-        } else if(item.getItemId() == R.id.personsA){
+        } else if (item.getItemId() == R.id.personsA) {
             People();
             return true;
-        } else if(item.getItemId() == R.id.ecA){
+        } else if (item.getItemId() == R.id.ecA) {
             ECA();
             return true;
         } else {
@@ -174,15 +179,18 @@ public class AllActivity extends AppCompatActivity implements RecyclerViewInterf
         Intent intentEM = new Intent(this, MainActivity.class);
         startActivity(intentEM);
     }
+
     private void People() {
         Intent intentP = new Intent(this, PersonsActivity.class);
         startActivity(intentP);
     }
+
     private void SamsungDesign() {
         Uri uriS = Uri.parse("https://github.com/Lijukay/Quotes");
         Intent intentS = new Intent(Intent.ACTION_VIEW, uriS);
         startActivity(intentS);
     }
+
     private void AboutApp() {
         Intent intentA = new Intent(this, About.class);
         startActivity(intentA);
@@ -192,7 +200,7 @@ public class AllActivity extends AppCompatActivity implements RecyclerViewInterf
     public void onItemClick(int position) {
         String langu = Locale.getDefault().getLanguage();
 
-        if(langu.equals("de")){
+        if (langu.equals("de")) {
             String urlP = "https://lijukay.github.io/Quotes-M3/quotesGER.json";
             JsonObjectRequest requestP = new JsonObjectRequest(Request.Method.GET, urlP, null,
                     responseP -> {
@@ -247,14 +255,14 @@ public class AllActivity extends AppCompatActivity implements RecyclerViewInterf
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
-        dialog.setContentView(R.layout.bottomsheetlayout);
+        dialog.setContentView(R.layout.bottomsheetdialog_quotes);
 
         TextView authorT = dialog.findViewById(R.id.authort);
         authorT.setText(author);
         TextView quoteT = dialog.findViewById(R.id.quotet);
         CardView copy = dialog.findViewById(R.id.copyText);
         CardView share = dialog.findViewById(R.id.shareText);
-        copy.setOnClickListener(view -> copyText(quote+ "\n\n~ " + author));
+        copy.setOnClickListener(view -> copyText(quote + "\n\n~ " + author));
         share.setOnClickListener(view -> {
             Intent shareText = new Intent();
             shareText.setAction(Intent.ACTION_SEND);
@@ -262,12 +270,9 @@ public class AllActivity extends AppCompatActivity implements RecyclerViewInterf
             shareText.setType("text/plain");
             Intent sendText = Intent.createChooser(shareText, null);
             startActivity(sendText);
-
         });
         quoteT.setText(quote);
         quoteT.setMaxLines(3);
-
-
 
 
         dialog.show();
@@ -281,5 +286,10 @@ public class AllActivity extends AppCompatActivity implements RecyclerViewInterf
         ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
         ClipData clip = ClipData.newPlainText("Quotes", quote);
         clipboard.setPrimaryClip(clip);
+        Toast.makeText(this, getString(R.string.copiedMessage), Toast.LENGTH_SHORT).show();
     }
+
+
+
+
 }

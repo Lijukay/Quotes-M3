@@ -47,8 +47,8 @@ public class AllAdapter extends RecyclerView.Adapter<AllAdapter.AllViewHolder> {
     }
 
     public static class AllViewHolder extends RecyclerView.ViewHolder{
-        public TextView mQuoteAll;
-        public TextView mAuthorAll;
+        public final TextView mQuoteAll;
+        public final TextView mAuthorAll;
 
 
         public AllViewHolder(@NonNull View itemViewAll, RecyclerViewInterface recyclerViewInterface) {

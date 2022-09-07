@@ -12,4 +12,10 @@
         <item name="android:windowEnterAnimation">@anim/slide_in_bottom</item>
         <item name="android:windowExitAnimation">@anim/slide_out_bottom</item>
     </style>
+    <style name="aboutcard">
+        <item name="cardBackgroundColor">@color/white</item>
+    </style>
+    <style name="ToolbarTitleText">
+        <item name="android:textSize">25sp</item>
+    </style>
 </resources>

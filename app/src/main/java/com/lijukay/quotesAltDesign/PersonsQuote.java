@@ -4,24 +4,35 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.TextView;
@@ -31,40 +42,39 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Objects;
 
-public class PersonsQuote extends AppCompatActivity implements RecyclerViewInterface{
+public class PersonsQuote extends AppCompatActivity implements RecyclerViewInterface {
     private RecyclerView mRecyclerViewPQ;
     private PQAdapter mPQAdapter;
     private ArrayList<PQItem> mPQItem;
     private RequestQueue mRequestQueuePQ;
-    private String pQuotes;
-    private String authorP;
+    private String pQuotes, authorP;
     private SwipeRefreshLayout swipeRefreshLayoutPQ;
 
-    @SuppressLint("NotifyDataSetChanged")
+
+
+
+    @SuppressLint({"NotifyDataSetChanged", "InflateParams"})
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_persons_quote);
         Toolbar toolbarPQ = findViewById(R.id.tlPQ);
         setSupportActionBar(toolbarPQ);
-
-
-
         Intent intent = getIntent();
 
         authorP = intent.getStringExtra("authorP");
 
-        CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.ctlPQ);
-        collapsingToolbarLayout.setTitle(authorP);
-
+        Objects.requireNonNull(getSupportActionBar()).setTitle(authorP);
+        toolbarPQ.setTitleTextAppearance(this, androidx.appcompat.R.style.TextAppearance_AppCompat_Title);
 
         mRecyclerViewPQ = findViewById(R.id.PersonsRV);
         mRecyclerViewPQ.setHasFixedSize(true);
@@ -74,7 +84,7 @@ public class PersonsQuote extends AppCompatActivity implements RecyclerViewInter
 
         swipeRefreshLayoutPQ = findViewById(R.id.swipePQ);
         swipeRefreshLayoutPQ.setOnRefreshListener(() -> {
-            Toast.makeText(PersonsQuote.this, "Refreshing... please wait", Toast.LENGTH_SHORT).show();
+            Toast.makeText(PersonsQuote.this, getString(R.string.refreshing), Toast.LENGTH_SHORT).show();
             new Handler().postDelayed(() -> {
                 swipeRefreshLayoutPQ.setRefreshing(false);
                 mPQItem.clear();
@@ -89,9 +99,9 @@ public class PersonsQuote extends AppCompatActivity implements RecyclerViewInter
 
     private void getLanguagePQ() {
         String langPQ = Locale.getDefault().getLanguage();
-        if (langPQ.equals("en")){
+        if (langPQ.equals("en")) {
             parseJSONPQ();
-        } else if (langPQ.equals("de")){
+        } else if (langPQ.equals("de")) {
             parseJSONPQGER();
         } else {
             parseJSONPQ();
@@ -108,7 +118,7 @@ public class PersonsQuote extends AppCompatActivity implements RecyclerViewInter
                         pQuotes = authorP;
                         JSONArray jsonArrayPQGER = responsePQGER.getJSONArray(pQuotes);
 
-                        for(int pqG = 0; pqG < jsonArrayPQGER.length(); pqG++){
+                        for (int pqG = 0; pqG < jsonArrayPQGER.length(); pqG++) {
                             JSONObject pq = jsonArrayPQGER.getJSONObject(pqG);
 
                             String quotePQGER = pq.getString("quotePQ");
@@ -141,7 +151,7 @@ public class PersonsQuote extends AppCompatActivity implements RecyclerViewInter
                         pQuotes = authorP;
                         JSONArray jsonArrayPQ = responsePQ.getJSONArray(pQuotes);
 
-                        for(int a = 0; a < jsonArrayPQ.length(); a++){
+                        for (int a = 0; a < jsonArrayPQ.length(); a++) {
                             JSONObject pq = jsonArrayPQ.getJSONObject(a);
 
                             String quotePQ = pq.getString("quotePQ");
@@ -158,9 +168,9 @@ public class PersonsQuote extends AppCompatActivity implements RecyclerViewInter
                         Log.e("error", "hat nicht geklapptall...");
                     }
                 }, errorPQ -> {
-                    errorPQ.printStackTrace();
-                    Log.e("error", "Hat nicht geklappt 2all");
-                });
+            errorPQ.printStackTrace();
+            Log.e("error", "Hat nicht geklappt 2all");
+        });
         mRequestQueuePQ.add(requestPQ);
     }
 
@@ -170,18 +180,19 @@ public class PersonsQuote extends AppCompatActivity implements RecyclerViewInter
         getMenuInflater().inflate(R.menu.menu_aq, menuPQ);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.aboutA){
+        if (item.getItemId() == R.id.aboutA) {
             AboutApp();
             return true;
-        } else if(item.getItemId() == R.id.samsungdesignA){
+        } else if (item.getItemId() == R.id.samsungdesignA) {
             SamsungDesign();
             return true;
-        } else if(item.getItemId() == R.id.personsA){
+        } else if (item.getItemId() == R.id.personsA) {
             People();
             return true;
-        } else if(item.getItemId() == R.id.ecA){
+        } else if (item.getItemId() == R.id.ecA) {
             ECA();
             return true;
         } else {
@@ -215,7 +226,7 @@ public class PersonsQuote extends AppCompatActivity implements RecyclerViewInter
     public void onItemClick(int position) {
         String langu = Locale.getDefault().getLanguage();
 
-        if(langu.equals("de")){
+        if (langu.equals("de")) {
             String urlP = "https://lijukay.github.io/Quotes-M3/quotesGER.json";
             JsonObjectRequest requestP = new JsonObjectRequest(Request.Method.GET, urlP, null,
                     responseP -> {
@@ -271,14 +282,14 @@ public class PersonsQuote extends AppCompatActivity implements RecyclerViewInter
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
-        dialog.setContentView(R.layout.bottomsheetlayout);
+        dialog.setContentView(R.layout.bottomsheetdialog_quotes);
 
         TextView authorT = dialog.findViewById(R.id.authort);
         authorT.setText(author);
         TextView quoteT = dialog.findViewById(R.id.quotet);
         CardView copy = dialog.findViewById(R.id.copyText);
         CardView share = dialog.findViewById(R.id.shareText);
-        copy.setOnClickListener(view -> copyText(quote+ "\n\n~ " + author));
+        copy.setOnClickListener(view -> copyText(quote + "\n\n~ " + author));
         share.setOnClickListener(view -> {
             Intent shareText = new Intent();
             shareText.setAction(Intent.ACTION_SEND);
@@ -292,8 +303,6 @@ public class PersonsQuote extends AppCompatActivity implements RecyclerViewInter
         quoteT.setMaxLines(3);
 
 
-
-
         dialog.show();
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -305,5 +314,7 @@ public class PersonsQuote extends AppCompatActivity implements RecyclerViewInter
         ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
         ClipData clip = ClipData.newPlainText("Quotes", quote);
         clipboard.setPrimaryClip(clip);
+        Toast.makeText(this, getString(R.string.copiedMessage), Toast.LENGTH_SHORT).show();
     }
+
 }

@@ -10,35 +10,21 @@
 
     <com.google.android.material.appbar.AppBarLayout
         style="@style/Theme.Material3.DynamicColors.DayNight"
+        android:backgroundTint="@color/material_navBar"
         android:theme="@style/Theme.Material3.DynamicColors.DayNight"
         android:layout_width="match_parent"
         android:fitsSystemWindows="true"
         android:layout_height="wrap_content"
         >
-
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:layout_width="match_parent"
-            android:layout_height="?collapsingToolbarLayoutLargeSize"
-            style="@style/Theme.Material3.DynamicColors.DayNight"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:expandedTitleMarginStart="64dp"
-            app:title=""
-            app:collapsedTitleTextAppearance="@style/TextAppearance.AppCompat.Title"
-            app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Title"
-            app:maxLines="2"
-            android:id="@+id/ctlPQ"
-            app:titleCollapseMode="scale"
-            android:fitsSystemWindows="true">
-
-            <androidx.appcompat.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
                 android:padding="5dp"
                 android:id="@+id/tlPQ"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
+            app:title=""
                 app:logo="@mipmap/ic_launcher_round"
                 app:titleMarginStart="10dp"/>
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 

@@ -1,11 +1,13 @@
 package com.lijukay.quotesAltDesign;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -33,6 +35,7 @@ public class PersonsActivity extends AppCompatActivity {
     private PersonsAdapter.RecyclerViewClickListener listener;
     private SwipeRefreshLayout swipeRefreshLayoutP;
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +51,7 @@ public class PersonsActivity extends AppCompatActivity {
         mPItem = new ArrayList<>();
         swipeRefreshLayoutP = findViewById(R.id.swipePersons);
         swipeRefreshLayoutP.setOnRefreshListener(() -> {
-            Toast.makeText(PersonsActivity.this, "Refreshing... please wait", Toast.LENGTH_SHORT).show();
+            Toast.makeText(PersonsActivity.this, getString(R.string.refreshing), Toast.LENGTH_SHORT).show();
             new Handler().postDelayed(() -> {
                 swipeRefreshLayoutP.setRefreshing(false);
                 mPItem.clear();
@@ -129,7 +132,7 @@ public class PersonsActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(@NonNull Menu menu) {
         getMenuInflater().inflate(R.menu.menu_p, menu);
         return true;
     }

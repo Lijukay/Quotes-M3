@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class PersonsAdapter extends RecyclerView.Adapter<PersonsAdapter.PViewHolder> {
     private final Context mContextP;
     private final ArrayList<PersonsItem> mPItem;
-    private RecyclerViewClickListener listener;
+    private final RecyclerViewClickListener listener;
 
     public PersonsAdapter (Context contextP, ArrayList<PersonsItem> PList, RecyclerViewClickListener listener){
         mContextP = contextP;
@@ -48,7 +48,7 @@ public class PersonsAdapter extends RecyclerView.Adapter<PersonsAdapter.PViewHol
     }
 
     public class PViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView mAuthorP;
+        public final TextView mAuthorP;
 
 
         public PViewHolder(@NonNull View itemViewP) {

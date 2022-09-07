@@ -1,30 +1,49 @@
 package com.lijukay.quotesAltDesign;
-
+//Start of Imports
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
+import androidx.core.widget.NestedScrollView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.app.DownloadManager;
+import android.app.WallpaperInfo;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.provider.Settings;
+import android.text.Layout;
+import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,132 +57,229 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+//End of Imports
 
 public class About extends AppCompatActivity {
-    //global variables:
-    int versionC;
-    int versionA;
-    String changelog;
-    String versionName;
-    String apkUrl;
+    //------Start of defining global variables------//
+    private String changelogchange, versionName, apkUrl, status;
     private RequestQueue mRequestQueueU;
     private SwipeRefreshLayout swipeRefreshLayoutAb;
+    private int versionC, bsdsizeHalf, versionA, bsdsize;
     private final int PERMISSION_REQUEST_CODE_WRITE_EXTERNAL = 100;
-
-    //Override on Create:
+    private RelativeLayout update;
+    private TextView changesTexts, dialogTitle;
+    private Button updateButtonCV;
+    private AlertDialog dialog;
+    private View alertCustomDialog;
+    public static final String BroadcastStringForAction = "checkInternet";
+    private IntentFilter mIntentFilter;
+    //------End of defining global variables------//
+    //------OnCreate------//
+    @SuppressLint("InflateParams")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Set Layout of this activity
         setContentView(R.layout.activity_about);
-        //Find the toolbar
-        Toolbar toolbar = findViewById(R.id.tlabout);
-        //Set a Toolbar to act as the ActionBar for this Activity window.
-        setSupportActionBar(toolbar);
-        //Set a string for the version-Name
-        String versionName = BuildConfig.VERSION_NAME;
-        //Find the TextView by Id
-        TextView textView = findViewById(R.id.versionCode);
-        //Set the text of the TextView to the String with the variable versionName
-        textView.setText(versionName);
-        //Set a OnClickListener for the Telegram logo so people can reach me :3
-        findViewById(R.id.telegram).setOnClickListener(view -> {
-            //Set the url that leads to my Telegram Chat
-            Uri uriT = Uri.parse("https://t.me/Lijukay");
-            //create an Intent to lead to my Telegram Chat
-            Intent intentT = new Intent(Intent.ACTION_VIEW, uriT);
-            //start the intent
-            startActivity(intentT);
-        });
-        //Set a OnClickListener for my GitHub-Profile
-        findViewById(R.id.GitHub).setOnClickListener(view -> {
-            //Set the url to my GitHub-Profile
-            Uri uriG = Uri.parse("https://github.com/Lijukay");
-            //Set the intent to lead to my GitHub-Page
-            Intent intentG = new Intent(Intent.ACTION_VIEW,uriG);
-            //Start the intent
-            startActivity(intentG);
-        });
-        //Set the RefreshLayout by using the global variable that defines the RefreshLayout
-        swipeRefreshLayoutAb = findViewById(R.id.swipeAbout);
-        //Set a OnRefreshListener
+
+        alertCustomDialog = LayoutInflater.from(About.this).inflate(R.layout.update_dialog, null);
+
+        FindViewById();
+
+        mRequestQueueU = Volley.newRequestQueue(this);
+
+        parseJSONVersion();
+
         swipeRefreshLayoutAb.setOnRefreshListener(() -> {
-            //Make a ToastMessage to inform users that the page is refreshing
-            Toast.makeText(About.this, "Refreshing... please wait", Toast.LENGTH_SHORT).show();
-            //Create a Handler
+            Toast.makeText(About.this, getString(R.string.refreshing), Toast.LENGTH_SHORT).show();
+
             new Handler().postDelayed(() -> {
-                //Notify the widget that refresh state has changed.
                 swipeRefreshLayoutAb.setRefreshing(false);
-                //call the method parseJSONVersion each time the RefreshLayout is triggered
                 parseJSONVersion();
             }, 2000);
         });
-        //Creates a default instance of the worker pool and calls RequestQueue.start() on it.
-        mRequestQueueU = Volley.newRequestQueue(this);
-        //Call the parseJSONVersion-Method on create
-        parseJSONVersion();
+
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        bsdsize = (displayMetrics.heightPixels / 4) * 3;
+
+        DisplayMetrics displayMetricsHalf = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetricsHalf);
+        bsdsizeHalf = displayMetrics.heightPixels / 2;
+
+
+        findViewById(R.id.not).setOnClickListener(view -> showDialogC(getString(R.string.notes_of_thanks), getString(R.string.Thanks), bsdsizeHalf));
+        findViewById(R.id.bug).setOnClickListener(view -> composeEmail("lico.keins@gmail.com", getString(R.string.bugSubject), getString(R.string.bugMessage)));
+        findViewById(R.id.feed).setOnClickListener(view -> composeEmail("lico.keins@gmail.com", getString(R.string.feedbackSubject), getString(R.string.feedbackMessage)));
+        findViewById(R.id.requests).setOnClickListener(view -> composeEmail("lico.keins@gmail.com", getString(R.string.suggestionSubject), getString(R.string.suggestionMessage)));
+        findViewById(R.id.privacy).setOnClickListener(view -> showDialogC(getString(R.string.privacy_policy), getString(R.string.pp), bsdsize));
+        findViewById(R.id.permission).setOnClickListener(view -> showDialogC(getString(R.string.app_permissions), getString(R.string.permissions), bsdsize));
+        findViewById(R.id.sharee).setOnClickListener(view -> {
+            Intent shareText = new Intent();
+            shareText.setAction(Intent.ACTION_SEND);
+            shareText.putExtra(Intent.EXTRA_TEXT, "https://github.com/Lijukay/Quotes-M3");
+            shareText.setType("text/plain");
+            Intent sendText = Intent.createChooser(shareText, null);
+            startActivity(sendText);
+        });
+        findViewById(R.id.Status).setOnClickListener(view -> showAlertDialog(getString(R.string.status), status, "Okay"));
+
+
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(About.this);
+        alertDialog.setView(alertCustomDialog);
+        ImageButton close = alertCustomDialog.findViewById(R.id.close);
+        changesTexts = alertCustomDialog.findViewById(R.id.changesText);
+        updateButtonCV = alertCustomDialog.findViewById(R.id.cardUpdate);
+        dialog = alertDialog.create();
+        dialog.getWindow().setGravity(Gravity.BOTTOM);
+        dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, bsdsizeHalf);
+
+
+        close.setOnClickListener(view -> dialog.dismiss());
+
+        mIntentFilter = new IntentFilter();
+        mIntentFilter.addAction(BroadcastStringForAction);
+        Intent serviceIntent = new Intent(this, InternetService.class);
+        startService(serviceIntent);
+        if(isOnline(getApplicationContext())){
+            findViewById(R.id.update).setOnClickListener(view -> showAlertDialog(getString(R.string.update), changelogchange, getString(R.string.update)));
+        } else {
+            findViewById(R.id.update).setOnClickListener(view -> showAlertDialog("No internet", "This device currently does not have internet access. You can't check whether a update is available or not", null));
+        }
+
     }
-
-
-
+    //------Find by ID------//
+    private void FindViewById() {
+        swipeRefreshLayoutAb = findViewById(R.id.swipeAbout);
+        update = findViewById(R.id.update);
+        dialogTitle = alertCustomDialog.findViewById(R.id.dialog_title);
+    }
+    //------Email------//
+    public void composeEmail(String addresses, String subject, String messageE) {
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:" + addresses));
+        intent.putExtra(Intent.EXTRA_EMAIL, addresses);
+        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        intent.putExtra(Intent.EXTRA_TEXT, messageE);
+        startActivity(intent);
+    }
+    //------JSON-File------//
     private void parseJSONVersion() {
-        //Set the url where the Json-File is saved
         String urlU = "https://lijukay.github.io/PrUp/prUp.json";
-        //A request for retrieving a JSONObject response body at a given URL, allowing for an optional JSONObject to be passed in as part of the request body.
+
         JsonObjectRequest requestU = new JsonObjectRequest(Request.Method.GET, urlU, null,
                 responseU -> {
                     try {
                         JSONArray jsonArrayAll = responseU.getJSONArray("Quotes-M3");
 
-                        for(int a = 0; a < jsonArrayAll.length(); a++){
+                        for (int a = 0; a < jsonArrayAll.length(); a++) {
+
                             JSONObject v = jsonArrayAll.getJSONObject(a);
+
                             versionC = BuildConfig.VERSION_CODE;
                             versionA = v.getInt("versionsCode");
                             apkUrl = v.getString("apkUrl");
-                            changelog = v.getString("changelog");
+                            changelogchange = v.getString("changelog");
                             versionName = v.getString("versionsName");
                         }
-                        if (versionA > versionC){
-                            Button update = findViewById(R.id.updateB);
-                            TextView updateA = findViewById(R.id.updateT);
 
-                            update.setVisibility(View.VISIBLE);
-                            updateA.setVisibility(View.VISIBLE);
-
-
-
-                            update.setOnClickListener(view -> {
-                                if(ContextCompat.checkSelfPermission(About.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
-                                    ActivityCompat.requestPermissions(About.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},PERMISSION_REQUEST_CODE_WRITE_EXTERNAL);
-                                } else {
-                                    InstallUpdate(this, apkUrl, versionName);
-                                }
-                            });
+                        if (versionA > versionC) {
+                            update.setOnClickListener(view -> showAlertDialog(getString(R.string.update), changelogchange, getString(R.string.update)));
+                        } else {
+                            update.setOnClickListener(view -> showAlertDialog(getString(R.string.noUpdate), getString(R.string.noUpdate), null));
                         }
+                            status = getString(R.string.statusPositive);
 
-                        Log.e("intent", "Refreshing completed...");
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Log.e("error", "JSON Exeption. Write me to tell me about that...");
+                        Log.e("error", "JSON Exeption. You made a mistake in the file");
+                        status = getString(R.string.statusNegative1);
                     }
                 }, errorAll -> {
             errorAll.printStackTrace();
-            Log.e("error", "Something went wrong... Contact me");
+
+                status = getString(R.string.statusNegative2);
+            Log.e("error", "Either you have no internet, or the link is not available anymore");
         });
+
         mRequestQueueU.add(requestU);
     }
+    //------Dialogs------//
+    private void showAlertDialog(String title, String changelogT, String buttonText) {
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        changesTexts.setText(changelogT);
+        updateButtonCV.setText(buttonText);
+        dialogTitle.setText(title);
+        dialog.show();
+        if (changelogT.equals(getString(R.string.noUpdate))) {
+            updateButtonCV.setVisibility(View.GONE);
+        } else if (title.equals(getString(R.string.status))){
+            updateButtonCV.setVisibility(View.VISIBLE);
+            updateButtonCV.setOnClickListener(view -> dialog.dismiss());
+        } else if (title.equals(getString(R.string.permissionRequired))){
+            updateButtonCV.setVisibility(View.VISIBLE);
+            updateButtonCV.setOnClickListener(view -> {
+                Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                Uri uri = Uri.fromParts("package", getPackageName(), null);
+                intent.setData(uri);
+                startActivity(intent);
+                dialog.dismiss();
+                Toast.makeText(this, getString(R.string.permissionGoTo), Toast.LENGTH_SHORT).show();
+            });
+        } else if(title.equals("No internet")) {
+            updateButtonCV.setVisibility(View.GONE);
+        } else {
+            updateButtonCV.setVisibility(View.VISIBLE);
+            updateButtonCV.setOnClickListener(view -> {
+                if(isOnline(getApplicationContext())){
+                    if (ContextCompat.checkSelfPermission(About.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                        dialog.dismiss();
+                        ActivityCompat.requestPermissions(About.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE_WRITE_EXTERNAL);
+                    } else {
+                        InstallUpdate(this, apkUrl, versionName);
+                        dialog.dismiss();
+                        Toast.makeText(this, getString(R.string.updateDownload), Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    dialog.dismiss();
+                    showAlertDialog("No internet", "This device currently does not have internet access. You can't check whether a update is available or not", null);
+                }
+            });
+        }
+    }
+    private void showDialogC(String titletext, String message, int screenHigh) {
+        final Dialog dialog = new Dialog(this);
+
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        dialog.setContentView(R.layout.bottomsheetdialog_default);
+
+        TextView title = dialog.findViewById(R.id.titlebcs);
+        title.setText(titletext);
+
+        TextView change = dialog.findViewById(R.id.changes);
+        change.setText(message);
+
+
+        dialog.show();
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, bsdsizeHalf);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().setGravity(Gravity.BOTTOM);
+    }
+    private void showPermissionDialog() {
+        showAlertDialog(getString(R.string.permissionRequired), getString(R.string.grantPermission), "Grant permission");
+    }
+    //------Installation of the update------//
     //Code by Yanndroid
     public static void InstallUpdate(Context context, String url, String versionName) {
-        Log.e("path", context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS).toString() + "/" + context.getString(R.string.app_name) + "." + versionName + ".apk");
-        Log.e("url", url);
         String destination = context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS).toString() + "/" + context.getString(R.string.app_name) + "." + versionName + ".apk";
+
         Uri fileUri = Uri.parse("file://" + destination);
-        Log.e("fileUri", fileUri.toString());
 
         File file = new File(destination);
-        if (file.exists()) file.delete();
-        Log.e("file", file.toString());
-        Log.e("destination", destination);
+
+        if (file.exists()) //noinspection ResultOfMethodCallIgnored
+            file.delete();
 
         DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
         DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
@@ -177,14 +293,15 @@ public class About extends AppCompatActivity {
             public void onReceive(Context ctxt, Intent intent) {
 
                 Uri apkFileUri = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", new File(destination));
+
                 Intent install = new Intent(Intent.ACTION_VIEW);
+
                 install.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 install.putExtra(Intent.EXTRA_NOT_UNKNOWN_SOURCE, true);
                 install.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
                 install.setDataAndType(apkFileUri, "application/vnd.android.package-archive");
-                context.startActivity(install);
 
+                context.startActivity(install);
                 context.unregisterReceiver(this);
             }
         };
@@ -192,7 +309,7 @@ public class About extends AppCompatActivity {
 
         downloadManager.enqueue(request);
     }
-
+    //------Everything for the Menu------//
     @Override
     public boolean onCreateOptionsMenu(@NonNull Menu menu) {
         getMenuInflater().inflate(R.menu.menuab, menu);
@@ -200,23 +317,22 @@ public class About extends AppCompatActivity {
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.ecAb){
+        if (item.getItemId() == R.id.ecAb) {
             ECAb();
             return true;
-        } else if(item.getItemId() == R.id.samsungdesignAb){
+        } else if (item.getItemId() == R.id.samsungdesignAb) {
             SamsungDesign();
             return true;
-        } else if(item.getItemId() == R.id.peopleAb){
+        } else if (item.getItemId() == R.id.peopleAb) {
             People();
             return true;
-        } else if(item.getItemId() == R.id.allAb){
+        } else if (item.getItemId() == R.id.allAb) {
             All();
             return true;
         } else {
             return super.onOptionsItemSelected(item);
         }
     }
-
     private void All() {
         Intent intentAM = new Intent(this, AllActivity.class);
         startActivity(intentAM);
@@ -234,19 +350,52 @@ public class About extends AppCompatActivity {
         Intent intentA = new Intent(this, MainActivity.class);
         startActivity(intentA);
     }
-
+    //------Code to check quick response of isOnline------//
+    public BroadcastReceiver InternetReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if(intent.getAction().equals(BroadcastStringForAction)){
+                if(intent.getStringExtra("online_status").equals("true")){
+                    findViewById(R.id.update).setOnClickListener(view -> showAlertDialog(getString(R.string.update), changelogchange, getString(R.string.update)));
+                } else {
+                    findViewById(R.id.update).setOnClickListener(view -> showAlertDialog("No internet", "This device currently does not have internet access. You can't check whether a update is available or not", null));
+                }
+            }
+        }
+    };
+    public boolean isOnline(Context c){
+        ConnectivityManager cm = (ConnectivityManager) c.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo ni = cm.getActiveNetworkInfo();
+        if(ni != null && ni.isConnectedOrConnecting()){
+            return true;
+        } else {
+            return false;
+        }
+    }
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        registerReceiver(InternetReceiver, mIntentFilter);
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(InternetReceiver);
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        registerReceiver(InternetReceiver, mIntentFilter);
+    }
+    //------Permission Request check------//
     @SuppressLint("MissingSuperCall")
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == PERMISSION_REQUEST_CODE_WRITE_EXTERNAL && (grantResults.length <= 0 || grantResults[0] != PackageManager.PERMISSION_GRANTED)) {
-            showPermissionDialog();
-        }
-        if (requestCode == PERMISSION_REQUEST_CODE_WRITE_EXTERNAL && (grantResults.length <= 0 || grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-            InstallUpdate(this, apkUrl, versionName);
-        }
+    if (requestCode == PERMISSION_REQUEST_CODE_WRITE_EXTERNAL && (grantResults.length <= 0 || grantResults[0] != PackageManager.PERMISSION_GRANTED)) {
+        showPermissionDialog();
     }
-
-    private void showPermissionDialog() {
+    if (requestCode == PERMISSION_REQUEST_CODE_WRITE_EXTERNAL && (grantResults.length <= 0 || grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+        InstallUpdate(this, apkUrl, versionName);
     }
-
+}
 }

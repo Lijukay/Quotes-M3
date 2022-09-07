@@ -48,8 +48,8 @@ public class ECAdapter extends RecyclerView.Adapter<ECAdapter.ECViewHolder>{
 
 
     public static class ECViewHolder extends RecyclerView.ViewHolder{
-        public TextView mQuote;
-        public TextView mAuthor;
+        public final TextView mQuote;
+        public final TextView mAuthor;
 
 
         public ECViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
