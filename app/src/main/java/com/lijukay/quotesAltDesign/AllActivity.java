@@ -9,11 +9,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -37,8 +37,13 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONStringer;
 
-import java.io.FileOutputStream;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -48,6 +53,7 @@ public class AllActivity extends AppCompatActivity implements RecyclerViewInterf
     private ArrayList<AllItem> mAllItem;
     private RequestQueue mRequestQueueAll;
     private SwipeRefreshLayout swipeRefreshLayoutAll;
+
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
@@ -73,6 +79,8 @@ public class AllActivity extends AppCompatActivity implements RecyclerViewInterf
             }, 2000);
         });
         mRequestQueueAll = Volley.newRequestQueue(this);
+
+
         getLanguageAll();
     }
 
@@ -106,18 +114,12 @@ public class AllActivity extends AppCompatActivity implements RecyclerViewInterf
 
                         mAllAdapter = new AllAdapter(AllActivity.this, mAllItem, this);
                         mRecyclerViewAll.setAdapter(mAllAdapter);
-                        Log.e("intent", "Hat geklapptAll...");
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Log.e("error", "hat nicht geklapptall...");
                     }
-                }, errorAll -> {
-            errorAll.printStackTrace();
-            Log.e("error", "Hat nicht geklappt all");
-        });
+                }, Throwable::printStackTrace);
         mRequestQueueAll.add(requestAllGER);
     }
-
     private void parseJSONAll() {
         String urlAll = "https://lijukay.github.io/Quotes-M3/quotesEN.json";
 
@@ -137,15 +139,10 @@ public class AllActivity extends AppCompatActivity implements RecyclerViewInterf
 
                         mAllAdapter = new AllAdapter(AllActivity.this, mAllItem, this);
                         mRecyclerViewAll.setAdapter(mAllAdapter);
-                        Log.e("intent", "Hat geklapptAll...");
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Log.e("error", "hat nicht geklapptall...");
                     }
-                }, errorAll -> {
-            errorAll.printStackTrace();
-            Log.e("error", "Hat nicht geklappt 2all");
-        });
+                }, Throwable::printStackTrace);
         mRequestQueueAll.add(requestAll);
     }
 
@@ -216,12 +213,8 @@ public class AllActivity extends AppCompatActivity implements RecyclerViewInterf
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Log.e("error", "Something is not right with the file! Contact the developer!");
                         }
-                    }, errorAll -> {
-                errorAll.printStackTrace();
-                Log.e("error", "File is not reachable, check your Internet connection. If you are connected to the internet, contact the developer!");
-            });
+                    }, Throwable::printStackTrace);
             mRequestQueueAll.add(requestP);
         } else {
             String urlP = "https://lijukay.github.io/Quotes-M3/quotesEN.json";
@@ -241,12 +234,8 @@ public class AllActivity extends AppCompatActivity implements RecyclerViewInterf
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Log.e("error", "Something is not right with the file! Contact the developer!");
                         }
-                    }, errorAll -> {
-                errorAll.printStackTrace();
-                Log.e("error", "File is not reachable, check your Internet connection. If you are connected to the internet, contact the developer!");
-            });
+                    }, Throwable::printStackTrace);
             mRequestQueueAll.add(requestP);
         }
     }
@@ -258,7 +247,6 @@ public class AllActivity extends AppCompatActivity implements RecyclerViewInterf
         dialog.setContentView(R.layout.bottomsheetdialog_quotes);
 
         TextView authorT = dialog.findViewById(R.id.authort);
-        authorT.setText(author);
         TextView quoteT = dialog.findViewById(R.id.quotet);
         CardView copy = dialog.findViewById(R.id.copyText);
         CardView share = dialog.findViewById(R.id.shareText);
@@ -273,14 +261,14 @@ public class AllActivity extends AppCompatActivity implements RecyclerViewInterf
         });
         quoteT.setText(quote);
         quoteT.setMaxLines(3);
-
+        authorT.setText(author);
 
         dialog.show();
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.getWindow().setGravity(Gravity.BOTTOM);
-
     }
+
 
     private void copyText(String quote) {
         ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
@@ -288,8 +276,6 @@ public class AllActivity extends AppCompatActivity implements RecyclerViewInterf
         clipboard.setPrimaryClip(clip);
         Toast.makeText(this, getString(R.string.copiedMessage), Toast.LENGTH_SHORT).show();
     }
-
-
 
 
 }

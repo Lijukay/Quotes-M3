@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".About">
+    tools:context=".About"
+    >
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -15,6 +16,7 @@
         android:fitsSystemWindows="true"
         android:theme="@style/Theme.Material3.DynamicColors.DayNight">
 
+        <!--suppress AndroidElementNotAllowed, AndroidUnresolvableTag -->
         <Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -22,7 +24,6 @@
             android:titleTextAppearance="@style/ToolbarTitleText"
             android:titleTextColor="?android:textColorPrimary" />
     </com.google.android.material.appbar.AppBarLayout>
-
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeAbout"
         android:layout_width="match_parent"
@@ -34,7 +35,6 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
-                android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -46,7 +46,9 @@
                     android:paddingTop="10dp"
                     android:text="@string/info"
                     android:textColor="?android:textColorPrimary"
-                    android:textSize="17sp" />
+                    android:textSize="17sp"
+                    android:fontFamily="@font/palanquin_dark_medium"
+                    />
 
                 <androidx.cardview.widget.CardView
                     style="@style/aboutcard"
@@ -58,7 +60,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:background="@drawable/quote_background_ec">
 
                         <RelativeLayout
                             android:id="@+id/not"
@@ -84,11 +87,13 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="20dp"
                                 android:layout_toEndOf="@+id/love"
+                                android:fontFamily="@font/palanquin_dark_medium"
                                 android:gravity="start"
                                 android:paddingVertical="10dp"
                                 android:text="@string/notes_of_thanks"
+
                                 android:textColor="?android:textColorPrimary"
-                                android:textSize="18sp" />
+                                android:textSize="15sp" />
                         </RelativeLayout>
 
                         <RelativeLayout
@@ -124,11 +129,12 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="20dp"
                                 android:layout_toEndOf="@+id/bugs"
+                                android:fontFamily="@font/palanquin_dark_medium"
                                 android:gravity="start"
                                 android:paddingVertical="10dp"
                                 android:text="@string/report_bugs"
                                 android:textColor="?android:textColorPrimary"
-                                android:textSize="18sp" />
+                                android:textSize="15sp" />
                         </RelativeLayout>
 
                         <RelativeLayout
@@ -168,8 +174,10 @@
                                 android:gravity="start"
                                 android:paddingVertical="10dp"
                                 android:text="@string/share"
+                                android:fontFamily="@font/palanquin_dark_medium"
+
                                 android:textColor="?android:textColorPrimary"
-                                android:textSize="18sp" />
+                                android:textSize="15sp" />
                         </RelativeLayout>
 
                         <RelativeLayout
@@ -210,7 +218,9 @@
                                 android:paddingVertical="10dp"
                                 android:text="@string/feedback"
                                 android:textColor="?android:textColorPrimary"
-                                android:textSize="18sp" />
+                                android:textSize="15sp"
+                                android:fontFamily="@font/palanquin_dark_medium"
+                                />
                         </RelativeLayout>
 
                         <RelativeLayout
@@ -251,11 +261,12 @@
                                 android:paddingVertical="10dp"
                                 android:text="@string/request_feature"
                                 android:textColor="?android:textColorPrimary"
-                                android:textSize="18sp" />
+                                android:textSize="15sp"
+                                android:fontFamily="@font/palanquin_dark_medium"
+                                />
                         </RelativeLayout>
 
                         <RelativeLayout
-                            android:id="@+id/RLUpdate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingHorizontal="15dp">
@@ -285,7 +296,6 @@
                                 tools:ignore="ContentDescription" />
 
                             <TextView
-                                android:id="@+id/updateTextt"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="20dp"
@@ -294,10 +304,11 @@
                                 android:paddingVertical="10dp"
                                 android:text="@string/updater"
                                 android:textColor="?android:textColorPrimary"
-                                android:textSize="18sp" />
+                                android:textSize="15sp"
+                                android:fontFamily="@font/palanquin_dark_medium"
+                                />
                         </RelativeLayout>
-                        <RelativeLayout
-                            android:id="@+id/RLStatus"
+                        <!-- <RelativeLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingHorizontal="15dp">
@@ -307,7 +318,7 @@
                                 android:layout_height="wrap_content" />
                         </RelativeLayout>
 
-                        <RelativeLayout
+                       <RelativeLayout
                             android:id="@+id/Status"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -327,7 +338,6 @@
                                 tools:ignore="ContentDescription" />
 
                             <TextView
-                                android:id="@+id/statusText"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="20dp"
@@ -336,12 +346,13 @@
                                 android:paddingVertical="10dp"
                                 android:text="@string/status"
                                 android:textColor="?android:textColorPrimary"
-                                android:textSize="18sp" />
-                        </RelativeLayout>
+                                android:textSize="15sp"
+                                android:fontFamily="@font/palanquin_dark_medium"
+                                />
+                        </RelativeLayout>-->
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -349,8 +360,9 @@
                     android:paddingTop="10dp"
                     android:text="@string/legal_and_privacy"
                     android:textColor="?android:textColorPrimary"
-                    android:textSize="17sp" />
-
+                    android:textSize="17sp"
+                    android:fontFamily="@font/palanquin_dark_medium"
+                    />
                 <androidx.cardview.widget.CardView
                     style="@style/aboutcard"
                     android:layout_width="match_parent"
@@ -361,7 +373,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:background="@drawable/quote_background_ec">
 
                         <RelativeLayout
                             android:id="@+id/privacy"
@@ -391,7 +404,9 @@
                                 android:paddingVertical="10dp"
                                 android:text="@string/privacy_policy"
                                 android:textColor="?android:textColorPrimary"
-                                android:textSize="18sp" />
+                                android:textSize="15sp"
+                                android:fontFamily="@font/palanquin_dark_medium"
+                                />
                         </RelativeLayout>
 
                         <RelativeLayout
@@ -410,7 +425,6 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:paddingVertical="7dp">
-
                             <ImageView
                                 android:id="@id/permissions"
                                 android:layout_width="wrap_content"
@@ -432,15 +446,13 @@
                                 android:paddingVertical="10dp"
                                 android:text="@string/app_permissions"
                                 android:textColor="?android:textColorPrimary"
-                                android:textSize="18sp" />
+                                android:textSize="15sp"
+                                android:fontFamily="@font/palanquin_dark_medium"
+                                />
                         </RelativeLayout>
-
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
-
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
-
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

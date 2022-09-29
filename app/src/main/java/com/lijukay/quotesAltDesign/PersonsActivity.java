@@ -87,20 +87,15 @@ public class PersonsActivity extends AppCompatActivity {
                         setOnClickListener();
                         mPAdapter = new PersonsAdapter(PersonsActivity.this, mPItem, listener);
                         mRecyclerViewP.setAdapter(mPAdapter);
-                        Log.e("intent", "Everything is working fine right now :)");
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Log.e("error", "Something is not right with the file. Reach the developer!");
                     }
-                }, errorAll -> {
-                    errorAll.printStackTrace();
-                    Log.e("error", "The file is not reachable! Check your internet connection. If you are connected to the internet, contact the developer!");
-                });
+                }, Throwable::printStackTrace);
         mRequestQueueP.add(requestP);
     }
 
     private void setOnClickListener() {
-        listener = (v, position) -> {
+        listener = (position) -> {
             String urlP = "https://lijukay.github.io/Quotes-M3/quotesEN.json";
 
 
@@ -120,12 +115,8 @@ public class PersonsActivity extends AppCompatActivity {
                                 startActivity(intent);
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Log.e("error", "Something is not right with the file! Contact the developer!");
                         }
-                    }, errorAll -> {
-                        errorAll.printStackTrace();
-                        Log.e("error", "File is not reachable, check your Internet connection. If you are connected to the internet, contact the developer!");
-                    });
+                    }, Throwable::printStackTrace);
             mRequestQueueP.add(requestP);
 
         };

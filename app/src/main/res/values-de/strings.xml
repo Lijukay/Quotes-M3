@@ -7,9 +7,7 @@
     <string name="copy_quote">Zitat kopieren</string>
     <string name="share_quote">Zitat versenden</string>
     <string name="options">Optionen</string>
-    <string name="changelog">Changelog</string>
-    <string name="a_new_update_is_available">Ein neues Update ist verfügbar</string>
-    <string name="pp">Quotes ist eine kostenfreie Android Applikation, angeboten von Luca. Quotes sammelt keine Daten und wird das auch niemals tun. Jede Interaktion mit mir ist frei wählbar. Ich biete die Möglichkeit an, Emails an mich zu schicken, welche Bugs, Features und/oder Feedback beinhalten. Sobald die Konversation mit dem Nutzer beendet ist, das Feauture hinzugefügt wurde (oder auch nicht) oder ein Bug gefixt worden ist (oder nicht gefixt werden kann), werde ich die Kontaktdaten (Email-Adresse) und Konversation aus Sicherheits- und Datenschutzgründen löschen.\n\nIch enthalte mir vor, die Datenschutzerklärungen jederzeit zu ändern. Jede Veränderung ist sofort gültig. Eine Information zur Änderung der Datenschutzerklärung findet ihr im Changelog.\n\nGültig seit 03. September 2022</string>
+    <string name="pp">Quotes ist eine kostenfreie Android Applikation, angeboten von mir, Luca. Quotes sammelt keine Daten und wird das auch niemals tun. Jede Interaktion mit mir ist frei wählbar. Ich biete die Möglichkeit an, Emails an mich zu schicken, welche Bugs, Features und/oder Feedback beinhalten. Sobald die Konversation mit dem Nutzer beendet ist, das Feauture hinzugefügt wurde (oder auch nicht) oder ein Bug gefixt worden ist (oder nicht gefixt werden kann), werde ich die Kontaktdaten (Email-Adresse) und Konversation aus Sicherheits- und Datenschutzgründen löschen.\n\nIch enthalte mir vor, die Datenschutzerklärungen jederzeit zu ändern. Jede Veränderung ist sofort gültig. Eine Information zur Änderung der Datenschutzerklärung findet ihr im Changelog.\n\nGültig seit 03. September 2022</string>
     <string name="notes_of_thanks">Danksagung</string>
     <string name="report_bugs">Bug melden</string>
     <string name="share">Versenden</string>

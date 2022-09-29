@@ -17,5 +17,7 @@
     </style>
     <style name="ToolbarTitleText">
         <item name="android:textSize">25sp</item>
+        <item name="android:fontFamily">@font/palanquin_dark_medium</item>
+        <item name="fontFamily">@font/palanquin_dark_medium</item>
     </style>
 </resources>

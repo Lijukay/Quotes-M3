@@ -44,7 +44,7 @@ public class PersonsAdapter extends RecyclerView.Adapter<PersonsAdapter.PViewHol
     }
 
     public interface RecyclerViewClickListener{
-        void onClick(View v, int position);
+        void onClick(int position);
     }
 
     public class PViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -58,7 +58,7 @@ public class PersonsAdapter extends RecyclerView.Adapter<PersonsAdapter.PViewHol
         }
         @Override
         public void onClick(View viewP) {
-            listener.onClick(viewP, getAdapterPosition());
+            listener.onClick(getAdapterPosition());
         }
     }
 }

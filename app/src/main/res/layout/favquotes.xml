@@ -15,7 +15,7 @@
         android:background="@drawable/quote_background_ec">
 
         <ImageView
-            android:id="@+id/quotationMarkAQ"
+            android:id="@+id/quotationMark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -27,11 +27,11 @@
 
         <TextView
             android:fontFamily="@font/palanquin_dark_medium"
-            android:id="@+id/quoteAQ"
+            android:id="@+id/quoteFav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/quotationMarkAQ"
-            android:layout_alignStart="@+id/quotationMarkAQ"
+            android:layout_below="@+id/quotationMark"
+            android:layout_alignStart="@+id/quotationMark"
             android:layout_marginStart="35dp"
             android:layout_marginTop="-10dp"
             android:layout_marginEnd="20dp"
@@ -43,10 +43,10 @@
 
         <TextView
             android:fontFamily="@font/palanquin_dark_medium"
-            android:id="@+id/authorAQ"
+            android:id="@+id/authorFav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/quoteAQ"
+            android:layout_below="@+id/quoteFav"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="-2dp"
             android:layout_marginEnd="45dp"

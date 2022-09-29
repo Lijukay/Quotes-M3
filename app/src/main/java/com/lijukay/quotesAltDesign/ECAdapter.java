@@ -27,6 +27,7 @@ public class ECAdapter extends RecyclerView.Adapter<ECAdapter.ECViewHolder>{
     public ECViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(mContext).inflate(R.layout.editor_choice, parent, false);
         return new ECViewHolder(v, recyclerViewInterface);
+
     }
 
     @Override

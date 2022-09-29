@@ -55,11 +55,13 @@
         <entry key="..\:/asp/QuotesAltDesign/app/src/main/res/drawable/ic_update.xml" value="0.1585" />
         <entry key="..\:/asp/QuotesAltDesign/app/src/main/res/layout/activity_about.xml" value="0.22" />
         <entry key="..\:/asp/QuotesAltDesign/app/src/main/res/layout/activity_all_quotes.xml" value="0.20416666666666666" />
-        <entry key="..\:/asp/QuotesAltDesign/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/asp/QuotesAltDesign/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/asp/QuotesAltDesign/app/src/main/res/layout/activity_person.xml" value="0.20416666666666666" />
         <entry key="..\:/asp/QuotesAltDesign/app/src/main/res/layout/activity_persons_quote.xml" value="0.20416666666666666" />
         <entry key="..\:/asp/QuotesAltDesign/app/src/main/res/layout/allquotes.xml" value="0.20416666666666666" />
         <entry key="..\:/asp/QuotesAltDesign/app/src/main/res/layout/bottomchangessheet.xml" value="0.22" />
+        <entry key="..\:/asp/QuotesAltDesign/app/src/main/res/layout/bottomsheetdialog_colors.xml" value="0.33" />
+        <entry key="..\:/asp/QuotesAltDesign/app/src/main/res/layout/bottomsheetdialog_default.xml" value="0.20416666666666666" />
         <entry key="..\:/asp/QuotesAltDesign/app/src/main/res/layout/bottomsheetdialog_quotes.xml" value="0.20416666666666666" />
         <entry key="..\:/asp/QuotesAltDesign/app/src/main/res/layout/bottomsheetlayout.xml" value="0.33" />
         <entry key="..\:/asp/QuotesAltDesign/app/src/main/res/layout/editor_choice.xml" value="0.20416666666666666" />

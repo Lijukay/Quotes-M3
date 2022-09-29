@@ -4,35 +4,24 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.content.BroadcastReceiver;
 import android.content.ClipData;
 import android.content.ClipboardManager;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.TextView;
@@ -129,15 +118,10 @@ public class PersonsQuote extends AppCompatActivity implements RecyclerViewInter
 
                         mPQAdapter = new PQAdapter(PersonsQuote.this, mPQItem, this);
                         mRecyclerViewPQ.setAdapter(mPQAdapter);
-                        Log.e("intent", "Hat geklapptAll...");
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Log.e("error", "hat nicht geklapptall...");
                     }
-                }, errorPQ -> {
-            errorPQ.printStackTrace();
-            Log.e("error", "Hat nicht geklappt 2all");
-        });
+                }, Throwable::printStackTrace);
         mRequestQueuePQ.add(requestPQGER);
     }
 
@@ -162,15 +146,10 @@ public class PersonsQuote extends AppCompatActivity implements RecyclerViewInter
 
                         mPQAdapter = new PQAdapter(PersonsQuote.this, mPQItem, this);
                         mRecyclerViewPQ.setAdapter(mPQAdapter);
-                        Log.e("intent", "Hat geklapptAll...");
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Log.e("error", "hat nicht geklapptall...");
                     }
-                }, errorPQ -> {
-            errorPQ.printStackTrace();
-            Log.e("error", "Hat nicht geklappt 2all");
-        });
+                }, Throwable::printStackTrace);
         mRequestQueuePQ.add(requestPQ);
     }
 
@@ -243,12 +222,8 @@ public class PersonsQuote extends AppCompatActivity implements RecyclerViewInter
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Log.e("error", "Something is not right with the file! Contact the developer!");
                         }
-                    }, errorAll -> {
-                errorAll.printStackTrace();
-                Log.e("error", "File is not reachable, check your Internet connection. If you are connected to the internet, contact the developer!");
-            });
+                    }, Throwable::printStackTrace);
             mRequestQueuePQ.add(requestP);
         } else {
             String urlP = "https://lijukay.github.io/Quotes-M3/quotesEN.json";
@@ -268,12 +243,8 @@ public class PersonsQuote extends AppCompatActivity implements RecyclerViewInter
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Log.e("error", "Something is not right with the file! Contact the developer!");
                         }
-                    }, errorAll -> {
-                errorAll.printStackTrace();
-                Log.e("error", "File is not reachable, check your Internet connection. If you are connected to the internet, contact the developer!");
-            });
+                    }, Throwable::printStackTrace);
             mRequestQueuePQ.add(requestP);
         }
     }

@@ -39,8 +39,8 @@ public class InternetService extends Service {
         return ni != null && ni.isConnectedOrConnecting();
     }
 
-    Handler handler = new Handler();
-    private Runnable periodicUpdate = new Runnable() {
+    final Handler handler = new Handler();
+    private final Runnable periodicUpdate = new Runnable() {
         @Override
         public void run() {
             handler.postDelayed(periodicUpdate, 1000 - SystemClock.elapsedRealtime()%1000);

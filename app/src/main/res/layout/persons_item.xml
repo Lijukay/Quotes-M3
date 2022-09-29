@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -21,9 +22,11 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
-            android:src="@drawable/people" />
+            android:src="@drawable/people"
+            tools:ignore="ContentDescription" />
 
         <TextView
+            android:fontFamily="@font/palanquin_dark_medium"
             android:id="@+id/person"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

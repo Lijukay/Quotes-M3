@@ -9,11 +9,8 @@
     <string name="copy_quote">Copy Quote</string>
     <string name="share_quote">Share Quote</string>
     <string name="options">Options</string>
-    <string name="changelog">Changelog</string>
-    <string name="a_new_update_is_available">A new update is available!</string>
-    <string name="pp">Quotes is a free Android application provided by Luca. Quotes does not collect any of your data and it never will. Every interaction with me is free to choose. I offer the possibility to send EMails to suggest features, give feedback and report bugs. As soon as the conversation between me and the user is ended, the feature is implemented (or not) or the bug has been fixed (or can\'t be fixed), I will delete the contact information (Email-Address) and the conversation for security and for privacy reasons.\n\n\nI may change my Privacy Policy from time to time. Every change is effective immediately. An information to the change of this Privacy Policy will be added to the changelog.\n\n\nEffective September 3, 2022</string>
+    <string name="pp">Quotes is a free Android application provided by me, Luca. Quotes does not collect any of your data and it never will. Every interaction with me is free to choose. I offer the possibility to send EMails to suggest features, give feedback and report bugs. As soon as the conversation between me and the user is ended, the feature is implemented (or not) or the bug has been fixed (or can\'t be fixed), I will delete the contact information (Email-Address) and the conversation for security and for privacy reasons.\n\n\nI may change my Privacy Policy from time to time. Every change is effective immediately. An information to the change of this Privacy Policy will be added to the changelog.\n\n\nEffective September 3, 2022</string>
     <string name="info" translatable="false">Info</string>
-    <string name="Thanks">I want to say thank you to especially two developers, who are teaching me their knowledge over and over. The two developers were still (and are) helping me even though my knowledge was at around 0% and I never did or even still do understand things.\nSo very great thank you, Yanndroid and TenSeventy7!</string>
     <string name="permissions">This app is using some permissions. This site will explain you, why my app needs specific permissions.\n\nRead and write Storage:\nThe Quotes App needs to write and read storage to download the updates to your phone and to get the file out of the dir to install the update. No other data is written in you storage or read from your storage.\n\nFull Internet access:\nThe Quotes App uses Internet (WiFi, mobile Data, other ways to connect to the internet) to parse the quotes (which are saved in the internet). No data will be collected by me with the interaction to the internet.\n\nInstall unknown packages:\nThis simply exists to download the update</string>
     <string name="notes_of_thanks">Notes of thanks</string>
     <string name="report_bugs">Report bugs</string>
@@ -41,4 +38,8 @@
     <string name="statusNegative2">We are sorry but we can\'t reach the file.\nThat can have multiple triggers:\n-The link is temporary not available. -The link is not up-to-date.\nYou have no internet connection.\n\nIf you are connected to the internet, contact the developer.</string>
     <string name="grantPermission">This App needs the permission to read and write in you internal storage to download and install the update. If you have doubts because of privacy, read "App permissions".</string>
     <string name="copiedMessage">The quotes has been copied to your clipboard.</string>
+    <string name="noInternet">No Internet</string>
+    <string name="noInternetMessage">This device currently does not have internet access. You can\'t check whether a update is available or not</string>
+    <string name="Thanks">I want to say thank you especially to two developers who teach me how to code even though my knowledge was at around 0%. The developers helped me (and still do) even if I never understood anything (and still don\'t :3). So huge thanks, Yanndroid and Tenseventy7!</string>
+    <string name="fav_quotes">Favorites</string>
 </resources>

@@ -1,20 +1,17 @@
 package com.lijukay.quotesAltDesign;
 //Start of Imports
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
-import androidx.core.widget.NestedScrollView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.DownloadManager;
-import android.app.WallpaperInfo;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -29,8 +26,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.provider.Settings;
-import android.text.Layout;
-import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
@@ -64,7 +59,7 @@ public class About extends AppCompatActivity {
     private String changelogchange, versionName, apkUrl, status;
     private RequestQueue mRequestQueueU;
     private SwipeRefreshLayout swipeRefreshLayoutAb;
-    private int versionC, bsdsizeHalf, versionA, bsdsize;
+    private int versionC, bsdsizeHalf, versionA;
     private final int PERMISSION_REQUEST_CODE_WRITE_EXTERNAL = 100;
     private RelativeLayout update;
     private TextView changesTexts, dialogTitle;
@@ -74,46 +69,48 @@ public class About extends AppCompatActivity {
     public static final String BroadcastStringForAction = "checkInternet";
     private IntentFilter mIntentFilter;
     //------End of defining global variables------//
+
     //------OnCreate------//
     @SuppressLint("InflateParams")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
-
+        //------Set LayoutInflater for alertCustomDialog------//
         alertCustomDialog = LayoutInflater.from(About.this).inflate(R.layout.update_dialog, null);
-
+        //------Find Views by their ID with a method------//
         FindViewById();
-
+        //------Set a Volley RequestQueue------//
         mRequestQueueU = Volley.newRequestQueue(this);
-
+        //------Parse the JSON------//
         parseJSONVersion();
-
+        //------Set the SwipeRefreshLayout-Listener------//
         swipeRefreshLayoutAb.setOnRefreshListener(() -> {
+            //------Showing a ToastMessage to inform the user that the Activity is updated------//
             Toast.makeText(About.this, getString(R.string.refreshing), Toast.LENGTH_SHORT).show();
-
+            //------Create a handler------//
             new Handler().postDelayed(() -> {
                 swipeRefreshLayoutAb.setRefreshing(false);
+                //------Parse JSON again every swipe------//
                 parseJSONVersion();
             }, 2000);
         });
 
-
+        //------Getting the displayMetrics and setting half size for the BottomSheetDialog------//
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        bsdsize = (displayMetrics.heightPixels / 4) * 3;
 
         DisplayMetrics displayMetricsHalf = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetricsHalf);
         bsdsizeHalf = displayMetrics.heightPixels / 2;
 
-
-        findViewById(R.id.not).setOnClickListener(view -> showDialogC(getString(R.string.notes_of_thanks), getString(R.string.Thanks), bsdsizeHalf));
+        //------Find the rest of the Views by their ID and set their OnClickListener------//
+        findViewById(R.id.not).setOnClickListener(view -> showDialogC(getString(R.string.notes_of_thanks), getString(R.string.Thanks)));
         findViewById(R.id.bug).setOnClickListener(view -> composeEmail("lico.keins@gmail.com", getString(R.string.bugSubject), getString(R.string.bugMessage)));
         findViewById(R.id.feed).setOnClickListener(view -> composeEmail("lico.keins@gmail.com", getString(R.string.feedbackSubject), getString(R.string.feedbackMessage)));
         findViewById(R.id.requests).setOnClickListener(view -> composeEmail("lico.keins@gmail.com", getString(R.string.suggestionSubject), getString(R.string.suggestionMessage)));
-        findViewById(R.id.privacy).setOnClickListener(view -> showDialogC(getString(R.string.privacy_policy), getString(R.string.pp), bsdsize));
-        findViewById(R.id.permission).setOnClickListener(view -> showDialogC(getString(R.string.app_permissions), getString(R.string.permissions), bsdsize));
+        findViewById(R.id.privacy).setOnClickListener(view -> showDialogC(getString(R.string.privacy_policy), getString(R.string.pp)));
+        findViewById(R.id.permission).setOnClickListener(view -> showDialogC(getString(R.string.app_permissions), getString(R.string.permissions)));
         findViewById(R.id.sharee).setOnClickListener(view -> {
             Intent shareText = new Intent();
             shareText.setAction(Intent.ACTION_SEND);
@@ -122,7 +119,7 @@ public class About extends AppCompatActivity {
             Intent sendText = Intent.createChooser(shareText, null);
             startActivity(sendText);
         });
-        findViewById(R.id.Status).setOnClickListener(view -> showAlertDialog(getString(R.string.status), status, "Okay"));
+        //findViewById(R.id.Status).setOnClickListener(view -> showAlertDialog(getString(R.string.status), status, "Okay"));
 
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(About.this);
@@ -144,7 +141,7 @@ public class About extends AppCompatActivity {
         if(isOnline(getApplicationContext())){
             findViewById(R.id.update).setOnClickListener(view -> showAlertDialog(getString(R.string.update), changelogchange, getString(R.string.update)));
         } else {
-            findViewById(R.id.update).setOnClickListener(view -> showAlertDialog("No internet", "This device currently does not have internet access. You can't check whether a update is available or not", null));
+            findViewById(R.id.update).setOnClickListener(view -> showDialogC(getString(R.string.noInternet), getString(R.string.noInternetMessage)));
         }
 
     }
@@ -185,22 +182,16 @@ public class About extends AppCompatActivity {
 
                         if (versionA > versionC) {
                             update.setOnClickListener(view -> showAlertDialog(getString(R.string.update), changelogchange, getString(R.string.update)));
+                            Log.e("update", "update");
                         } else {
                             update.setOnClickListener(view -> showAlertDialog(getString(R.string.noUpdate), getString(R.string.noUpdate), null));
+                            Log.e("updateno", "updateno");
                         }
-                            status = getString(R.string.statusPositive);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Log.e("error", "JSON Exeption. You made a mistake in the file");
-                        status = getString(R.string.statusNegative1);
                     }
-                }, errorAll -> {
-            errorAll.printStackTrace();
-
-                status = getString(R.string.statusNegative2);
-            Log.e("error", "Either you have no internet, or the link is not available anymore");
-        });
+                }, Throwable::printStackTrace);
 
         mRequestQueueU.add(requestU);
     }
@@ -213,10 +204,10 @@ public class About extends AppCompatActivity {
         dialog.show();
         if (changelogT.equals(getString(R.string.noUpdate))) {
             updateButtonCV.setVisibility(View.GONE);
-        } else if (title.equals(getString(R.string.status))){
+        } /*else if (title.equals(getString(R.string.status))){
             updateButtonCV.setVisibility(View.VISIBLE);
             updateButtonCV.setOnClickListener(view -> dialog.dismiss());
-        } else if (title.equals(getString(R.string.permissionRequired))){
+        }*/ else if (title.equals(getString(R.string.permissionRequired))){
             updateButtonCV.setVisibility(View.VISIBLE);
             updateButtonCV.setOnClickListener(view -> {
                 Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
@@ -242,12 +233,12 @@ public class About extends AppCompatActivity {
                     }
                 } else {
                     dialog.dismiss();
-                    showAlertDialog("No internet", "This device currently does not have internet access. You can't check whether a update is available or not", null);
+                    showDialogC(getString(R.string.noInternet), getString(R.string.noInternetMessage));
                 }
             });
         }
     }
-    private void showDialogC(String titletext, String message, int screenHigh) {
+    private void showDialogC(String titletext, String message) {
         final Dialog dialog = new Dialog(this);
 
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -272,8 +263,9 @@ public class About extends AppCompatActivity {
     //------Installation of the update------//
     //Code by Yanndroid
     public static void InstallUpdate(Context context, String url, String versionName) {
+        //------Set the destination as a string------//
         String destination = context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS).toString() + "/" + context.getString(R.string.app_name) + "." + versionName + ".apk";
-
+        //------Set the file uri------//
         Uri fileUri = Uri.parse("file://" + destination);
 
         File file = new File(destination);
@@ -351,14 +343,18 @@ public class About extends AppCompatActivity {
         startActivity(intentA);
     }
     //------Code to check quick response of isOnline------//
-    public BroadcastReceiver InternetReceiver = new BroadcastReceiver() {
+    public final BroadcastReceiver InternetReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if(intent.getAction().equals(BroadcastStringForAction)){
                 if(intent.getStringExtra("online_status").equals("true")){
-                    findViewById(R.id.update).setOnClickListener(view -> showAlertDialog(getString(R.string.update), changelogchange, getString(R.string.update)));
+                    if (versionA > versionC) {
+                        update.setOnClickListener(view -> showAlertDialog(getString(R.string.update), changelogchange, getString(R.string.update)));
+                    } else {
+                        update.setOnClickListener(view -> showAlertDialog(getString(R.string.noUpdate), getString(R.string.noUpdate), null));
+                    }
                 } else {
-                    findViewById(R.id.update).setOnClickListener(view -> showAlertDialog("No internet", "This device currently does not have internet access. You can't check whether a update is available or not", null));
+                    findViewById(R.id.update).setOnClickListener(view -> showDialogC(getString(R.string.noInternet), getString(R.string.noInternetMessage)));
                 }
             }
         }
@@ -366,11 +362,7 @@ public class About extends AppCompatActivity {
     public boolean isOnline(Context c){
         ConnectivityManager cm = (ConnectivityManager) c.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo ni = cm.getActiveNetworkInfo();
-        if(ni != null && ni.isConnectedOrConnecting()){
-            return true;
-        } else {
-            return false;
-        }
+        return ni != null && ni.isConnectedOrConnecting();
     }
     @Override
     protected void onRestart() {

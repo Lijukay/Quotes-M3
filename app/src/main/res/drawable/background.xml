@@ -9,8 +9,6 @@
     <shape android:shape="rectangle">
         <corners android:radius="26dp"/>
         <solid android:color="@color/dialog"/>
-        <stroke android:color="@color/dialog"
-            android:width="5dp"/>
     </shape>
 
 
