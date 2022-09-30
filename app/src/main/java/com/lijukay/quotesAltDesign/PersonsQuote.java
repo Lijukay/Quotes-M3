@@ -252,7 +252,7 @@ public class PersonsQuote extends AppCompatActivity implements RecyclerViewInter
     private void showDialogs(String author, String quote) {
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        //dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         dialog.setContentView(R.layout.bottomsheetdialog_quotes);
 
         TextView authorT = dialog.findViewById(R.id.authort);

@@ -6,7 +6,7 @@
     android:viewportHeight="108"
     android:shape="rectangle">
     <solid
-        android:color="@color/material_dynamic_Start"/>
+        android:color="?attr/colorTertiary"/>
     <corners
         android:radius="100dp"/>
 </shape>

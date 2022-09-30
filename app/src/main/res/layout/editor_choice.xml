@@ -26,7 +26,6 @@
             tools:ignore="ContentDescription" />
 
         <TextView
-            android:fontFamily="@font/palanquin_dark_medium"
             android:id="@+id/quote"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,7 +41,6 @@
             android:textStyle="bold" />
 
         <TextView
-            android:fontFamily="@font/palanquin_dark_medium"
             android:id="@+id/author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

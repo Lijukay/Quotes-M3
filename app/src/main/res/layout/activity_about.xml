@@ -2,7 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/Theme.Material3.DynamicColors.DayNight"
+    style="@style/AppTheme"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
@@ -12,16 +12,14 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/material_navBar"
         android:fitsSystemWindows="true"
-        android:theme="@style/Theme.Material3.DynamicColors.DayNight">
-
+        android:background="?attr/colorSecondaryContainer"
+        android:theme="@style/AppTheme">
         <!--suppress AndroidElementNotAllowed, AndroidUnresolvableTag -->
         <Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:title="@string/about"
-            android:titleTextAppearance="@style/ToolbarTitleText"
             android:titleTextColor="?android:textColorPrimary" />
     </com.google.android.material.appbar.AppBarLayout>
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -47,7 +45,6 @@
                     android:text="@string/info"
                     android:textColor="?android:textColorPrimary"
                     android:textSize="17sp"
-                    android:fontFamily="@font/palanquin_dark_medium"
                     />
 
                 <androidx.cardview.widget.CardView
@@ -87,7 +84,6 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="20dp"
                                 android:layout_toEndOf="@+id/love"
-                                android:fontFamily="@font/palanquin_dark_medium"
                                 android:gravity="start"
                                 android:paddingVertical="10dp"
                                 android:text="@string/notes_of_thanks"
@@ -129,7 +125,6 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="20dp"
                                 android:layout_toEndOf="@+id/bugs"
-                                android:fontFamily="@font/palanquin_dark_medium"
                                 android:gravity="start"
                                 android:paddingVertical="10dp"
                                 android:text="@string/report_bugs"
@@ -174,8 +169,6 @@
                                 android:gravity="start"
                                 android:paddingVertical="10dp"
                                 android:text="@string/share"
-                                android:fontFamily="@font/palanquin_dark_medium"
-
                                 android:textColor="?android:textColorPrimary"
                                 android:textSize="15sp" />
                         </RelativeLayout>
@@ -219,7 +212,6 @@
                                 android:text="@string/feedback"
                                 android:textColor="?android:textColorPrimary"
                                 android:textSize="15sp"
-                                android:fontFamily="@font/palanquin_dark_medium"
                                 />
                         </RelativeLayout>
 
@@ -262,7 +254,6 @@
                                 android:text="@string/request_feature"
                                 android:textColor="?android:textColorPrimary"
                                 android:textSize="15sp"
-                                android:fontFamily="@font/palanquin_dark_medium"
                                 />
                         </RelativeLayout>
 
@@ -305,7 +296,6 @@
                                 android:text="@string/updater"
                                 android:textColor="?android:textColorPrimary"
                                 android:textSize="15sp"
-                                android:fontFamily="@font/palanquin_dark_medium"
                                 />
                         </RelativeLayout>
                         <!-- <RelativeLayout
@@ -361,7 +351,6 @@
                     android:text="@string/legal_and_privacy"
                     android:textColor="?android:textColorPrimary"
                     android:textSize="17sp"
-                    android:fontFamily="@font/palanquin_dark_medium"
                     />
                 <androidx.cardview.widget.CardView
                     style="@style/aboutcard"
@@ -405,7 +394,6 @@
                                 android:text="@string/privacy_policy"
                                 android:textColor="?android:textColorPrimary"
                                 android:textSize="15sp"
-                                android:fontFamily="@font/palanquin_dark_medium"
                                 />
                         </RelativeLayout>
 
@@ -447,7 +435,6 @@
                                 android:text="@string/app_permissions"
                                 android:textColor="?android:textColorPrimary"
                                 android:textSize="15sp"
-                                android:fontFamily="@font/palanquin_dark_medium"
                                 />
                         </RelativeLayout>
                     </LinearLayout>

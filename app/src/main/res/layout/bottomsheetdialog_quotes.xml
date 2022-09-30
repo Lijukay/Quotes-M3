@@ -10,7 +10,6 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/palanquin_dark_bold"
         android:gravity="center"
         android:text="@string/options"
         android:textColor="?android:textColorPrimary"
@@ -47,8 +46,6 @@
                 tools:ignore="ContentDescription" />
             <TextView
                 android:id="@+id/quotet"
-                android:fontFamily="@font/palanquin_dark_medium"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/quotationMark"
@@ -64,7 +61,6 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:fontFamily="@font/palanquin_dark_medium"
                 android:id="@+id/authort"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -88,7 +84,7 @@
         app:cardCornerRadius="26dp"
         android:id="@+id/copyText"
         app:cardUseCompatPadding="true"
-        app:strokeColor="@color/black"
+        app:strokeColor="?attr/colorTertiaryContainer"
         app:strokeWidth="2dp">
 
         <TextView
@@ -97,7 +93,6 @@
             android:layout_gravity="center"
             android:padding="10dp"
             android:text="@string/copy_quote"
-            android:fontFamily="@font/palanquin_dark_medium"
             />
 
     </com.google.android.material.card.MaterialCardView>
@@ -108,7 +103,7 @@
         android:id="@+id/shareText"
         app:cardCornerRadius="26dp"
         app:cardUseCompatPadding="true"
-        app:strokeColor="@color/black"
+        app:strokeColor="?attr/colorTertiaryContainer"
         app:strokeWidth="2dp">
 
         <TextView
@@ -117,7 +112,6 @@
             android:layout_gravity="center"
             android:padding="10dp"
             android:text="@string/share_quote"
-            android:fontFamily="@font/palanquin_dark_medium"
             />
 
     </com.google.android.material.card.MaterialCardView>

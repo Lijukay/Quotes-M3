@@ -6,11 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".PersonsActivity"
     android:fitsSystemWindows="true"
-    style="@style/Theme.Material3.DynamicColors.DayNight">
+    style="@style/AppTheme">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:theme="@style/Theme.Material3.DynamicColors.DayNight"
-        android:backgroundTint="@color/material_navBar"
+        android:theme="@style/AppTheme"
+        android:backgroundTint="?attr/colorSecondaryContainer"
         android:layout_width="match_parent"
         android:fitsSystemWindows="true"
         android:layout_height="wrap_content"
