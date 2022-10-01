@@ -259,7 +259,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         //dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
-        dialog.setContentView(R.layout.bottomsheetdialog_quotes);
+        dialog.setContentView(R.layout.dialog_quotes);
 
         TextView authorT = dialog.findViewById(R.id.authort);
         authorT.setText(author);

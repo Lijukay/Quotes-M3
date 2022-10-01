@@ -1,6 +1,7 @@
 package com.lijukay.quotesAltDesign;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
@@ -9,8 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.Dialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Intent;
@@ -19,13 +18,13 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,13 +36,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONStringer;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -53,15 +46,22 @@ public class AllActivity extends AppCompatActivity implements RecyclerViewInterf
     private ArrayList<AllItem> mAllItem;
     private RequestQueue mRequestQueueAll;
     private SwipeRefreshLayout swipeRefreshLayoutAll;
-
+    private View alertCustomDialog;
+    private AlertDialog dialog;
+    CardView share, copy;
+    TextView authorT, quoteT;
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_quotes);
+
         Toolbar toolbarAll = findViewById(R.id.tlall);
         setSupportActionBar(toolbarAll);
+
+        alertCustomDialog = LayoutInflater.from(AllActivity.this).inflate(R.layout.dialog_quotes, null);
+
 
         mRecyclerViewAll = findViewById(R.id.allQuotesRV);
         mRecyclerViewAll.setHasFixedSize(true);
@@ -80,8 +80,26 @@ public class AllActivity extends AppCompatActivity implements RecyclerViewInterf
         });
         mRequestQueueAll = Volley.newRequestQueue(this);
 
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        DisplayMetrics displayMetricsHalf = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetricsHalf);
+        int bsdsizeHalf = displayMetrics.heightPixels / 2;
+
+
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(AllActivity.this);
+        alertDialog.setView(alertCustomDialog);
+        authorT = alertCustomDialog.findViewById(R.id.authort);
+        quoteT = alertCustomDialog.findViewById(R.id.quotet);
+        copy = alertCustomDialog.findViewById(R.id.copyText);
+        share = alertCustomDialog.findViewById(R.id.shareText);
+        dialog = alertDialog.create();
+        dialog.getWindow().setGravity(Gravity.BOTTOM);
+        dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, bsdsizeHalf);
+
 
         getLanguageAll();
+
     }
 
     private void getLanguageAll() {
@@ -241,15 +259,12 @@ public class AllActivity extends AppCompatActivity implements RecyclerViewInterf
     }
 
     private void showDialogs(String author, String quote) {
-        final Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         //dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
-        dialog.setContentView(R.layout.bottomsheetdialog_quotes);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        quoteT.setText(quote);
+        authorT.setText(author);
+        dialog.show();
 
-        TextView authorT = dialog.findViewById(R.id.authort);
-        TextView quoteT = dialog.findViewById(R.id.quotet);
-        CardView copy = dialog.findViewById(R.id.copyText);
-        CardView share = dialog.findViewById(R.id.shareText);
         copy.setOnClickListener(view -> copyText(quote + "\n\n~ " + author));
         share.setOnClickListener(view -> {
             Intent shareText = new Intent();
@@ -259,15 +274,12 @@ public class AllActivity extends AppCompatActivity implements RecyclerViewInterf
             Intent sendText = Intent.createChooser(shareText, null);
             startActivity(sendText);
         });
-        quoteT.setText(quote);
         quoteT.setMaxLines(3);
-        authorT.setText(author);
 
         dialog.show();
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.getWindow().setGravity(Gravity.BOTTOM);
     }
+
 
 
     private void copyText(String quote) {

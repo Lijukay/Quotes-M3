@@ -26,6 +26,9 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.provider.Settings;
+import android.text.Html;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
@@ -42,6 +45,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -68,6 +72,8 @@ public class About extends AppCompatActivity {
     private View alertCustomDialog;
     public static final String BroadcastStringForAction = "checkInternet";
     private IntentFilter mIntentFilter;
+    private Uri lflp, lfuu;
+    private LottieAnimationView ssw;
     //------End of defining global variables------//
 
     //------OnCreate------//
@@ -76,6 +82,8 @@ public class About extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
+        lflp = Uri.parse("https://lottiefiles.com/page/license");
+        lfuu = Uri.parse("https://lottiefiles.com/79172-update?lang=de");
         //------Set LayoutInflater for alertCustomDialog------//
         alertCustomDialog = LayoutInflater.from(About.this).inflate(R.layout.update_dialog, null);
         //------Find Views by their ID with a method------//
@@ -118,6 +126,12 @@ public class About extends AppCompatActivity {
             shareText.setType("text/plain");
             Intent sendText = Intent.createChooser(shareText, null);
             startActivity(sendText);
+        });
+        findViewById(R.id.licences).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialogC(getString(R.string.License), "");
+            }
         });
         //findViewById(R.id.Status).setOnClickListener(view -> showAlertDialog(getString(R.string.status), status, "Okay"));
 
@@ -250,6 +264,18 @@ public class About extends AppCompatActivity {
 
         TextView change = dialog.findViewById(R.id.changes);
         change.setText(message);
+
+        if(titletext.equals(getString(R.string.License))){
+            Spanned licence = Html.fromHtml(getString(R.string.licensemsg));
+            change.setText(licence);
+            change.setMovementMethod(LinkMovementMethod.getInstance());
+        }
+        if (titletext.equals(getString(R.string.noInternet))){
+            ssw = dialog.findViewById(R.id.ssw);
+            ssw.setVisibility(View.VISIBLE);
+
+        }
+
 
 
         dialog.show();

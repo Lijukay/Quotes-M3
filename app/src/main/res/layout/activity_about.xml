@@ -439,6 +439,60 @@
                         </RelativeLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="15dp"
+                    android:paddingTop="10dp"
+                    android:text="@string/legal_and_privacy"
+                    android:textColor="?android:textColorPrimary"
+                    android:textSize="17sp"
+                    />
+                <androidx.cardview.widget.CardView
+                    style="@style/aboutcard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="26dp"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="@drawable/quote_background_ec">
+
+                        <RelativeLayout
+                            android:id="@+id/licences"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingVertical="7dp">
+                            <ImageView
+                                android:id="@id/licence"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentTop="true"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="10dp"
+                                android:gravity="center_vertical"
+                                android:src="@drawable/ic_baseline_handshake_24"
+                                tools:ignore="ContentDescription" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:layout_toEndOf="@+id/licence"
+                                android:gravity="start"
+                                android:paddingVertical="10dp"
+                                android:text="@string/License"
+                                android:textColor="?android:textColorPrimary"
+                                android:textSize="15sp"
+                                />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

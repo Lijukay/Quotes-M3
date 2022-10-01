@@ -64,15 +64,15 @@
         android:layout_height="200dp"
         android:minHeight="50dp"
         app:cardUseCompatPadding="true"
-        android:backgroundTint="?attr/colorOnSecondary"
+        android:backgroundTint="?attr/colorSecondaryContainer"
         app:cardCornerRadius="26dp">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:padding="10dp"
             android:overScrollMode="always"
-            android:paddingHorizontal="10dp"
             tools:ignore="InefficientWeight">
 
             <TextView

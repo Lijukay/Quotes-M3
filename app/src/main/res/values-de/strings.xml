@@ -28,9 +28,16 @@
     <string name="permissionRequired">Berechtigung benötigt</string>
     <string name="permissionGoTo">Geh zu \"Berechtigungen\" und setze \"Speicher\" auf \"erlauben\".</string>
     <string name="updateDownload">Das Update wird heruntergeladen.</string>
-    <string name="statusPositive">Alles funktioniert wie geplant. Du kannst diese App ohne Probleme benutzen. Wenn du trotzdem Probleme hast: Kontaktiere mich.</string>
-    <string name="statusNegative1">Wir haben zurzeit Probleme beim Lesen von einigen Datei-Teilen. Das kann die gesamte App beeinträchtigen. Kontaktiere den Entwickler.</string>
-    <string name="statusNegative2">Wir sind untröstlich aber wir können die Datei nicht erreichen. Das kann mehrere Gründe haben:\n-Der Link ist zurzeit nicht erreichbar\nDer Link ist nicht aktuell\n-Du hast keine Internetverbindung.\n\nWenn du Internet hast, kontaktiere den Entwickler.</string>
     <string name="grantPermission">Diese App benötigt die Erlaubnis, deinen Speicher zu lesen und in deine Dateien zu schreiben. Wenn du Zweifel aufgrund von Privatsphäre hast, dann lies \"App Berechtigungen\".</string>
     <string name="copiedMessage">Das Zitat wurde in deinen Zwischenspeicher kopiert.</string>
+    <string name="info">Info</string>
+    <string name="feedback">Feedback</string>
+    <string name="updater">Updater</string>
+    <string name="app_name">Zitate</string>
+    <string name="editors_choice">Editors Choice</string>
+    <string name="samsung_design">Samsung Design</string>
+    <string name="noInternet">Kein Internet</string>
+    <string name="noInternetMessage">Dein Gerät ist derzeit nicht mit dem Internet verbunden</string>
+    <string name="License">Lizenzen</string>
+    <string name="licensemsg">Diese App verwendet folgende Lizenzen:&lt;br/>&lt;br/>Lottie Files mit  &lt;a href=https://lottiefiles.com/page/license>LottieFiles-Lizenz:&lt;/a> &lt;br/>Gemäß &lt;a href=https://lottiefiles.com/>Lottie:&lt;/a> „Die Verwendung von Dateien ohne Nennung des/der Urheber der Dateien ist unter dieser Lizenz erlaubt, obwohl die Nennung dringend empfohlen wird. Wenn Zuordnungen enthalten sind, sollten diese Zuordnungen für den Endbenutzer sichtbar sein.\"&lt;br/>Ich habe folgende Lottie-Animationen verwendet:&lt;br/>&lt;a href=https://lottiefiles.com/79172-update? lang=de>update (Blue loader for update)&lt;/a> von Domenico Gonnelli&lt;br/>&lt;a href="https://lottiefiles.com/82073-testimonials-icon?lang=de">Testimonials Icon (Smooth reveal icon for testimonials - web design.)&lt;/a> von Rachel Eppy&lt;br/>&lt;a href="https://lottiefiles.com/61169-no-wifi-connection-error?lang=de"> no wifi connection error (no wifi connection error animation)&lt;/a> von quang_do204</string>
 </resources>
