@@ -1,4 +1,4 @@
-package com.lijukay.quotesAltDesign;
+package com.lijukay.quotesAltDesign.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.lijukay.quotesAltDesign.Items.PersonsItem;
+import com.lijukay.quotesAltDesign.R;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.lijukay.quotesAltDesign;
+package com.lijukay.quotesAltDesign.Others;
 
 import android.app.Service;
 import android.content.Context;
@@ -11,6 +11,8 @@ import android.os.SystemClock;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
+
+import com.lijukay.quotesAltDesign.Activity.About;
 
 public class InternetService extends Service {
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AllActivity"
+    tools:context=".Activity.AllActivity"
     android:fitsSystemWindows="true"
     style="@style/AppTheme">
 
@@ -24,7 +24,6 @@
                 app:layout_collapseMode="pin"
                 app:title="@string/all_quotes"
                 android:backgroundTint="?attr/colorSecondaryContainer"
-                app:logo="@mipmap/ic_launcher_round"
                 app:titleMarginStart="10dp"/>
 
     </com.google.android.material.appbar.AppBarLayout>

@@ -1,4 +1,4 @@
-package com.lijukay.quotesAltDesign;
+package com.lijukay.quotesAltDesign.Others;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,9 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.lijukay.quotesAltDesign.Activity.AllActivity;
+import com.lijukay.quotesAltDesign.R;
 
 @SuppressLint("CustomSplashScreen")
 public class na12Splashscreen extends AppCompatActivity {

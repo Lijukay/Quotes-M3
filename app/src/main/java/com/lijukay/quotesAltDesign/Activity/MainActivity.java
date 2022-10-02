@@ -1,4 +1,4 @@
-package com.lijukay.quotesAltDesign;
+package com.lijukay.quotesAltDesign.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,7 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -31,11 +32,16 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.lijukay.quotesAltDesign.Adapter.ECAdapter;
+import com.lijukay.quotesAltDesign.Items.ECItem;
+import com.lijukay.quotesAltDesign.R;
+import com.lijukay.quotesAltDesign.Others.RecyclerViewInterface;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -68,6 +74,11 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
             Toast.makeText(MainActivity.this, getString(R.string.refreshing), Toast.LENGTH_SHORT).show();
             new Handler().postDelayed(() -> {
                 swipeRefreshLayoutEC.setRefreshing(false);
+                try {
+                    trimCache(this);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 mECItem.clear();
                 mECAdapter.notifyDataSetChanged();
                 getLanguageEC();
@@ -292,5 +303,38 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         ClipData clip = ClipData.newPlainText("Quotes", quote);
         clipboard.setPrimaryClip(clip);
         Toast.makeText(this, getString(R.string.copiedMessage), Toast.LENGTH_SHORT).show();
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        try {
+            trimCache(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public static void trimCache(Context context) {
+        try {
+            File dir = context.getCacheDir();
+            deleteDir(dir);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static boolean deleteDir(File dir) {
+        if (dir != null && dir.isDirectory()) {
+            String[] children = dir.list();
+            for (int i = 0; i < children.length; i++) {
+                boolean success = deleteDir(new File(dir, children[i]));
+                if (!success) {
+                    return false;
+                }
+            }
+            return dir.delete();
+        }
+        else {
+            return false;
+        }
     }
 }

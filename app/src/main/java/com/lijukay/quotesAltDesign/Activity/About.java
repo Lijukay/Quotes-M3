@@ -1,4 +1,4 @@
-package com.lijukay.quotesAltDesign;
+package com.lijukay.quotesAltDesign.Activity;
 //Start of Imports
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -50,6 +50,9 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.lijukay.quotesAltDesign.BuildConfig;
+import com.lijukay.quotesAltDesign.Others.InternetService;
+import com.lijukay.quotesAltDesign.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -99,6 +102,11 @@ public class About extends AppCompatActivity {
             //------Create a handler------//
             new Handler().postDelayed(() -> {
                 swipeRefreshLayoutAb.setRefreshing(false);
+                try {
+                    trimCache(this);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 //------Parse JSON again every swipe------//
                 parseJSONVersion();
             }, 2000);
@@ -196,10 +204,8 @@ public class About extends AppCompatActivity {
 
                         if (versionA > versionC) {
                             update.setOnClickListener(view -> showAlertDialog(getString(R.string.update), changelogchange, getString(R.string.update)));
-                            Log.e("update", "update");
                         } else {
                             update.setOnClickListener(view -> showAlertDialog(getString(R.string.noUpdate), getString(R.string.noUpdate), null));
-                            Log.e("updateno", "updateno");
                         }
 
                     } catch (JSONException e) {
@@ -416,4 +422,38 @@ public class About extends AppCompatActivity {
         InstallUpdate(this, apkUrl, versionName);
     }
 }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        try {
+            trimCache(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public static void trimCache(Context context) {
+        try {
+            File dir = context.getCacheDir();
+            deleteDir(dir);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static boolean deleteDir(File dir) {
+        if (dir != null && dir.isDirectory()) {
+            String[] children = dir.list();
+            for (int i = 0; i < children.length; i++) {
+                boolean success = deleteDir(new File(dir, children[i]));
+                if (!success) {
+                    return false;
+                }
+            }
+            return dir.delete();
+        }
+        else {
+            return false;
+        }
+    }
 }

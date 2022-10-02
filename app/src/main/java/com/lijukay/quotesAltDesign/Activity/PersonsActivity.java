@@ -1,4 +1,4 @@
-package com.lijukay.quotesAltDesign;
+package com.lijukay.quotesAltDesign.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -21,10 +21,15 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.lijukay.quotesAltDesign.Adapter.PersonsAdapter;
+import com.lijukay.quotesAltDesign.Items.PersonsItem;
+import com.lijukay.quotesAltDesign.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.File;
 import java.util.ArrayList;
 
 public class PersonsActivity extends AppCompatActivity {
@@ -53,7 +58,13 @@ public class PersonsActivity extends AppCompatActivity {
         swipeRefreshLayoutP.setOnRefreshListener(() -> {
             Toast.makeText(PersonsActivity.this, getString(R.string.refreshing), Toast.LENGTH_SHORT).show();
             new Handler().postDelayed(() -> {
+
                 swipeRefreshLayoutP.setRefreshing(false);
+                try {
+                    trimCache(this);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 mPItem.clear();
                 mPAdapter.notifyDataSetChanged();
                 parseJSONP();
@@ -166,5 +177,39 @@ public class PersonsActivity extends AppCompatActivity {
     private void AboutApp() {
         Intent intentA = new Intent(this, About.class);
         startActivity(intentA);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        try {
+            trimCache(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public static void trimCache(Context context) {
+        try {
+            File dir = context.getCacheDir();
+            deleteDir(dir);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static boolean deleteDir(File dir) {
+        if (dir != null && dir.isDirectory()) {
+            String[] children = dir.list();
+            for (int i = 0; i < children.length; i++) {
+                boolean success = deleteDir(new File(dir, children[i]));
+                if (!success) {
+                    return false;
+                }
+            }
+            return dir.delete();
+        }
+        else {
+            return false;
+        }
     }
 }

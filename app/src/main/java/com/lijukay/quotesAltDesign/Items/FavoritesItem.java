@@ -1,4 +1,4 @@
-package com.lijukay.quotesAltDesign;
+package com.lijukay.quotesAltDesign.Items;
 
 public class FavoritesItem {
     private final String authorFav;

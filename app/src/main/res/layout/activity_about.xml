@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".About"
+    tools:context=".Activity.About"
     >
 
     <com.google.android.material.appbar.AppBarLayout
@@ -104,7 +104,7 @@
                         </RelativeLayout>
 
                         <RelativeLayout
-                            android:foreground="selectableItemBackground"
+                            android:foreground="?selectableItemBackground"
                             android:id="@+id/bug"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

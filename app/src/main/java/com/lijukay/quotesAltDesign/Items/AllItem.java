@@ -1,4 +1,4 @@
-package com.lijukay.quotesAltDesign;
+package com.lijukay.quotesAltDesign.Items;
 
 public class AllItem {
     private final String authorAll;
