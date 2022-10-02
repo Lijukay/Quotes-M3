@@ -7,7 +7,8 @@
     app:cardCornerRadius="26dp"
     app:cardUseCompatPadding="true"
     app:cardPreventCornerOverlap="true"
-    android:stateListAnimator="@null">
+    android:stateListAnimator="@null"
+    android:foreground="?selectableItemBackground">
 
     <RelativeLayout
         android:layout_width="match_parent"

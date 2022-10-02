@@ -84,6 +84,7 @@
         app:cardCornerRadius="26dp"
         android:id="@+id/copyText"
         app:cardUseCompatPadding="true"
+        android:foreground="?selectableItemBackground"
         android:backgroundTint="?attr/colorSecondaryContainer">
 
         <TextView
@@ -102,6 +103,7 @@
         android:id="@+id/shareText"
         app:cardCornerRadius="26dp"
         app:cardUseCompatPadding="true"
+        android:foreground="?selectableItemBackground"
         android:backgroundTint="?attr/colorSecondaryContainer">
 
         <TextView
