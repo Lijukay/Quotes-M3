@@ -55,6 +55,7 @@
             android:paddingStart="20dp"
             android:textColor="?android:textColorPrimary"
             android:textSize="25sp"
+            android:fontFamily="@font/alef"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -80,7 +81,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textColor="?android:textColorPrimary"
-                android:textSize="24sp" />
+                android:textSize="15sp"
+                android:fontFamily="@font/alef"
+                />
         </androidx.core.widget.NestedScrollView>
     </androidx.cardview.widget.CardView>
 
@@ -90,5 +93,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/alef"
+        />
 </LinearLayout>

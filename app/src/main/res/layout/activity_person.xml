@@ -23,6 +23,7 @@
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
                 app:title="@string/persons"
+                android:theme="@style/AppTheme.Title"
                 app:titleMarginStart="10dp"/>
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -37,6 +38,7 @@
         android:id="@+id/personsRV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        tools:listitem="@layout/persons_item"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
+import androidx.core.text.HtmlCompat;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.Manifest;
@@ -150,6 +151,7 @@ public class About extends AppCompatActivity {
         changesTexts = alertCustomDialog.findViewById(R.id.changesText);
         updateButtonCV = alertCustomDialog.findViewById(R.id.cardUpdate);
         dialog = alertDialog.create();
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         dialog.getWindow().setGravity(Gravity.BOTTOM);
         dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, bsdsizeHalf);
 
@@ -272,7 +274,7 @@ public class About extends AppCompatActivity {
         change.setText(message);
 
         if(titletext.equals(getString(R.string.License))){
-            Spanned licence = Html.fromHtml(getString(R.string.licensemsg));
+            Spanned licence = HtmlCompat.fromHtml(getString(R.string.licensemsg), 0);
             change.setText(licence);
             change.setMovementMethod(LinkMovementMethod.getInstance());
         }
@@ -287,6 +289,7 @@ public class About extends AppCompatActivity {
         dialog.show();
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, bsdsizeHalf);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         dialog.getWindow().setGravity(Gravity.BOTTOM);
     }
     private void showPermissionDialog() {

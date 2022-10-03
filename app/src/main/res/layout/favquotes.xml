@@ -23,11 +23,12 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
-            android:src="@drawable/quotation_mark"
+            android:src="@drawable/ic_quote_foreground"
             tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/quoteFav"
+            android:fontFamily="@font/alef"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/quotationMark"
@@ -51,6 +52,7 @@
             android:layout_marginEnd="45dp"
             android:paddingBottom="10dp"
             android:text=""
+            android:fontFamily="@font/alef"
             android:textColor="?android:textColorPrimary"/>
 
 

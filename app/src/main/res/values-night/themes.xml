@@ -31,4 +31,11 @@
         <item name="android:statusBarColor">@color/md_theme_dark_secondaryContainer</item>
         <item name="android:windowLightStatusBar">false</item>
     </style>
+    <style name="AppTheme.Title">
+        <item name="fontFamily">@font/alef</item>
+    </style>
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_in_bottom</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_bottom</item>
+    </style>
 </resources>

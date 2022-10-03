@@ -271,7 +271,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         //dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         dialog.setContentView(R.layout.dialog_quotes);
-
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         TextView authorT = dialog.findViewById(R.id.authort);
         authorT.setText(author);
         TextView quoteT = dialog.findViewById(R.id.quotet);
@@ -325,8 +325,9 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
     public static boolean deleteDir(File dir) {
         if (dir != null && dir.isDirectory()) {
             String[] children = dir.list();
-            for (int i = 0; i < children.length; i++) {
-                boolean success = deleteDir(new File(dir, children[i]));
+            assert children != null;
+            for (String child : children) {
+                boolean success = deleteDir(new File(dir, child));
                 if (!success) {
                     return false;
                 }

@@ -19,6 +19,7 @@
                 app:title="@string/editors_choice"
                 android:padding="5dp"
                 android:id="@+id/tl"
+                android:theme="@style/AppTheme.Title"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"

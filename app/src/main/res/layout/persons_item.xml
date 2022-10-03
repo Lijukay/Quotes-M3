@@ -33,6 +33,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="25dp"
             android:layout_marginTop="40dp"
+            android:fontFamily="@font/alef"
             android:layout_toEndOf="@+id/people"
             android:text=""
             android:textColor="?android:textColorPrimary"

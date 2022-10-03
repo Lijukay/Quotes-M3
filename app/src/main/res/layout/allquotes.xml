@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -23,8 +22,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
-            android:src="@drawable/quotation_mark"
-            tools:ignore="ContentDescription" />
+            android:src="@drawable/ic_quote_foreground" />
 
         <TextView
             android:id="@+id/quoteAQ"
@@ -37,6 +35,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="10dp"
             android:text=""
+            android:fontFamily="@font/alef"
             android:textColor="?android:textColorPrimary"
             android:textSize="25sp"
             android:textStyle="bold" />
@@ -51,6 +50,7 @@
             android:layout_marginEnd="45dp"
             android:paddingBottom="10dp"
             android:text=""
+            android:fontFamily="@font/alef"
             android:textColor="?android:textColorPrimary"/>
 
 

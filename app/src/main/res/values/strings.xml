@@ -40,4 +40,19 @@
     <string name="License">Licenses</string>
     <string name="licensemsg">This app uses following licenses:&lt;br/>&lt;br/> Lottie files with &lt;a href="https://lottiefiles.com/page/license">LottieFiles-License:&lt;/a> &lt;br/>According to &lt;a href="https://lottiefiles.com/">Lottie:&lt;/a> \'Use of Files without attributing the creator(s) of the Files is permitted under this license, though attribution is strongly encouraged. If attributions are included, such attributions should be visible to the end user.\'&lt;br/>I used following Lottie-Animations:&lt;br/>&lt;a href="https://lottiefiles.com/79172-update?lang=de">update (Blue loader for update)&lt;/a> by Domenico Gonnelli&lt;br/>&lt;a href="https://lottiefiles.com/82073-testimonials-icon?lang=de">Testimonials Icon (Smooth reveal icon for testimonials - web design.)&lt;/a> by Rachel Eppy&lt;br/>&lt;a href="https://lottiefiles.com/61169-no-wifi-connection-error?lang=de"> no wifi connection error (no wifi connection error animation)&lt;/a> by quang_do204</string>
     <string name="noInternetMessage">Your device currently is not connected to the internet</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
 </resources>

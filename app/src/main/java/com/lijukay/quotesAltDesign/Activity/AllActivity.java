@@ -76,6 +76,7 @@ public class AllActivity extends AppCompatActivity implements RecyclerViewInterf
         mAllItem = new ArrayList<>();
         swipeRefreshLayoutAll = findViewById(R.id.swipeAll);
         swipeRefreshLayoutAll.setOnRefreshListener(() -> {
+
             Toast.makeText(AllActivity.this, getString(R.string.refreshing), Toast.LENGTH_SHORT).show();
             new Handler().postDelayed(() -> {
                 swipeRefreshLayoutAll.setRefreshing(false);
@@ -106,6 +107,7 @@ public class AllActivity extends AppCompatActivity implements RecyclerViewInterf
         share = alertCustomDialog.findViewById(R.id.shareText);
         dialog = alertDialog.create();
         dialog.getWindow().setGravity(Gravity.BOTTOM);
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, bsdsizeHalf);
 
 

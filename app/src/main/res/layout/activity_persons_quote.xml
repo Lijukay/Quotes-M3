@@ -16,13 +16,14 @@
         android:layout_height="wrap_content"
         >
         <androidx.appcompat.widget.Toolbar
-                android:padding="5dp"
-                android:id="@+id/tlPQ"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
+            android:padding="5dp"
+            android:id="@+id/tlPQ"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_collapseMode="pin"
             app:title=""
-                app:titleMarginStart="10dp"/>
+            android:theme="@style/AppTheme.Title"
+            app:titleMarginStart="10dp"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
