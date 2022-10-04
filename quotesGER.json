@@ -45,6 +45,42 @@
   "AllQuotes":
   [
     {
+      "quoteAll": "Hier ist dein Ergebnis der letzten Kammer: Du bist ein schrecklicher Mensch. Ja, das steht hier: Schrecklicher Mensch. Und das testen wir nicht einmal.",
+      "authorAll": "GLaDOS"
+    }, {
+      "quoteAll": "Die Eltern, die Sie anrufen möchte, lieben Sie nicht. Legen Sie auf.",
+      "authorAll": "GLaDOS"
+    }, {
+      "quoteAll": "Ich fing schon an, richtig einsam zu werden. Wie schön, endlich eine andere Stimme zu hören. Ich scherze natürlich. Oh, wie ich dich hasse.",
+      "authorAll": "GLaDOS"
+    }, {
+      "quoteAll": "Warte, warum bist du hier her gerollt? Du hast doch nicht etwa hunger, oder?",
+      "authorAll": "GLaDOS"
+    }, {
+      "quoteAll": "Bevor du fragst, ja, ich bin immer noch eine Kartoffel",
+      "authorAll": "GLaDOS"
+    }, {
+      "quoteAll": "Diese Kartoffel erzeugt 1,1 Volt. Mir fehlt also buchstäblich die Energie dich anzulügen.",
+      "authorAll": "GLaDOS"
+    }, {
+      "quoteAll": "Hätte ich gewusst, wie leicht man dich ködern kann, hätte ich ein Stück Speck an einem Seil von der Decke hängen lassen",
+      "authorAll": "GLaDOS"
+    }, {
+      "quoteAll": "Wir haben beide vieles gesagt, dass DIR noch leidtun wird.",
+      "authorAll": "GLaDOS"
+    }, {
+      "quoteAll": "Ich war ganz schön beschäftigt damit, tot zu sein. Du weißt schon, nachdem du mich ermordet hattest",
+      "authorAll": "GLaDOS"
+    }, {
+      "quoteAll": "Ich habe mit dem Türcomputer verhandelt. Er wird nie mehr ... sagen wir leben. Egal, zurück zum Test.",
+      "authorAll": "GLaDOS"
+    }, {
+      "quoteAll": " Ich habe ein faszinierendes neues Testelement gefunden. Es wurde noch nie bei menschlichen Testsubjekten benutzt, da der Kontakt mit ihm anscheinend zu Herzversagen führt. Steinversagen wird allerdings nicht erwähnt. Also solltest du keine Probleme haben.",
+      "authorAll": "GLaDOS"
+    }, {
+      "quoteAll": "Der nächste Test könnte tödlich für dich enden. Wenn du wissen möchtest, wie sich das anfühlt, denke daran, wie du MICH getötet hast und stell dir vor, du wärst ich.",
+      "authorAll": "GLaDOS"
+    }, {
       "quoteAll": "So ist das Leben, es wiederholt sich. Aus Liebe werden Opfer gebracht und daraus entsteht Zorn. Aus ihm entspringt der Schmerz und der Schmerz vergeht nicht. Wir spüren ihn immer.",
       "authorAll": "Pain"
     }, {
@@ -288,6 +324,8 @@
     }, {
       "authorP": "Franz Kafka"
     }, {
+      "authorP": "GLaDOS"
+    }, {
       "authorP": "George Addair"
     }, {
       "authorP": "John (TenSeventy7)"
@@ -337,6 +375,46 @@
       "authorP": "Winnie Pooh"
     }, {
       "authorP": "Yvonne Ho-Sebastian, Linus Tech Tips"
+    }
+  ],
+  "GLaDOS":
+  [
+    {
+      "quotePQ": "Hier ist dein Ergebnis der letzten Kammer: Du bist ein schrecklicher Mensch. Ja, das steht hier: Schrecklicher Mensch. Und das testen wir nicht einmal.",
+      "authorPQ": "GLaDOS"
+    }, {
+      "quotePQ": "Die Eltern, die Sie anrufen möchte, lieben Sie nicht. Legen Sie auf.",
+      "authorPQ": "GLaDOS"
+    }, {
+      "quotePQ": "Ich fing schon an, richtig einsam zu werden. Wie schön, endlich eine andere Stimme zu hören. Ich scherze natürlich. Oh, wie ich dich hasse.",
+      "authorPQ": "GLaDOS"
+    }, {
+      "quotePQ": "Warte, warum bist du hier her gerollt? Du hast doch nicht etwa hunger, oder?",
+      "authorPQ": "GLaDOS"
+    }, {
+      "quotePQ": "Bevor du fragst, ja, ich bin immer noch eine Kartoffel",
+      "authorPQ": "GLaDOS"
+    }, {
+      "quotePQ": "Diese Kartoffel erzeugt 1,1 Volt. Mir fehlt also buchstäblich die Energie dich anzulügen.",
+      "authorPQ": "GLaDOS"
+    }, {
+      "quotePQ": "Hätte ich gewusst, wie leicht man dich ködern kann, hätte ich ein Stück Speck an einem Seil von der Decke hängen lassen",
+      "authorPQ": "GLaDOS"
+    }, {
+      "quotePQ": "Wir haben beide vieles gesagt, dass DIR noch leidtun wird.",
+      "authorPQ": "GLaDOS"
+    }, {
+      "quotePQ": "Ich war ganz schön beschäftigt damit, tot zu sein. Du weißt schon, nachdem du mich ermordet hattest",
+      "authorPQ": "GLaDOS"
+    }, {
+      "quotePQ": "Ich habe mit dem Türcomputer verhandelt. Er wird nie mehr ... sagen wir leben. Egal, zurück zum Test.",
+      "authorPQ": "GLaDOS"
+    }, {
+      "quotePQ": " Ich habe ein faszinierendes neues Testelement gefunden. Es wurde noch nie bei menschlichen Testsubjekten benutzt, da der Kontakt mit ihm anscheinend zu Herzversagen führt. Steinversagen wird allerdings nicht erwähnt. Also solltest du keine Probleme haben.",
+      "authorPQ": "GLaDOS"
+    }, {
+      "quotePQ": "Der nächste Test könnte tödlich für dich enden. Wenn du wissen möchtest, wie sich das anfühlt, denke daran, wie du MICH getötet hast und stell dir vor, du wärst ich.",
+      "authorPQ": "GLaDOS"
     }
   ],
   "Pain":
@@ -707,7 +785,7 @@
   "Version":
   [
     {
-      "VersionA": 7
+      "VersionA": 8
     }
   ],
   "VersionS":
