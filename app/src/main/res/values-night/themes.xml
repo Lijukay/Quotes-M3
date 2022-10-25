@@ -30,6 +30,12 @@
 
         <item name="android:statusBarColor">@color/md_theme_dark_secondaryContainer</item>
         <item name="android:windowLightStatusBar">false</item>
+
+
+        <item name="android:windowAnimationStyle">@style/ActivityAnim</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.Rikka.Material3</item>
+        <item name="android:windowActivityTransitions">true</item>
+
     </style>
     <style name="AppTheme.Title">
         <item name="fontFamily">@font/alef</item>

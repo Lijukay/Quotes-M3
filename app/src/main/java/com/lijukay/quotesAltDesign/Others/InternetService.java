@@ -12,7 +12,7 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-import com.lijukay.quotesAltDesign.Activity.About;
+import com.lijukay.quotesAltDesign.Activity.SettingsActivity;
 
 public class InternetService extends Service {
 
@@ -47,7 +47,7 @@ public class InternetService extends Service {
         public void run() {
             handler.postDelayed(periodicUpdate, 1000 - SystemClock.elapsedRealtime()%1000);
             Intent broadCastIntent = new Intent();
-            broadCastIntent.setAction(About.BroadcastStringForAction);
+            broadCastIntent.setAction(SettingsActivity.BroadcastStringForAction);
             broadCastIntent.putExtra("online_status", ""+isOnline(InternetService.this));
             sendBroadcast(broadCastIntent);
         }

@@ -2,6 +2,7 @@ package com.lijukay.quotesAltDesign.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,6 +11,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -31,6 +33,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class PersonsActivity extends AppCompatActivity {
     private RecyclerView mRecyclerViewP;
@@ -45,8 +48,19 @@ public class PersonsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_person);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("NightMode", 0);
+        boolean isNightMode = sharedPreferences.getBoolean("Night", false);
+        if (isNightMode){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+
         Toolbar toolbarAll = findViewById(R.id.tlPersons);
         setSupportActionBar(toolbarAll);
+        toolbarAll.setOnClickListener(v -> onBackPressed());
+
 
 
         mRecyclerViewP = findViewById(R.id.personsRV);
@@ -60,11 +74,6 @@ public class PersonsActivity extends AppCompatActivity {
             new Handler().postDelayed(() -> {
 
                 swipeRefreshLayoutP.setRefreshing(false);
-                try {
-                    trimCache(this);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
                 mPItem.clear();
                 mPAdapter.notifyDataSetChanged();
                 parseJSONP();
@@ -175,41 +184,8 @@ public class PersonsActivity extends AppCompatActivity {
 
 
     private void AboutApp() {
-        Intent intentA = new Intent(this, About.class);
+        Intent intentA = new Intent(this, SettingsActivity.class);
         startActivity(intentA);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        try {
-            trimCache(this);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    public static void trimCache(Context context) {
-        try {
-            File dir = context.getCacheDir();
-            deleteDir(dir);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static boolean deleteDir(File dir) {
-        if (dir != null && dir.isDirectory()) {
-            String[] children = dir.list();
-            for (int i = 0; i < children.length; i++) {
-                boolean success = deleteDir(new File(dir, children[i]));
-                if (!success) {
-                    return false;
-                }
-            }
-            return dir.delete();
-        }
-        else {
-            return false;
-        }
-    }
 }

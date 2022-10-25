@@ -2,6 +2,7 @@ package com.lijukay.quotesAltDesign.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,10 +11,12 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.app.UiModeManager;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -62,8 +65,22 @@ public class PersonsQuote extends AppCompatActivity implements RecyclerViewInter
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_persons_quote);
+
+
+        SharedPreferences sharedPreferences = getSharedPreferences("NightMode", 0);
+        boolean isNightMode = sharedPreferences.getBoolean("Night", false);
+
+        if (isNightMode){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
+        }
+
         Toolbar toolbarPQ = findViewById(R.id.tlPQ);
         setSupportActionBar(toolbarPQ);
+        toolbarPQ.setOnClickListener(v -> onBackPressed());
+
         Intent intent = getIntent();
 
         authorP = intent.getStringExtra("authorP");
@@ -82,11 +99,6 @@ public class PersonsQuote extends AppCompatActivity implements RecyclerViewInter
             Toast.makeText(PersonsQuote.this, getString(R.string.refreshing), Toast.LENGTH_SHORT).show();
             new Handler().postDelayed(() -> {
                 swipeRefreshLayoutPQ.setRefreshing(false);
-                try {
-                    trimCache(this);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
                 mPQItem.clear();
                 mPQAdapter.notifyDataSetChanged();
                 getLanguagePQ();
@@ -208,7 +220,7 @@ public class PersonsQuote extends AppCompatActivity implements RecyclerViewInter
 
 
     private void AboutApp() {
-        Intent intentA = new Intent(this, About.class);
+        Intent intentA = new Intent(this, SettingsActivity.class);
         startActivity(intentA);
     }
 
@@ -299,38 +311,4 @@ public class PersonsQuote extends AppCompatActivity implements RecyclerViewInter
         Toast.makeText(this, getString(R.string.copiedMessage), Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        try {
-            trimCache(this);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    public static void trimCache(Context context) {
-        try {
-            File dir = context.getCacheDir();
-            deleteDir(dir);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static boolean deleteDir(File dir) {
-        if (dir != null && dir.isDirectory()) {
-            String[] children = dir.list();
-            assert children != null;
-            for (String child : children) {
-                boolean success = deleteDir(new File(dir, child));
-                if (!success) {
-                    return false;
-                }
-            }
-            return dir.delete();
-        }
-        else {
-            return false;
-        }
-    }
 }
