@@ -1,35 +1,67 @@
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory app:title="@string/messages_header">
+    <PreferenceCategory
+        app:title="Theme"
+        app:allowDividerBelow="true">
 
-        <EditTextPreference
-            app:key="signature"
-            app:title="@string/signature_title"
-            app:useSimpleSummaryProvider="true" />
-
-        <ListPreference
-            app:defaultValue="reply"
-            app:entries="@array/reply_entries"
-            app:entryValues="@array/reply_values"
-            app:key="reply"
-            app:title="@string/reply_title"
-            app:useSimpleSummaryProvider="true" />
-
+        <rikka.material.preference.MaterialSwitchPreference
+            android:title="Dark Theme"
+            android:summary="Chose whether you want to use the light or the dark theme"
+            android:icon="@drawable/ic_darkmode"
+            android:key="nightDay"/>
+        <Preference
+            android:title="App's color"
+            android:summary="Chose the between x color-themes"
+            android:icon="@drawable/ic_color"
+            android:key="color"/>
     </PreferenceCategory>
-
-    <PreferenceCategory app:title="@string/sync_header">
-
-        <SwitchPreferenceCompat
-            app:key="sync"
-            app:title="@string/sync_title" />
-
-        <SwitchPreferenceCompat
-            app:dependency="sync"
-            app:key="attachment"
-            app:summaryOff="@string/attachment_summary_off"
-            app:summaryOn="@string/attachment_summary_on"
-            app:title="@string/attachment_title" />
-
+    <PreferenceCategory
+        android:title="Update"
+        app:allowDividerBelow="true">
+        <Preference
+            android:title="Check for updates"
+            android:summary="Check whether this app has the newest version and download newer version, if available"
+            android:icon="@drawable/ic_update"
+            android:key="updateCheck" />
     </PreferenceCategory>
-
+    <PreferenceCategory
+        android:title="Help me with this app"
+        app:allowDividerBelow="true">
+        <Preference
+            android:title="Bug report"
+            android:summary="I really am sorry, if you found a bug. I will do everything I can to fix it as soon as possible! Click here, to send me an E-Mail"
+            android:icon="@drawable/ic_bug"
+            android:key="reportBug"/>
+        <Preference
+            android:title="Feature suggestion"
+            android:summary="Is there something you like me to add? I can try it, just click here, to send me an E-Mail"
+            android:key="feature"
+            android:icon="@drawable/ic_feauture"/>
+        <Preference
+            android:title="Share"
+            android:summary="Share this app with your friends, to let them see the wisdoms and quotes of others too!"
+            android:key="share"/>
+        <Preference
+            android:title="Feedback"
+            android:summary="If you like this app or you do not like this app, i really would be happy, if you send me the reasons :3"
+            android:key="feedback"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="Privacy and Licenses"
+        app:allowDividerBelow="true">
+        <Preference
+            android:title="App's permissions"
+            android:summary="You may have been asked to allow some permissions. Go on, and find out why!"
+            android:key="permission"/>
+        <Preference
+            android:title="Privacy Policy"
+            android:summary="Afraid, that we collect your data? Read this and find out, that we do not :3"
+            android:key="policy"/>
+        <Preference
+            android:title="Licenses"
+            android:summary="I am using third-party content too. Here you can find out, what I am using."
+            android:key="license"
+            android:enabled="false"/>
+    </PreferenceCategory>
 </PreferenceScreen>
