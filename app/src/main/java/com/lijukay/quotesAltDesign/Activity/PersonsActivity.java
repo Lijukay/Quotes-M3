@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -33,6 +34,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Objects;
 
 public class PersonsActivity extends AppCompatActivity {
@@ -46,6 +48,14 @@ public class PersonsActivity extends AppCompatActivity {
     @SuppressLint("NotifyDataSetChanged")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences sharedPreferences2 = getSharedPreferences("Theme", 0);
+        String theme = sharedPreferences2.getString("Theme", "red");
+        if (theme.equals("red")){
+            setTheme(R.style.AppTheme);
+        } else if (theme.equals("purple")){
+            setTheme(R.style.AppThemePurple);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_person);
 
@@ -57,6 +67,8 @@ public class PersonsActivity extends AppCompatActivity {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
 
+        SharedPreferences sharedPreferences3 = getSharedPreferences("Language", 0);
+        String language = sharedPreferences3.getString("Language", Locale.getDefault().getLanguage());
         Toolbar toolbarAll = findViewById(R.id.tlPersons);
         setSupportActionBar(toolbarAll);
         toolbarAll.setOnClickListener(v -> onBackPressed());

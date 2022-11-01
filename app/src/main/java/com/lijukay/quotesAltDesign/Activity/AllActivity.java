@@ -11,12 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
-import android.app.UiModeManager;
 import android.content.ClipData;
 import android.content.ClipboardManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -45,142 +45,156 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Locale;
-import java.util.Objects;
 
 public class AllActivity extends AppCompatActivity implements RecyclerViewInterface {
-    private RecyclerView mRecyclerViewAll;
-    private AllAdapter mAllAdapter;
-    private ArrayList<AllItem> mAllItem;
-    private RequestQueue mRequestQueueAll;
-    private SwipeRefreshLayout swipeRefreshLayoutAll;
-    private AlertDialog dialog;
-    CardView share, copy;
-    TextView authorT, quoteT;
+    private RecyclerView recyclerView;
+    private AllAdapter adapter;
+    private ArrayList<AllItem> items;
+    private RequestQueue requestQueue;
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private AlertDialog dialogQuotes;
+    CardView shareCardView, copyCardView;
+    TextView authorTextView, quoteTextView;
+    String language;
 
-    @SuppressLint({"NotifyDataSetChanged", "InflateParams"})
+    @SuppressLint({"NotifyDataSetChanged"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_all_quotes);
+        SharedPreferences sharedPreferences2 = getSharedPreferences("Theme", 0);
+        String colorTheme = sharedPreferences2.getString("Theme", "red");
+        if (colorTheme.equals("red")){
+            setTheme(R.style.AppTheme);
+        } else if (colorTheme.equals("purple")){
+            setTheme(R.style.AppThemePurple);
+        }
 
-        SharedPreferences sharedPreferences = getSharedPreferences("NightMode", 0);
-        boolean isNightMode = sharedPreferences.getBoolean("Night", false);
+        SharedPreferences sharedPreferencesLanguage = getSharedPreferences("Language", 0);
+        language = sharedPreferencesLanguage.getString("Language", Locale.getDefault().getLanguage());
+        Locale locale = new Locale(language);
+        Locale.setDefault(locale);
+        Resources resources = this.getResources();
+        Configuration config = resources.getConfiguration();
+        config.setLocale(locale);
+        resources.updateConfiguration(config, resources.getDisplayMetrics());
+
+        SharedPreferences sharedPreferencesNightMode = getSharedPreferences("NightMode", 0);
+        boolean isNightMode = sharedPreferencesNightMode.getBoolean("Night", false);
         if (isNightMode){
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_all_quotes);
 
-        Toolbar toolbarAll = findViewById(R.id.tlall);
-        setSupportActionBar(toolbarAll);
+        Toolbar toolbar = findViewById(R.id.tlall);
+        setSupportActionBar(toolbar);
+        toolbar.setOnClickListener(v -> onBackPressed());
 
         View alertCustomDialog = LayoutInflater.from(AllActivity.this).inflate(R.layout.dialog_quotes, null);
 
+        recyclerView = findViewById(R.id.allQuotesRV);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        mRecyclerViewAll = findViewById(R.id.allQuotesRV);
-        mRecyclerViewAll.setHasFixedSize(true);
-        mRecyclerViewAll.setLayoutManager(new LinearLayoutManager(this));
-
-        mAllItem = new ArrayList<>();
-        swipeRefreshLayoutAll = findViewById(R.id.swipeAll);
-        swipeRefreshLayoutAll.setOnRefreshListener(() -> {
+        items = new ArrayList<>();
+        swipeRefreshLayout = findViewById(R.id.swipeAll);
+        swipeRefreshLayout.setOnRefreshListener(() -> {
 
             Toast.makeText(AllActivity.this, getString(R.string.refreshing), Toast.LENGTH_SHORT).show();
             new Handler().postDelayed(() -> {
-                swipeRefreshLayoutAll.setRefreshing(false);
-                mAllItem.clear();
-                mAllAdapter.notifyDataSetChanged();
-                getLanguageAll();
+                swipeRefreshLayout.setRefreshing(false);
+                items.clear();
+                adapter.notifyDataSetChanged();
+                getLanguage();
             }, 2000);
         });
-        mRequestQueueAll = Volley.newRequestQueue(this);
+        requestQueue = Volley.newRequestQueue(this);
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         DisplayMetrics displayMetricsHalf = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetricsHalf);
-        int bsdsizeHalf = displayMetrics.heightPixels / 2;
+        int halfDisplaySize = displayMetrics.heightPixels / 2;
 
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(AllActivity.this);
         alertDialog.setView(alertCustomDialog);
-        authorT = alertCustomDialog.findViewById(R.id.authort);
-        quoteT = alertCustomDialog.findViewById(R.id.quotet);
-        copy = alertCustomDialog.findViewById(R.id.copyText);
-        share = alertCustomDialog.findViewById(R.id.shareText);
-        dialog = alertDialog.create();
-        dialog.getWindow().setGravity(Gravity.BOTTOM);
-        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
-        dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, bsdsizeHalf);
+        authorTextView = alertCustomDialog.findViewById(R.id.authort);
+        quoteTextView = alertCustomDialog.findViewById(R.id.quotet);
+        copyCardView = alertCustomDialog.findViewById(R.id.copyText);
+        shareCardView = alertCustomDialog.findViewById(R.id.shareText);
+        dialogQuotes = alertDialog.create();
+        dialogQuotes.getWindow().setGravity(Gravity.BOTTOM);
+        dialogQuotes.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        dialogQuotes.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, halfDisplaySize);
 
 
-        getLanguageAll();
+        getLanguage();
 
     }
 
-    private void getLanguageAll() {
-        String langAll = Locale.getDefault().getLanguage();
-        if (langAll.equals("en")) {
-            parseJSONAll();
-        } else if (langAll.equals("de")) {
-            parseJSONGERAll();
+    private void getLanguage() {
+        if (language.equals("en")) {
+            parseJSON();
+        } else if (language.equals("de")) {
+            parseJSONGER();
         } else {
-            parseJSONAll();
+            parseJSON();
         }
     }
 
-    private void parseJSONGERAll() {
-        String urlGERAll = "https://lijukay.github.io/Quotes-M3/quotesGER.json";
+    private void parseJSONGER() {
+        String url = "https://lijukay.github.io/Quotes-M3/quotesGER.json";
 
-        JsonObjectRequest requestAllGER = new JsonObjectRequest(Request.Method.GET, urlGERAll, null,
-                responseAllGER -> {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                jsonObject -> {
                     try {
-                        JSONArray jsonArrayAll = responseAllGER.getJSONArray("AllQuotes");
+                        JSONArray jsonArray = jsonObject.getJSONArray("AllQuotes");
 
-                        for (int ga = 0; ga < jsonArrayAll.length(); ga++) {
-                            JSONObject agq = jsonArrayAll.getJSONObject(ga);
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject object = jsonArray.getJSONObject(i);
 
-                            String quoteAllGER = agq.getString("quoteAll");
-                            String authorAllGER = agq.getString("authorAll");
+                            String quote = object.getString("quoteAll");
+                            String author = object.getString("authorAll");
 
-                            mAllItem.add(new AllItem(authorAllGER, quoteAllGER));
+                            items.add(new AllItem(author, quote));
                         }
 
-                        mAllAdapter = new AllAdapter(AllActivity.this, mAllItem, this);
-                        mRecyclerViewAll.setAdapter(mAllAdapter);
+                        adapter = new AllAdapter(AllActivity.this, items, this);
+                        recyclerView.setAdapter(adapter);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }, Throwable::printStackTrace);
-        mRequestQueueAll.add(requestAllGER);
+        requestQueue.add(jsonObjectRequest);
     }
-    private void parseJSONAll() {
-        String urlAll = "https://lijukay.github.io/Quotes-M3/quotesEN.json";
+    private void parseJSON() {
+        String url = "https://lijukay.github.io/Quotes-M3/quotesEN.json";
 
-        JsonObjectRequest requestAll = new JsonObjectRequest(Request.Method.GET, urlAll, null,
-                responseAll -> {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                jsonObject -> {
                     try {
-                        JSONArray jsonArrayAll = responseAll.getJSONArray("AllQuotes");
+                        JSONArray jsonArray = jsonObject.getJSONArray("AllQuotes");
 
-                        for (int a = 0; a < jsonArrayAll.length(); a++) {
-                            JSONObject ec = jsonArrayAll.getJSONObject(a);
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject object = jsonArray.getJSONObject(i);
 
-                            String quoteAll = ec.getString("quoteAll");
-                            String authorAll = ec.getString("authorAll");
+                            String quote = object.getString("quoteAll");
+                            String author = object.getString("authorAll");
 
-                            mAllItem.add(new AllItem(authorAll, quoteAll));
+                            items.add(new AllItem(author, quote));
                         }
 
-                        mAllAdapter = new AllAdapter(AllActivity.this, mAllItem, this);
-                        mRecyclerViewAll.setAdapter(mAllAdapter);
+                        adapter = new AllAdapter(AllActivity.this, items, this);
+                        recyclerView.setAdapter(adapter);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }, Throwable::printStackTrace);
-        mRequestQueueAll.add(requestAll);
+        requestQueue.add(jsonObjectRequest);
     }
 
 
@@ -193,7 +207,7 @@ public class AllActivity extends AppCompatActivity implements RecyclerViewInterf
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.aboutA) {
-            AboutApp();
+            Settings();
             return true;
         } else if (item.getItemId() == R.id.samsungdesignA) {
             SamsungDesign();
@@ -210,62 +224,62 @@ public class AllActivity extends AppCompatActivity implements RecyclerViewInterf
     }
 
     private void ECA() {
-        Intent intentEM = new Intent(this, MainActivity.class);
-        startActivity(intentEM);
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
     private void People() {
-        Intent intentP = new Intent(this, PersonsActivity.class);
-        startActivity(intentP);
+        Intent intent = new Intent(this, PersonsActivity.class);
+        startActivity(intent);
     }
 
     private void SamsungDesign() {
-        Uri uriS = Uri.parse("https://github.com/Lijukay/Quotes");
-        Intent intentS = new Intent(Intent.ACTION_VIEW, uriS);
-        startActivity(intentS);
+        Uri uri = Uri.parse("https://github.com/Lijukay/Quotes");
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
     }
 
-    private void AboutApp() {
-        Intent intentA = new Intent(this, SettingsActivity.class);
-        startActivity(intentA);
+    private void Settings() {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
     }
 
     @Override
     public void onItemClick(int position) {
-        String langu = Locale.getDefault().getLanguage();
+        String language = Locale.getDefault().getLanguage();
 
-        if (langu.equals("de")) {
-            String urlP = "https://lijukay.github.io/Quotes-M3/quotesGER.json";
-            JsonObjectRequest requestP = new JsonObjectRequest(Request.Method.GET, urlP, null,
-                    responseP -> {
+        if (language.equals("de")) {
+            String url = "https://lijukay.github.io/Quotes-M3/quotesGER.json";
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                    jsonObject -> {
                         try {
-                            JSONArray jsonArrayP = responseP.getJSONArray("AllQuotes");
+                            JSONArray jsonArray = jsonObject.getJSONArray("AllQuotes");
 
-                            JSONObject ec = jsonArrayP.getJSONObject(position);
+                            JSONObject object = jsonArray.getJSONObject(position);
 
-                            String quoteE = ec.getString("quoteAll");
-                            String authorP = ec.getString("authorAll");
+                            String quote = object.getString("quoteAll");
+                            String author = object.getString("authorAll");
 
-                            showDialogs(authorP, quoteE);
+                            showDialogs(author, quote);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }, Throwable::printStackTrace);
-            mRequestQueueAll.add(requestP);
+            requestQueue.add(jsonObjectRequest);
         } else {
-            String urlP = "https://lijukay.github.io/Quotes-M3/quotesEN.json";
+            String url = "https://lijukay.github.io/Quotes-M3/quotesEN.json";
 
 
-            JsonObjectRequest requestP = new JsonObjectRequest(Request.Method.GET, urlP, null,
-                    responseP -> {
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                    jsonObject -> {
                         try {
-                            JSONArray jsonArrayP = responseP.getJSONArray("AllQuotes");
+                            JSONArray jsonArrayP = jsonObject.getJSONArray("AllQuotes");
 
-                            JSONObject ec = jsonArrayP.getJSONObject(position);
+                            JSONObject object = jsonArrayP.getJSONObject(position);
 
-                            String quoteE = ec.getString("quoteAll");
-                            String authorP = ec.getString("authorAll");
+                            String quoteE = object.getString("quoteAll");
+                            String authorP = object.getString("authorAll");
 
                             showDialogs(authorP, quoteE);
 
@@ -273,17 +287,17 @@ public class AllActivity extends AppCompatActivity implements RecyclerViewInterf
                             e.printStackTrace();
                         }
                     }, Throwable::printStackTrace);
-            mRequestQueueAll.add(requestP);
+            requestQueue.add(jsonObjectRequest);
         }
     }
 
     private void showDialogs(String author, String quote) {
-        //dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
-        quoteT.setText(quote);
-        authorT.setText(author);
 
-        copy.setOnClickListener(view -> copyText(quote + "\n\n~ " + author));
-        share.setOnClickListener(view -> {
+        quoteTextView.setText(quote);
+        authorTextView.setText(author);
+
+        copyCardView.setOnClickListener(view -> copyText(quote + "\n\n~ " + author));
+        shareCardView.setOnClickListener(view -> {
             Intent shareText = new Intent();
             shareText.setAction(Intent.ACTION_SEND);
             shareText.putExtra(Intent.EXTRA_TEXT, quote + "\n\n~" + author);
@@ -291,10 +305,10 @@ public class AllActivity extends AppCompatActivity implements RecyclerViewInterf
             Intent sendText = Intent.createChooser(shareText, null);
             startActivity(sendText);
         });
-        quoteT.setMaxLines(3);
+        quoteTextView.setMaxLines(3);
 
-        dialog.show();
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialogQuotes.show();
+        dialogQuotes.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
     }
 
 
@@ -305,5 +319,6 @@ public class AllActivity extends AppCompatActivity implements RecyclerViewInterf
         clipboard.setPrimaryClip(clip);
         Toast.makeText(this, getString(R.string.copiedMessage), Toast.LENGTH_SHORT).show();
     }
+
 
 }

@@ -44,4 +44,48 @@
         <item name="android:windowEnterAnimation">@anim/slide_in_bottom</item>
         <item name="android:windowExitAnimation">@anim/slide_out_bottom</item>
     </style>
+    <style name="ActivityAnim" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_in_bottom</item>
+        <item name="android:activityCloseEnterAnimation">@anim/slide_in_bottom</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_out_bottom</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_out_bottom</item>
+    </style>
+
+    <style name="AppThemePurple" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">#FAACF9</item>
+        <item name="colorOnPrimary">#521458</item>
+        <item name="colorPrimaryContainer">#6C2D70</item>
+        <item name="colorOnPrimaryContainer">#FFD6FB</item>
+        <item name="colorSecondary">#FAACF9</item>
+        <item name="colorOnSecondary">#521458</item>
+        <item name="colorSecondaryContainer">#6C2D71</item>
+        <item name="colorOnSecondaryContainer">#FFD6FB</item>
+        <item name="colorTertiary">#F9ACFA</item>
+        <item name="colorOnTertiary">#521459</item>
+        <item name="colorTertiaryContainer">#6C2D71</item>
+        <item name="colorOnTertiaryContainer">#FFD6FB</item>
+        <item name="colorError">#FFB4AB</item>
+        <item name="colorErrorContainer">#93000A</item>
+        <item name="colorOnError">#690005</item>
+        <item name="colorOnErrorContainer">#FFDAD6</item>
+        <item name="android:colorBackground">#36003E</item>
+        <item name="colorOnBackground">#FFD6FC</item>
+        <item name="colorSurface">#36003E</item>
+        <item name="colorOnSurface">#FFD6FC</item>
+        <item name="colorSurfaceVariant">#4D444C</item>
+        <item name="colorOnSurfaceVariant">#D0C3CC</item>
+        <item name="colorOutline">#998D96</item>
+        <item name="colorOnSurfaceInverse">#36003E</item>
+        <item name="colorSurfaceInverse">#FFD6FC</item>
+        <item name="colorPrimaryInverse">#87458A</item>
+
+        <item name="android:statusBarColor">#6C2D71</item>
+        <item name="android:windowLightStatusBar">false</item>
+
+
+        <item name="android:windowAnimationStyle">@style/ActivityAnim</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.Rikka.Material3</item>
+        <item name="android:windowActivityTransitions">true</item>
+
+    </style>
 </resources>

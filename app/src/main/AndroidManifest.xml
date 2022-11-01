@@ -31,29 +31,24 @@
         <activity
             android:name=".Activity.FavoritesActivity"
             android:exported="false"
-            android:launchMode="singleInstance" />
+             />
         <activity
             android:name=".Activity.PersonsQuote"
             android:exported="false"
-            android:launchMode="singleInstance" />
+            android:launchMode="singleTop"/>
         <activity
             android:name=".Activity.PersonsActivity"
             android:exported="false"
-            android:launchMode="singleInstance" />
+            android:launchMode="singleTop"/>
         <activity
             android:name=".Activity.AllActivity"
-            android:exported="true"
-            android:launchMode="singleInstance">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Activity.About"
-            android:exported="false"
-            android:launchMode="singleInstance" />
         <activity
             android:name=".Activity.MainActivity"
             android:exported="false" />

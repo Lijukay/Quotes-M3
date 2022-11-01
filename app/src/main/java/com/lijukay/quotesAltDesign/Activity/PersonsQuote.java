@@ -54,7 +54,7 @@ public class PersonsQuote extends AppCompatActivity implements RecyclerViewInter
     private PQAdapter mPQAdapter;
     private ArrayList<PQItem> mPQItem;
     private RequestQueue mRequestQueuePQ;
-    private String pQuotes, authorP;
+    private String pQuotes, authorP, language;
     private SwipeRefreshLayout swipeRefreshLayoutPQ;
 
 
@@ -63,6 +63,17 @@ public class PersonsQuote extends AppCompatActivity implements RecyclerViewInter
     @SuppressLint({"NotifyDataSetChanged", "InflateParams"})
     @Override
     protected void onCreate(Bundle savedInstanceState){
+        SharedPreferences sharedPreferences2 = getSharedPreferences("Theme", 0);
+        String theme = sharedPreferences2.getString("Theme", "red");
+        if (theme.equals("red")){
+            setTheme(R.style.AppTheme);
+        } else if (theme.equals("purple")){
+            setTheme(R.style.AppThemePurple);
+        }
+
+        SharedPreferences sharedPreferences3 = getSharedPreferences("Language", 0);
+        language = sharedPreferences3.getString("Language", Locale.getDefault().getLanguage());
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_persons_quote);
 
@@ -110,10 +121,9 @@ public class PersonsQuote extends AppCompatActivity implements RecyclerViewInter
     }
 
     private void getLanguagePQ() {
-        String langPQ = Locale.getDefault().getLanguage();
-        if (langPQ.equals("en")) {
+        if (language.equals("en")) {
             parseJSONPQ();
-        } else if (langPQ.equals("de")) {
+        } else if (language.equals("de")) {
             parseJSONPQGER();
         } else {
             parseJSONPQ();

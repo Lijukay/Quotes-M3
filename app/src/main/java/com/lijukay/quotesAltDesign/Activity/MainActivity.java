@@ -13,7 +13,6 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -25,7 +24,6 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.TextView;
@@ -44,20 +42,31 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements RecyclerViewInterface {
-    private RecyclerView mRecyclerView;
-    private ECAdapter mECAdapter;
-    private ArrayList<ECItem> mECItem;
-    private RequestQueue mRequestQueue;
-    private SwipeRefreshLayout swipeRefreshLayoutEC;
+    private RecyclerView recyclerView;
+    private ECAdapter adapter;
+    private ArrayList<ECItem> items;
+    private RequestQueue requestQueue;
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private String language;
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences sharedPreferences2 = getSharedPreferences("Theme", 0);
+        String theme = sharedPreferences2.getString("Theme", "red");
+        if (theme.equals("red")){
+            setTheme(R.style.AppTheme);
+        } else if (theme.equals("purple")){
+            setTheme(R.style.AppThemePurple);
+        }
+
+        SharedPreferences sharedPreferences3 = getSharedPreferences("Language", 0);
+        language = sharedPreferences3.getString("Language", Locale.getDefault().getLanguage());
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         SharedPreferences sharedPreferences = getSharedPreferences("NightMode", 0);
@@ -74,33 +83,32 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         toolbar.setOnClickListener(v -> onBackPressed());
 
         //RecyclerView "setup"
-        mRecyclerView = findViewById(R.id.editorsChoiceRV);
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView = findViewById(R.id.editorsChoiceRV);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         //Creating new ArrayList for mECItem
-        mECItem = new ArrayList<>();
+        items = new ArrayList<>();
 
         //SwipeRefreshLayout "setup"
-        swipeRefreshLayoutEC = findViewById(R.id.swipeEC);
-        swipeRefreshLayoutEC.setOnRefreshListener(() -> {
+        swipeRefreshLayout = findViewById(R.id.swipeEC);
+        swipeRefreshLayout.setOnRefreshListener(() -> {
             Toast.makeText(MainActivity.this, getString(R.string.refreshing), Toast.LENGTH_SHORT).show();
             new Handler().postDelayed(() -> {
-                swipeRefreshLayoutEC.setRefreshing(false);
-                mECItem.clear();
-                mECAdapter.notifyDataSetChanged();
+                swipeRefreshLayout.setRefreshing(false);
+                items.clear();
+                adapter.notifyDataSetChanged();
                 getLanguageEC();
             }, 2000);
         });
-        mRequestQueue = Volley.newRequestQueue(this);
+        requestQueue = Volley.newRequestQueue(this);
         getLanguageEC();
     }
 
     private void getLanguageEC() {
-        String lang = Locale.getDefault().getLanguage();
-        if (lang.equals("en")) {
+        if (language.equals("en")) {
             parseJSON();
-        } else if (lang.equals("de")) {
+        } else if (language.equals("de")) {
             parseJSONGER();
         } else {
             parseJSON();
@@ -121,11 +129,11 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
                             String quoteECGER = ecGER.getString("quote");
                             String authorECGER = ecGER.getString("author");
 
-                            mECItem.add(new ECItem(authorECGER, quoteECGER));
+                            items.add(new ECItem(authorECGER, quoteECGER));
                         }
 
-                        mECAdapter = new ECAdapter(MainActivity.this, mECItem, this);
-                        mRecyclerView.setAdapter(mECAdapter);
+                        adapter = new ECAdapter(MainActivity.this, items, this);
+                        recyclerView.setAdapter(adapter);
                         Log.e("intent", "Hat geklappt...");
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -135,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
             error.printStackTrace();
             Log.e("error", "Hat nicht geklappt 2");
         });
-        mRequestQueue.add(requestGER);
+        requestQueue.add(requestGER);
     }
 
     private void parseJSON() {
@@ -152,11 +160,11 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
                             String quoteEC = ec.getString("quote");
                             String authorEC = ec.getString("author");
 
-                            mECItem.add(new ECItem(authorEC, quoteEC));
+                            items.add(new ECItem(authorEC, quoteEC));
                         }
 
-                        mECAdapter = new ECAdapter(MainActivity.this, mECItem, this);
-                        mRecyclerView.setAdapter(mECAdapter);
+                        adapter = new ECAdapter(MainActivity.this, items, this);
+                        recyclerView.setAdapter(adapter);
                         Log.e("intent", "Hat geklappt...");
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -166,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
             error.printStackTrace();
             Log.e("error", "Hat nicht geklappt 2");
         });
-        mRequestQueue.add(request);
+        requestQueue.add(request);
     }
 
 
@@ -244,7 +252,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
                 errorAll.printStackTrace();
                 Log.e("error", "File is not reachable, check your Internet connection. If you are connected to the internet, contact the developer!");
             });
-            mRequestQueue.add(requestP);
+            requestQueue.add(requestP);
         } else {
             String urlP = "https://lijukay.github.io/Quotes-M3/quotesEN.json";
 
@@ -265,11 +273,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
                             e.printStackTrace();
                             Log.e("error", "Something is not right with the file! Contact the developer!");
                         }
-                    }, errorAll -> {
-                errorAll.printStackTrace();
-                Log.e("error", "File is not reachable, check your Internet connection. If you are connected to the internet, contact the developer!");
-            });
-            mRequestQueue.add(requestP);
+                    }, Throwable::printStackTrace);
+            requestQueue.add(requestP);
         }
     }
 

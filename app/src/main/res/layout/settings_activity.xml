@@ -1,12 +1,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal">
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/abl"
-        android:theme="@style/AppTheme"
         android:background="?attr/colorSecondaryContainer"
         android:layout_width="match_parent"
         android:fitsSystemWindows="true"
@@ -21,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:layout_collapseMode="pin"
-            app:title="Settings"
+            app:title="@string/settings"
             android:backgroundTint="?attr/colorSecondaryContainer"
             app:titleMarginStart="10dp"
             android:gravity="center_vertical"/>

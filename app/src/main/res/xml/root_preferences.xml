@@ -2,66 +2,78 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
-        app:title="Theme"
+        app:title="Theme and language"
         app:allowDividerBelow="true">
 
         <rikka.material.preference.MaterialSwitchPreference
-            android:title="Dark Theme"
-            android:summary="Chose whether you want to use the light or the dark theme"
+            android:title="@string/dark_mode"
             android:icon="@drawable/ic_darkmode"
+            app:switchTextOff="out"
+            app:switchTextOn="on"
             android:key="nightDay"/>
         <Preference
-            android:title="App's color"
-            android:summary="Chose the between x color-themes"
+            android:title="@string/ac"
             android:icon="@drawable/ic_color"
             android:key="color"/>
+        <Preference
+            android:icon="@drawable/ic_language"
+            android:title="@string/lang"
+            android:key="language"/>
     </PreferenceCategory>
     <PreferenceCategory
         android:title="Update"
         app:allowDividerBelow="true">
         <Preference
-            android:title="Check for updates"
-            android:summary="Check whether this app has the newest version and download newer version, if available"
+            android:title="@string/updater"
             android:icon="@drawable/ic_update"
-            android:key="updateCheck" />
+            android:key="updateCheck"
+            android:summary="@string/updatesum"/>
     </PreferenceCategory>
     <PreferenceCategory
         android:title="Help me with this app"
         app:allowDividerBelow="true">
         <Preference
-            android:title="Bug report"
-            android:summary="I really am sorry, if you found a bug. I will do everything I can to fix it as soon as possible! Click here, to send me an E-Mail"
+            android:title="@string/bugtit"
+            android:summary="@string/bugmess"
             android:icon="@drawable/ic_bug"
             android:key="reportBug"/>
         <Preference
-            android:title="Feature suggestion"
-            android:summary="Is there something you like me to add? I can try it, just click here, to send me an E-Mail"
+            android:title="@string/feasugTit"
+            android:summary="@string/feasmess"
             android:key="feature"
             android:icon="@drawable/ic_feauture"/>
         <Preference
-            android:title="Share"
-            android:summary="Share this app with your friends, to let them see the wisdoms and quotes of others too!"
+            android:title="@string/share"
+            android:icon="@drawable/ic_share"
+            android:summary="@string/sharemess"
             android:key="share"/>
         <Preference
-            android:title="Feedback"
-            android:summary="If you like this app or you do not like this app, i really would be happy, if you send me the reasons :3"
+            android:title="@string/feedback"
+            android:icon="@drawable/ic_feedback"
+            android:summary="@string/feasmess"
             android:key="feedback"/>
     </PreferenceCategory>
     <PreferenceCategory
         android:title="Privacy and Licenses"
         app:allowDividerBelow="true">
         <Preference
-            android:title="App's permissions"
-            android:summary="You may have been asked to allow some permissions. Go on, and find out why!"
+            android:title="@string/app_permissions"
+            android:icon="@drawable/ic_app_permission"
+            android:summary="@string/permmess"
             android:key="permission"/>
         <Preference
-            android:title="Privacy Policy"
-            android:summary="Afraid, that we collect your data? Read this and find out, that we do not :3"
+            android:title="@string/privacy_policy"
+            android:icon="@drawable/ic_privacy_user"
+            android:summary="@string/ppmess"
             android:key="policy"/>
         <Preference
-            android:title="Licenses"
-            android:summary="I am using third-party content too. Here you can find out, what I am using."
+            android:title="@string/License"
+            android:icon="@drawable/ic_l"
+            android:summary="@string/licmess"
             android:key="license"
             android:enabled="false"/>
     </PreferenceCategory>
 </PreferenceScreen>
+
+
+<!--ToDo: Subtitles = Whatever is set-->

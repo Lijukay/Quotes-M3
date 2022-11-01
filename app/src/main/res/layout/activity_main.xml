@@ -5,11 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.MainActivity"
-    android:fitsSystemWindows="true"
-    style="@style/AppTheme">
+    android:fitsSystemWindows="true">
 
     <com.google.android.material.appbar.AppBarLayout
-        style="@style/AppTheme"
         android:background="?attr/colorSecondaryContainer"
         android:layout_width="match_parent"
         android:fitsSystemWindows="true"
@@ -19,7 +17,6 @@
                 app:title="@string/editors_choice"
                 android:padding="5dp"
                 android:id="@+id/tl"
-                android:theme="@style/AppTheme.Title"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"

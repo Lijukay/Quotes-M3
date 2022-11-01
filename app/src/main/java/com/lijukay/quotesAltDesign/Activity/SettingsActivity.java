@@ -1,12 +1,10 @@
 package com.lijukay.quotesAltDesign.Activity;
 
 import android.annotation.SuppressLint;
-import android.app.Dialog;
 import android.app.DownloadManager;
 import android.app.UiModeManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -22,12 +20,10 @@ import android.provider.Settings;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,17 +33,16 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.FileProvider;
 import androidx.core.text.HtmlCompat;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
-import com.airbnb.lottie.LottieAnimationView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.lijukay.quotesAltDesign.BuildConfig;
 import com.lijukay.quotesAltDesign.Others.InternetService;
@@ -58,62 +53,106 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.util.Locale;
 import java.util.Objects;
 
 import rikka.material.preference.MaterialSwitchPreference;
 
 public class SettingsActivity extends AppCompatActivity {
 
+    //------Static vars because I need them outside of the Settings Fragment------//
     public static final String BroadcastStringForAction = "checkInternet";
     private IntentFilter mIntentFilter;
-    SharedPreferences sharedPreferences;
-    static SharedPreferences.Editor editor;
-    static String updateA;
+    SharedPreferences sharedPreferencesNightMode, sharedPreferencesColorTheme, sharedPreferencesLanguage;
+    static SharedPreferences.Editor editorNightMode, editorColorTheme, editorLanguages;
+    static String updateStatus;
+    static boolean internet;
+    static Intent starterIntent;
 
+    //------Precreated Method for I don't know------//
     public SettingsActivity() {
     }
 
+    //------onCreate gets called when the Activity starts------//
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //------Checking, if DarkTheme is active or not BEFORE the view is created in order to prevent ugly transitions on...------//
+        //------...restart of the method when changing the mode------//
+        //------Getting the SharedPreference with the name "NightMode" to get its value (true or false)------//
+        //------sharedPreferences Mode is 0 (aka. MODE_PRIVATE)------/
+        sharedPreferencesNightMode = getSharedPreferences("NightMode", 0);
+        //------creating an editor for sharedPreferences because we need to change its value in this activity------//
+        editorNightMode = sharedPreferencesNightMode.edit();
+        //------Getting the UI mode to see if systems NightMode is active or not------//
+        UiModeManager uiModeManager = (UiModeManager) this.getSystemService(Context.UI_MODE_SERVICE);
+        int mode = uiModeManager.getNightMode();
+        //------set boolean isNightMode to the value of the boolean of sharedPreferences------//
+        boolean isNightMode = sharedPreferencesNightMode.getBoolean("Night", false);
+        //------Check if the NightMode is activated in our app------//
+        if (isNightMode){
+            //------It is activated so the theme of this app is set to NightMode------//
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else if (mode == UiModeManager.MODE_NIGHT_YES) {
+            //------It is not active so the theme of this app is set to LightMode------//
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+        //------Getting sharedPreferences2 BEFORE creating any views so that the color theme is applied without ugly transitions------//
+        sharedPreferencesColorTheme = getSharedPreferences("Theme", 0);
+        //------Creating an editor for sharedPreferences2 because in this activity we need to change its value------//
+        editorColorTheme = sharedPreferencesColorTheme.edit();
+        //------Getting the String-Value of the sharedPreferences2 to activate the color theme it refers to------//
+        String theme = sharedPreferencesColorTheme.getString("Theme", "red");
+        if (theme.equals("red")){
+            //------String-Value of sharedPreferences2 is red so the default AppTheme is going to be used------//
+            setTheme(R.style.AppTheme);
+        } else if (theme.equals("purple")){
+            //------String-Value of sharedPreferences2 is purple so AppThemePurple is going to be used------//
+            setTheme(R.style.AppThemePurple);
+        }
+        //------Finding sharedPreferences3 by its name Language------//
+        sharedPreferencesLanguage = getSharedPreferences("Language", 0);
+        //------Creating an editor for sharedPreferences3 because we need to change its value------//
+        editorLanguages = sharedPreferencesLanguage.edit();
+        //------Creating an Intent in this activity to call it later. It is used instead of recreate(); because I know how to add transitions...------//
+        //------...to Intents but not how to add transitions to recreate();------//
+        starterIntent = getIntent();
         super.onCreate(savedInstanceState);
+        //------The view this app refers to is settings_activity. It can be found on res < layout------//
         setContentView(R.layout.settings_activity);
+        //------Precreated things i don't really understand. I don't touch it without any tutorials------//
         if (savedInstanceState == null) {
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.settings, new SettingsFragment())
                     .commit();
         }
+        //------According to Android Studios Explanation:...------//
+        //------...Support library version of android.app.Activity.getActionBar. ...------//
+        //------...Retrieve a reference to this activity's ActionBar. ...------//
+        //------...Returns:...------//
+        //------...The Activity's ActionBar, or null if it does not have one.------//
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
+            //------If it has an ActionBar, something I don't understand happens------//
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+        //------Finding Activity's toolbar by its ID (tls)------//
         Toolbar toolbar = findViewById(R.id.tlS);
+        //------This Toolbar acts like an ActionBar for this activity window------//
         setSupportActionBar(toolbar);
+        //-------When the toolbar is clicked, it acts like the Back Key on Android------//
         toolbar.setOnClickListener(v -> onBackPressed());
 
-        UiModeManager uiModeManager = (UiModeManager) this.getSystemService(Context.UI_MODE_SERVICE);
-        int mode = uiModeManager.getNightMode();
-        sharedPreferences = getSharedPreferences("NightMode", 0);
-        editor = sharedPreferences.edit();
-        boolean isNightMode = sharedPreferences.getBoolean("Night", false);
-        if (isNightMode){
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        } else if (mode == UiModeManager.MODE_NIGHT_YES) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
 
+        //------Creating an IntentFilter. We need it to check if the Internet connection still exists to prevent app crashes on specific events------//
         mIntentFilter = new IntentFilter();
+        //------Action of this IntentFilter: Checking the internet------//
         mIntentFilter.addAction(BroadcastStringForAction);
+        //------Referring to the class where the service is written down and starting the service------//
         Intent serviceIntent = new Intent(this, InternetService.class);
         startService(serviceIntent);
-        if(isOnline(getApplicationContext())){
-            updateA = "Internet";
-        } else {
-            updateA = "No internet";
-        }
-
-
-
+        //------Checking if the Application is online------//
+        internet = isOnline(getApplicationContext());
     }
 
     public static class SettingsFragment extends PreferenceFragmentCompat {
@@ -122,53 +161,133 @@ public class SettingsActivity extends AppCompatActivity {
         private String apkUrl;
         private int versionA;
         private String versionName;
-        private String changelogchange;
-        private final int PERMISSION_REQUEST_CODE_WRITE_EXTERNAL = 100;
-
-
-
-
+        private String changelogMessage;
 
 
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+            //------Refer to where the Preferences are saved------//
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
-
-            AlertDialog bdialog;
+            //------Creating two AlertDialogs. One for language and one for color theme------//
+            AlertDialog colorDialog;
+            AlertDialog languageDialog;
+            //------Creating a requestQueue. It was necessary but I am not sure what it does------//
             mRequestQueueU = Volley.newRequestQueue(requireActivity());
+            //------Starts the parseJSONVersion-Method------//
             parseJSONVersion();
-
-
+            //------Setting the view of the AlertDialogs to the layouts they should use------//
             View alertCustomDialog = LayoutInflater.from(requireContext()).inflate(R.layout.bsdcolor, null);
+            View alertCustomDialogL = LayoutInflater.from(requireContext()).inflate(R.layout.dialoglang, null);
+            //------Getting the half of the size of the users display------//
             DisplayMetrics displayMetrics = new DisplayMetrics();
             requireActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
             DisplayMetrics displayMetricsHalf = new DisplayMetrics();
             requireActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetricsHalf);
             int bsdsizeHalf = displayMetrics.heightPixels / 2;
 
-
+            //------Build the alertDialogs: Gravity at the bottom, Animations, Sizes------//
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(requireContext());
             alertDialog.setView(alertCustomDialog);
-            bdialog = alertDialog.create();
-            bdialog.getWindow().setGravity(Gravity.BOTTOM);
-            bdialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
-            bdialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, bsdsizeHalf);
+            colorDialog = alertDialog.create();
+            colorDialog.getWindow().setGravity(Gravity.BOTTOM);
+            colorDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+            colorDialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, bsdsizeHalf);
+
+            AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(requireContext());
+            alertDialog2.setView(alertCustomDialogL);
+            languageDialog = alertDialog2.create();
+            languageDialog.getWindow().setGravity(Gravity.BOTTOM);
+            languageDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+            languageDialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+
+            //------Finding preferences is different from finding view although both are views...------//
+            //------...instead of using findByViewId with the view's ID, you are using findPreference with a key you gave the view in the xml-file------//
+            MaterialSwitchPreference darkModePreference = findPreference("nightDay");
+            Preference updatePreference = findPreference("updateCheck");
+            Preference sharePreference = findPreference("share");
+            Preference feedbackPreference = findPreference("feedback");
+            Preference bugReportPreference = findPreference("reportBug");
+            Preference featureSuggestionPreference = findPreference("feature");
+            Preference permissionsPreference = findPreference("permission");
+            Preference policyPreference = findPreference("policy");
+            Preference licensePreference = findPreference("license");
+            Preference colorPreference = findPreference("color");
+            Preference languagePreference = findPreference("language");
+            //------Finding the sharedPreference once more because we need to set the text of the switch based on DarkMode being active or not------//
+            SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("NightMode", 0);
+            boolean isNightMode = sharedPreferences.getBoolean("Night", false);
+            assert darkModePreference != null;
+            if (isNightMode){
+                //------Is active so text is Night-Mode on------//
+                darkModePreference.setSummary(R.string.non);
+            } else {
+                //------Is not active so text is Night-Mode off------//
+                darkModePreference.setSummary(R.string.noff);
+            }
+            //------Getting sharedPreferences2 to display the current active theme------//
+            SharedPreferences sharedPreferences2 = requireActivity().getSharedPreferences("Theme", 0);
+            String theme = sharedPreferences2.getString("Theme", "red");
+            if (theme.equals("red")){
+                assert colorPreference != null;
+                colorPreference.setSummary(R.string.colorred);
+            } else if (theme.equals("purple")){
+                assert colorPreference != null;
+                colorPreference.setSummary(R.string.colorpurple);
+            }
+            //------Getting sharedPreferencesLanguage to display current language------//
+            SharedPreferences sharedPreferencesLanguage = requireActivity().getSharedPreferences("Language", 0);
+            String lang = sharedPreferencesLanguage.getString("Language", Locale.getDefault().getLanguage());
+            if (lang.equals("de")){
+                //------lang is de so the summary says: Aktuelle Sprache ist: Deutsch------//
+                assert languagePreference != null;
+                languagePreference.setSummary(R.string.lande);
+            } else if (lang.equals("en")){
+                //------lang is en so the summary says: Current language is: English------//
+                assert languagePreference != null;
+                languagePreference.setSummary(R.string.lande);
+            } else {
+                //------lang is something else so it is not officially supported. Because of this the language is set to English------//
+                assert languagePreference != null;
+                languagePreference.setSummary(R.string.notsupported);
+            }
+            //------Set what happens when the preference is clicked------//
+            languagePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(@NonNull Preference preference) {
+                    showLanguageDialog();
+                    return false;
+                }
+
+                private void showLanguageDialog() {
+                    languageDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    languageDialog.show();
+
+                    CardView deutschCardView = languageDialog.findViewById(R.id.deutsch);
+                    CardView englishCardView = languageDialog.findViewById(R.id.english);
+
+                    assert deutschCardView != null;
+                    deutschCardView.setOnClickListener(v -> {
+                        requireActivity().startActivity(new Intent(requireActivity(), AllActivity.class));
+                        requireActivity().overridePendingTransition(rikka.core.R.anim.fade_in, rikka.core.R.anim.fade_out);
+                        requireActivity().finishAffinity();
+                        editorLanguages.putString("Language", "de");
+                        editorLanguages.apply();
+                    });
+
+                    assert englishCardView != null;
+                    englishCardView.setOnClickListener(v -> {
+                        requireActivity().startActivity(new Intent(requireActivity(), AllActivity.class));
+                        requireActivity().overridePendingTransition(rikka.core.R.anim.fade_in, rikka.core.R.anim.fade_out);
+                        requireActivity().finishAffinity();
+                        editorLanguages.putString("Language", "en");
+                        editorLanguages.apply();
+                    });
+                }
+            });
 
 
-
-            MaterialSwitchPreference darkMode = findPreference("nightDay");
-            Preference update = findPreference("updateCheck");
-            Preference share = findPreference("share");
-            Preference feedback = findPreference("feedback");
-            Preference bugReport = findPreference("reportBug");
-            Preference feature = findPreference("feature");
-            Preference permissions = findPreference("permission");
-            Preference policy = findPreference("policy");
-            Preference license = findPreference("license");
-            Preference color = findPreference("color");
-
-
-            color.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            assert colorPreference != null;
+            colorPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(@NonNull Preference preference) {
                     showBSD();
@@ -176,61 +295,73 @@ public class SettingsActivity extends AppCompatActivity {
                 }
 
                 private void showBSD() {
-                    bdialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                    bdialog.show();
+                    colorDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    colorDialog.show();
+                    CardView redCardView = colorDialog.findViewById(R.id.themeRed);
+                    CardView purpleCardView = colorDialog.findViewById(R.id.themePurple);
+                    assert redCardView != null;
+                    redCardView.setOnClickListener(v -> {
+                        requireActivity().startActivity(new Intent(requireActivity(), AllActivity.class));
+                        requireActivity().overridePendingTransition(rikka.core.R.anim.fade_in, rikka.core.R.anim.fade_out);
+                        requireActivity().finishAffinity();
+                        editorColorTheme.putString("Theme", "red");
+                        editorColorTheme.apply();
 
-
+                    });
+                    assert purpleCardView != null;
+                    purpleCardView.setOnClickListener(v -> {
+                        requireActivity().startActivity(new Intent(requireActivity(), AllActivity.class));
+                        requireActivity().overridePendingTransition(rikka.core.R.anim.fade_in, rikka.core.R.anim.fade_out);
+                        requireActivity().finishAffinity();
+                        editorColorTheme.putString("Theme", "purple");
+                        editorColorTheme.apply();
+                    });
                 }
             });
 
-            assert darkMode != null;
-            darkMode.setOnPreferenceChangeListener((preference, newValue) -> {
-                if (!darkMode.isChecked()){
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    editor.putBoolean("Night", true);
-                    editor.apply();
-                } else {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    editor.putBoolean("Night", false);
-                    editor.apply();
-                }
+            darkModePreference.setOnPreferenceChangeListener((preference, newValue) -> {
+                editorNightMode.putBoolean("Night", !darkModePreference.isChecked());
+                editorNightMode.apply();
+                requireActivity().finish();
+                requireActivity().startActivity(starterIntent);
+                requireActivity().overridePendingTransition(rikka.core.R.anim.fade_in, rikka.core.R.anim.fade_out);
                 return true;
             });
 
-            assert bugReport != null;
-            bugReport.setOnPreferenceClickListener(preference -> {
+            assert bugReportPreference != null;
+            bugReportPreference.setOnPreferenceClickListener(preference -> {
                 new MaterialAlertDialogBuilder(requireActivity())
-                        .setTitle("Report a bug")
-                        .setMessage("How do you want to send a bug report? Chose between Telegram and E-Mail. Keep in mind, that every conversation WILL BE deleted after everything is done, EXCEPT you want to keep it.")
-                        .setNeutralButton("Cancel", null)
-                        .setPositiveButton("Telegram", (dialog, which) -> {
+                        .setTitle(R.string.bugtit)
+                        .setMessage(R.string.bugmes)
+                        .setNeutralButton(R.string.neuBut, null)
+                        .setPositiveButton(R.string.posBut, (dialog, which) -> {
                             Uri telegram = Uri.parse("https://t.me/Lijukay");
                             startActivity(new Intent(Intent.ACTION_VIEW, telegram));
                         })
-                        .setNegativeButton("E-Mail", (dialog, which) -> startActivity(composeEmail("lico.keins@gmail.com", getString(R.string.bugSubject), getString(R.string.bugMessage))))
+                        .setNegativeButton(R.string.negBut, (dialog, which) -> startActivity(composeEmail("lico.keins@gmail.com", getString(R.string.bugSubject), getString(R.string.bugMessage))))
                         .show();
                 return false;
             });
 
-            assert feature != null;
-            feature.setOnPreferenceClickListener(preference -> {
+            assert featureSuggestionPreference != null;
+            featureSuggestionPreference.setOnPreferenceClickListener(preference -> {
                 new MaterialAlertDialogBuilder(requireActivity())
-                        .setTitle("Suggest a feature")
-                        .setMessage("How do you want to send a feature suggestion? Chose between Telegram and E-Mail. Keep in mind, that every conversation WILL BE deleted after everything is done, EXCEPT you want to keep it.")
-                        .setNeutralButton("Cancel", null)
-                        .setPositiveButton("Telegram", (dialog, which) -> {
+                        .setTitle(R.string.feasugTit)
+                        .setMessage(R.string.feasugMes)
+                        .setNeutralButton(R.string.neuBut, null)
+                        .setPositiveButton(R.string.posBut, (dialog, which) -> {
                             Uri telegram = Uri.parse("https://t.me/Lijukay");
                             startActivity(new Intent(Intent.ACTION_VIEW, telegram));
                         })
-                        .setNegativeButton("E-Mail", (dialog, which) -> startActivity(composeEmail("lico.keins@gmail.com", getString(R.string.suggestionSubject), getString(R.string.suggestionMessage))))
+                        .setNegativeButton(R.string.negBut, (dialog, which) -> startActivity(composeEmail("lico.keins@gmail.com", getString(R.string.suggestionSubject), getString(R.string.suggestionMessage))))
                         .show();
                 return false;
             });
 
-            assert permissions != null;
-            permissions.setOnPreferenceClickListener(preference -> {
+            assert permissionsPreference != null;
+            permissionsPreference.setOnPreferenceClickListener(preference -> {
                 new MaterialAlertDialogBuilder(requireActivity())
-                        .setTitle("App's permissions")
+                        .setTitle(R.string.perTit)
                         .setMessage(getString(R.string.permissions))
                         .setCancelable(true)
                         .show();
@@ -240,48 +371,38 @@ public class SettingsActivity extends AppCompatActivity {
 
 
 
-            assert update != null;
-            update.setOnPreferenceClickListener((preference -> {
-                if(updateA.equals("No internet")){
-                    Toast.makeText(requireContext(), "Can't check for update", Toast.LENGTH_SHORT).show();
-                    Log.e("bhdh", "HNd");
-                } else if (updateA.equals("No update")){
-                    Log.e("no", "nu");
-                    Toast.makeText(requireContext(), "No update available", Toast.LENGTH_SHORT).show();
+            assert updatePreference != null;
+            updatePreference.setOnPreferenceClickListener((preference -> {
+                if(!internet){
+                    Toast.makeText(requireContext(), R.string.cfuna, Toast.LENGTH_SHORT).show();
+                } else if (updateStatus.equals("No update")){
+                    Toast.makeText(requireContext(), R.string.nua, Toast.LENGTH_SHORT).show();
                 } else {
-                    Log.e("update", "ja");
                     new MaterialAlertDialogBuilder(requireActivity())
                             .setTitle("Update")
-                            .setMessage(changelogchange)
-                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                }
-                            })
-                            .setPositiveButton("Install", (dialog, which) -> {
-                                InstallUpdate(requireActivity(), apkUrl, versionName);
-                            })
+                            .setMessage(changelogMessage)
+                            .setNegativeButton(R.string.neuBut, (dialog, which) -> dialog.dismiss())
+                            .setPositiveButton(R.string.posButUp, (dialog, which) -> InstallUpdate(requireActivity(), apkUrl, versionName))
                             .show();
                 }
                 return false;
             }));
 
-            assert policy != null;
-            policy.setOnPreferenceClickListener(preference -> {
+            assert policyPreference != null;
+            policyPreference.setOnPreferenceClickListener(preference -> {
                 new MaterialAlertDialogBuilder(requireActivity())
-                        .setTitle("Privacy Policy")
+                        .setTitle(R.string.privacy_policy)
                         .setMessage(getString(R.string.pp))
                         .setCancelable(true)
                         .show();
                 return false;
             });
 
-            assert license != null;
-            license.setOnPreferenceClickListener(preference -> {
+            assert licensePreference != null;
+            licensePreference.setOnPreferenceClickListener(preference -> {
                 Spanned licenseM = HtmlCompat.fromHtml(getString(R.string.licensemsg), 0);
                 AlertDialog m = new MaterialAlertDialogBuilder(requireActivity())
-                        .setTitle("Licenses")
+                        .setTitle(R.string.License)
                         .setMessage(licenseM)
                         .setCancelable(true)
                         .show();
@@ -289,8 +410,8 @@ public class SettingsActivity extends AppCompatActivity {
                 return false;
             });
 
-            assert share != null;
-            share.setOnPreferenceClickListener(preference -> {
+            assert sharePreference != null;
+            sharePreference.setOnPreferenceClickListener(preference -> {
                 Intent shareText = new Intent();
                 shareText.setAction(Intent.ACTION_SEND);
                 shareText.putExtra(Intent.EXTRA_TEXT, "https://github.com/Lijukay/Quotes-M3");
@@ -300,17 +421,17 @@ public class SettingsActivity extends AppCompatActivity {
                 return false;
             });
 
-            assert feedback != null;
-            feedback.setOnPreferenceClickListener(preference -> {
+            assert feedbackPreference != null;
+            feedbackPreference.setOnPreferenceClickListener(preference -> {
                 new MaterialAlertDialogBuilder(requireActivity())
-                        .setTitle("Send feedback")
-                        .setMessage("How do you want to send your feedback? Chose between Telegram and E-Mail. Keep in mind, that every conversation WILL BE deleted after everything is done, EXCEPT you want to keep it.")
-                        .setNeutralButton("Cancel", null)
-                        .setPositiveButton("Telegram", (dialog, which) -> {
+                        .setTitle(R.string.feedback)
+                        .setMessage(R.string.feedmes)
+                        .setNeutralButton(R.string.neuBut, null)
+                        .setPositiveButton(R.string.posBut, (dialog, which) -> {
                             Uri telegram = Uri.parse("https://t.me/Lijukay");
                             startActivity(new Intent(Intent.ACTION_VIEW, telegram));
                         })
-                        .setNegativeButton("E-Mail", (dialog, which) -> startActivity(composeEmail("lico.keins@gmail.com", getString(R.string.feedbackSubject), getString(R.string.feedbackMessage))))
+                        .setNegativeButton(R.string.negBut, (dialog, which) -> startActivity(composeEmail("lico.keins@gmail.com", getString(R.string.feedbackSubject), getString(R.string.feedbackMessage))))
                         .show();
                 return false;
             });
@@ -319,26 +440,26 @@ public class SettingsActivity extends AppCompatActivity {
         private void parseJSONVersion() {
             String urlU = "https://lijukay.github.io/PrUp/prUp.json";
 
-            JsonObjectRequest requestU = new JsonObjectRequest(Request.Method.GET, urlU, null,
-                    responseU -> {
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, urlU, null,
+                    jsonObject -> {
                         try {
-                            JSONArray jsonArrayAll = responseU.getJSONArray("Quotes-M3");
+                            JSONArray jsonArray = jsonObject.getJSONArray("Quotes-M3");
 
-                            for (int a = 0; a < jsonArrayAll.length(); a++) {
+                            for (int a = 0; a < jsonArray.length(); a++) {
 
-                                JSONObject v = jsonArrayAll.getJSONObject(a);
+                                JSONObject v = jsonArray.getJSONObject(a);
 
                                 versionC = BuildConfig.VERSION_CODE;
                                 versionA = v.getInt("versionsCode");
                                 apkUrl = v.getString("apkUrl");
-                                changelogchange = v.getString("changelog");
+                                changelogMessage = v.getString("changelog");
                                 versionName = v.getString("versionsName");
                             }
 
                             if (versionA > versionC) {
-                                updateA = "Update available";
+                                updateStatus = "Update available";
                             } else {
-                                updateA = "No update";
+                                updateStatus = "No update";
                             }
 
                         } catch (JSONException e) {
@@ -346,11 +467,15 @@ public class SettingsActivity extends AppCompatActivity {
                         }
                     }, Throwable::printStackTrace);
 
-            mRequestQueueU.add(requestU);
+            mRequestQueueU.add(jsonObjectRequest);
         }
-        @SuppressLint("MissingSuperCall")
+
+
+        @SuppressWarnings("deprecation")
+        @SuppressLint({"MissingSuperCall"})
         @Override
         public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+            int PERMISSION_REQUEST_CODE_WRITE_EXTERNAL = 100;
             if (requestCode == PERMISSION_REQUEST_CODE_WRITE_EXTERNAL && (grantResults.length <= 0 || grantResults[0] != PackageManager.PERMISSION_GRANTED)) {
                 showPermissionDialog();
             }
@@ -363,7 +488,7 @@ public class SettingsActivity extends AppCompatActivity {
             new MaterialAlertDialogBuilder(requireActivity())
                     .setTitle(R.string.permissionRequired)
                     .setMessage(R.string.grantPermission)
-                    .setNeutralButton("Grant permission", (dialog, which) -> {
+                    .setNeutralButton(R.string.neuButGP, (dialog, which) -> {
                         Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
                         Uri uri = Uri.fromParts("package", requireActivity().getPackageName(), null);
                         intent.setData(uri);
@@ -382,11 +507,7 @@ public class SettingsActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             if(intent.getAction().equals(BroadcastStringForAction)){
-                if(intent.getStringExtra("online_status").equals("true")){
-
-                } else {
-                    updateA = "No internet";
-                }
+                internet = intent.getStringExtra("online_status").equals("true");
             }
         }
     };
@@ -457,9 +578,6 @@ public class SettingsActivity extends AppCompatActivity {
         downloadManager.enqueue(request);
     }
 
-
-
-
     public static Intent composeEmail(String addresses, String subject, String messageE) {
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setData(Uri.parse("mailto:" + addresses));
@@ -468,8 +586,4 @@ public class SettingsActivity extends AppCompatActivity {
         intent.putExtra(Intent.EXTRA_TEXT, messageE);
         return intent;
     }
-
-
-
-
 }

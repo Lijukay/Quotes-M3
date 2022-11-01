@@ -40,5 +40,42 @@
     <string name="License">Licenses</string>
     <string name="licensemsg">This app uses following licenses:&lt;br/>&lt;br/> Lottie files with &lt;a href="https://lottiefiles.com/page/license">LottieFiles-License:&lt;/a> &lt;br/>According to &lt;a href="https://lottiefiles.com/">Lottie:&lt;/a> \'Use of Files without attributing the creator(s) of the Files is permitted under this license, though attribution is strongly encouraged. If attributions are included, such attributions should be visible to the end user.\'&lt;br/>I used following Lottie-Animations:&lt;br/>&lt;a href="https://lottiefiles.com/79172-update?lang=de">update (Blue loader for update)&lt;/a> by Domenico Gonnelli&lt;br/>&lt;a href="https://lottiefiles.com/82073-testimonials-icon?lang=de">Testimonials Icon (Smooth reveal icon for testimonials - web design.)&lt;/a> by Rachel Eppy&lt;br/>&lt;a href="https://lottiefiles.com/61169-no-wifi-connection-error?lang=de"> no wifi connection error (no wifi connection error animation)&lt;/a> by quang_do204</string>
     <string name="noInternetMessage">Your device currently is not connected to the internet</string>
-
+    <string name="appres">Restart app to completely apply new theme</string>
+    <string name="appresl">Restart app to completely apply new language</string>
+    <string name="settings">Settings</string>
+    <string name="bugmes">How do you want to send a bug report? Chose between Telegram and E-Mail. Keep in mind, that every conversation WILL BE deleted after everything is done, EXCEPT you want to keep it.</string>
+    <string name="bugtit">Report a bug</string>
+    <string name="neuBut">Cancel</string>
+    <string name="negBut" translatable="false">E-Mail</string>
+    <string name="posBut" translatable="false">Telegram</string>
+    <string name="feasugTit">Suggest a feature</string>
+    <string name="feasugMes">How do you want to send a feature suggestion? Chose between Telegram and E-Mail. Keep in mind, that every conversation WILL BE deleted after everything is done, EXCEPT you want to keep it.</string>
+    <string name="perTit">App\'s permissions</string>
+    <string name="cfuna">Can\'t check for update</string>
+    <string name="nua">No update available</string>
+    <string name="posButUp">Install</string>
+    <string name="feedmes">How do you want to send your feedback? Chose between Telegram and E-Mail. Keep in mind, that every conversation WILL BE deleted after everything is done, EXCEPT you want to keep it.</string>
+    <string name="neuButGP">Grant permission</string>
+    <string name="dark_mode">Dark Theme</string>
+    <string name="ac">App\'s color</string>
+    <string name="lang">Language</string>
+    <string name="bugmess">I really am sorry, if you found a bug. I will do everything I can to fix it as soon as possible! Click here, to send me an E-Mail</string>
+    <string name="feasmess">Is there something you like me to add? I can try it, just click here, to send me an E-Mail</string>
+    <string name="sharemess">Share this app with your friends, to let them see the wisdoms and quotes of others too!</string>
+    <string name="feedmess">If you like this app or you do not like this app, i really would be happy, if you send me the reasons :3</string>
+    <string name="permmess">You may have been asked to allow some permissions. Go on, and find out why!</string>
+    <string name="ppmess">Afraid, that I collect your data? Read this and find out, that I do not :3</string>
+    <string name="licmess">I am using third-party content too. In the future, here you can find out, what I am using.</string>
+    <string name="non">Night-Mode on</string>
+    <string name="noff">Night-Mode off</string>
+    <string name="colorred">Current color theme: Red</string>
+    <string name="colorpurple">Current color theme: Purple</string>
+    <string name="lande">Current language is: English</string>
+    <string name="notsupported">Your language currently is not supported. Because of that, your language is set to English</string>
+    <string name="updatesum">Check if there is an update available</string>
+    <string name="colors">Color theme</string>
+    <string name="language">Language</string>
+    <string name="deutsch">Deutsch</string>
+    <string name="english">English</string>
 </resources>
+

@@ -5,11 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.PersonsActivity"
-    android:fitsSystemWindows="true"
-    style="@style/AppTheme">
+    android:fitsSystemWindows="true">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:theme="@style/AppTheme"
         android:backgroundTint="?attr/colorSecondaryContainer"
         android:layout_width="match_parent"
         android:fitsSystemWindows="true"
@@ -23,7 +21,6 @@
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
                 app:title="@string/persons"
-                android:theme="@style/AppTheme.Title"
                 app:titleMarginStart="10dp"/>
 
     </com.google.android.material.appbar.AppBarLayout>
