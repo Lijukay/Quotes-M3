@@ -2,11 +2,14 @@
   "EditorsChoice":
   [
     {
-      "quote": "Alles ist nur gut für seine Zeit",
-      "author": "trigger337"
+      "quote": "Schließlich bin ich nur der Mond, und die echte Sonne existiert nicht mehr...",
+      "author": "Nahida"
     }, {
-      "quote": "Weißt du, die Menschen sind eine einzigartige Schädlingsart. Sie vermehren sich und vergiften unsere Welt, während sie ihr ihre eigene Struktur auferlegen. Eine zutiefst unnatürliche Struktur. Wo andere Ordnung sahen, sah ich eine Zwangsjacke. Eine grausame, erdrückende Welt beherrscht durch erfundene Regeln. Sekunden, Minuten, Stunden, Tage, Wochen, Monate, Jahre, Jahrzehnte! Jedes Leben ein verblasster, fader Abklatsch des vorherigen Lebens! Aufwachen, essen, arbeiten, schlafen, sich fortpflanzen und sterben!",
-      "author": "Vecna"
+      "quote": "Die Bewohner scheren sich nicht darum, welcher Gott die Oberhand hat. Wir möchten nur unser Leben leben, egal wie schwer und ermüdend es sein mag.",
+      "author": "Candace"
+    }, {
+      "quote": "Es wird immer Frustation geben, aber ich weiß, dass der Sinn des Lebens darin besteht, kein Bedauern zu hinterlassen.",
+      "author": "Dunyarzad"
     }, {
       "quote": "Gefühle sind es wert, gefühlt zu werden, auch wenn sie weh tun",
       "author": "Eclipsa"
@@ -45,6 +48,15 @@
   "AllQuotes":
   [
     {
+      "quoteAll": "Schließlich bin ich nur der Mond, und die echte Sonne existiert nicht mehr...",
+      "authorAll": "Nahida"
+    }, {
+      "quoteAll": "Die Bewohner scheren sich nicht darum, welcher Gott die Oberhand hat. Wir möchten nur unser Leben leben, egal wie schwer und ermüdend es sein mag.",
+      "authorAll": "Candace"
+    }, {
+      "quoteAll": "Es wird immer Frustration geben, aber ich weiß, dass der Sinn des Lebens darin besteht, kein Bedauern zu hinterlassen",
+      "authorAll": "Dunyarzad"
+    }, {
       "quoteAll": "Hier ist dein Ergebnis der letzten Kammer: Du bist ein schrecklicher Mensch. Ja, das steht hier: Schrecklicher Mensch. Und das testen wir nicht einmal.",
       "authorAll": "GLaDOS"
     }, {
@@ -312,11 +324,15 @@
     }, {
       "authorP": "Charles Bukowski"
     }, {
+      "authorP": "Candace"
+    }, {
       "authorP": "Coco Chanel"
     }, {
       "authorP": "Confucius"
     }, {
       "authorP": "Dolly Parton"
+    }, {
+      "authorP": "Dunyarzad"
     }, {
       "authorP": "Ernest Hemingway"
     }, {
@@ -352,6 +368,8 @@
     }, {
       "authorP": "Mark Aurel"
     }, {
+      "authorP": "Nahida"
+    }, {
       "authorP": "Pablo Picasso"
     }, {
       "authorP": "Pain"
@@ -375,6 +393,27 @@
       "authorP": "Winnie Pooh"
     }, {
       "authorP": "Yvonne Ho-Sebastian, Linus Tech Tips"
+    }
+  ],
+  "Nahida":
+  [
+    {
+      "quotePQ": "Schließlich bin ich nur der Mond, und die echte Sonne existiert nicht mehr...",
+      "authorPQ": "Nahida"
+    }
+  ],
+  "Dunyarzad":
+  [
+    {
+      "quotePQ": "Es wird im Leben immer Frustration geben, aber ich weiß, dass der Sinn des Lebens darin besteht, kein Bedauern zu hinterlassen.",
+      "authorPQ": "Dunyarzad"
+    }
+  ],
+  "Candace":
+  [
+    {
+      "quotePQ": "Die Bewohner scheren sich nicht darum, welcher Gott die Oberhand hat. Wir möchten nur unser Leben leben, egal wie schwer und ermüdend es sein mag",
+      "authorPQ": "Candace"
     }
   ],
   "GLaDOS":
