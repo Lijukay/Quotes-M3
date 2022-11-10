@@ -5,9 +5,6 @@
       "quote": "Everything is only fine for it's time",
       "author": "trigger337"
     }, {
-      "quote": "You see, humans are a unique type of pest multiplying and poisoning our world all while enforcing a structure of their own. A deeply, unnatural structure. Where others saw order, I saw a straitjacket, a cruel, oppressive world dictated by made-up rules. Seconds, minutes, hours, days, weeks, months, years, decades. Each life a faded, lesser copy of the one before. Wake up, eat, work, sleep, reproduce and die. Everyone is just waiting. Waiting for it all to be over. All while performing in a silly, terrible play, day after days. I could not do that. I could not close off my mind and join in the madness. I could not pretend. And I realized I didn't have to.",
-      "author": "Vecna"
-    }, {
       "quote": "Feelings are worth feeling, even if they hurt",
       "author": "Eclipsa"
     }, {
@@ -48,6 +45,12 @@
   "AllQuotes":
   [
     {
+      "quoteAll": "The bird is powered by its own life and by its motivation",
+      "authorAll": "Abdul Kalam"
+    }, {
+      "quoteAll": "Arise! Awake! And stop not until the goal is reached.",
+      "authorAll": "Swami Vivekanandan"
+    }, {
       "quoteAll": "It may be that a perfect being does not exist at all in the whole world. Sometimes two people who appear to be completely opposite are actually two sides of the same coin and can only succeed when they work together.",
       "authorAll": "Itachi Uchiha"
     }, {
@@ -310,6 +313,8 @@
   "Persons":
   [
     {
+      "authorP": "Abdul Kalam"
+    }, {
       "authorP": "Agatha"
     }, {
       "authorP": "Astrid Alauda"
@@ -368,6 +373,8 @@
     }, {
       "authorP": "Robert Schuller"
     }, {
+      "authorP": "Swami Vivekanandan"
+    }, {
       "authorP": "trigger337"
     }, {
       "authorP": "Unknown"
@@ -383,6 +390,20 @@
       "authorP": "Winnie Pooh"
     }, {
       "authorP": "Yvonne Ho-Sebastian, Linus Tech Tips"
+    }
+  ],
+  "Abdul Kalam":
+  [
+    {
+      "quotePQ": "The bird is powered by its own life and by its motivation",
+      "authorPQ": "Abdul Kalam"
+    }
+  ],
+  "Swami Vivekanandan":
+  [
+    {
+      "quotePQ": "Arise! Awake! And stop not until the goal is reached",
+      "authorPQ": "Swami Vivekanandan"
     }
   ],
   "Agatha":
