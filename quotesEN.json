@@ -2,6 +2,9 @@
   "EditorsChoice":
   [
     {
+      "quote": "For those that live too long, the friends of days gone by and scenes from their adventures live on in their memories. As such I have no regrets in meeting you, friend. Should the day ever come that we are not together, you will continue to shine like gold in my memories.",
+      "author": "Zhongli"
+    }, {
       "quote": "Everything is only fine for it's time",
       "author": "trigger337"
     }, {
@@ -45,6 +48,9 @@
   "AllQuotes":
   [
     {
+      "quoteAll": "For those that live too long, the friends of days gone by and scenes from their adventures live on in their memories. As such I have no regrets in meeting you, friend. Should the day ever come that we are not together, you will continue to shine like gold in my memories.",
+      "authorAll": "Zhongli"
+    }, {
       "quoteAll": "The bird is powered by its own life and by its motivation",
       "authorAll": "Abdul Kalam"
     }, {
@@ -390,6 +396,8 @@
       "authorP": "Winnie Pooh"
     }, {
       "authorP": "Yvonne Ho-Sebastian, Linus Tech Tips"
+    }, {
+      "authorP": "Zhongli"
     }
   ],
   "Abdul Kalam":
@@ -810,6 +818,13 @@
     }, {
       "quotePQ": "But what is grief, if not love persevering?",
       "authorPQ": "Vision"
+    }
+  ],
+  "Zhongli":
+  [
+    {
+      "quotePQ": "For those that live too long, the friends of days gone by and scenes from their adventures live on in their memories. As such I have no regrets in meeting you, friend. Should the day ever come that we are not together, you will continue to shine like gold in my memories.",
+      "authorPQ": "Zhongli"
     }
   ],
   "Version":
