@@ -51,6 +51,9 @@
   "AllQuotes":
   [
     {
+      "quoteAll": "I arrived only in time to hear her dying breath. Why did she go to Khaenri'ah first, and not I. Why did she keep me in the dark about it? Was it to shield me? Facing the fact that she is gone is... unbearably painful",
+      "authorAll": "Ei, Genshin Impact"
+    }, {
       "quoteAll": "For those that live too long, the friends of days gone by and scenes from their adventures live on in their memories. As such I have no regrets in meeting you, friend. Should the day ever come that we are not together, you will continue to shine like gold in my memories.",
       "authorAll": "Zhongli"
     }, {
@@ -346,6 +349,8 @@
     }, {
       "authorP": "Ernest Hemingway"
     }, {
+      "authorP": "Ei"
+    }, {
       "authorP": "Eclipsa"
     }, {
       "authorP": "Franz Kafka"
@@ -401,6 +406,13 @@
       "authorP": "Yvonne Ho-Sebastian, Linus Tech Tips"
     }, {
       "authorP": "Zhongli"
+    }
+  ],
+  "Ei":
+  [
+    {
+      "quotePQ": "I arrived only in time to hear her dying breath. Why did she go to Khaenri'ah first, and not I. Why did she keep me in the dark about it? Was it to shield me? Facing the fact that she is gone is... unbearably painful",
+      "authorPQ": "Ei, Genshin Impact"
     }
   ],
   "Abdul Kalam":
