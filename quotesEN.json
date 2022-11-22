@@ -57,6 +57,12 @@
   "AllQuotes":
   [
     {
+      "quoteAll": "No one bad is every truly bad. And no one good is ever truly good.",
+      "authorAll": "Loki"
+    }, {
+      "quoteAll": "Freedom is life's great lie. Once you accept that, in your heart, you will know peace.",
+      "authorAll": "Loki"
+    }, {
       "quoteAll": "I arrived only in time to hear her dying breath. Why did she go to Khaenri'ah first, and not I. Why did she keep me in the dark about it? Was it to shield me? Facing the fact that she is gone is... unbearably painful",
       "authorAll": "Ei, Genshin Impact"
     }, {
@@ -355,7 +361,7 @@
     }, {
       "authorP": "Ernest Hemingway"
     }, {
-      "authorP": "Ei"
+      "authorP": "Ei, Genshin Impact"
     }, {
       "authorP": "Eclipsa"
     }, {
@@ -380,6 +386,8 @@
       "authorP": "Jackson Brown"
     }, {
       "authorP": "Lew Tolstoi"
+    }, {
+      "authorP": "Loki"
     }, {
       "authorP": "Lilian Dickson"
     }, {
@@ -414,7 +422,17 @@
       "authorP": "Zhongli"
     }
   ],
-  "Ei":
+  "Loki":
+  [
+    {
+      "quotePQ": "No one bad is every truly bad. And no one good is ever truly good.",
+      "authorPQ": "Loki"
+    }, {
+      "quotePQ": "Freedom is life's great lie. Once you accept that, in your heart, you will know peace.",
+      "authorPQ": "Loki"
+    }
+  ],
+  "Ei, Genshin Impact":
   [
     {
       "quotePQ": "I arrived only in time to hear her dying breath. Why did she go to Khaenri'ah first, and not I. Why did she keep me in the dark about it? Was it to shield me? Facing the fact that she is gone is... unbearably painful",
