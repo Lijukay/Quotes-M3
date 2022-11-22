@@ -11,10 +11,14 @@ This application needs to be connected to the internet, since it will parse the 
 
 
 
-Informations:
+Information:
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
 The JSON-File will be changed from time to time. Luckily, you don't need to update the app for the changes, since my code offers the possibility to parse new authors + their quotes by getting the extra out of an intent and setting it into getJSONArray();.
 With this it saves me from publishing new versions just to give users new quotes, also I can faster change new quotes, persons, etc., so I have more time to think about features and bugs.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+This application will be replaced soon by Qwotables. Try to update it as soon as an update is available since I will no longer work on this app or at the JSON Files in this repro.
